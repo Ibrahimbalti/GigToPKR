@@ -1,0 +1,111 @@
+import { absoluteUrl, site } from "@/config/site";
+
+export type Crumb = { name: string; path: string };
+
+function organization() {
+  return {
+    "@type": "Organization",
+    name: site.name,
+    url: site.url,
+    logo: absoluteUrl("/logo.jpg"),
+    description: site.description,
+    email: site.contactEmail || undefined,
+  };
+}
+
+export function organizationSchema() {
+  return {
+    "@context": "https://schema.org",
+    ...organization(),
+  };
+}
+
+export function websiteSchema() {
+  return {
+    "@context": "https://schema.org",
+    "@type": "WebSite",
+    name: site.productName,
+    url: site.url,
+    description: site.description,
+    inLanguage: "en",
+    publisher: organization(),
+  };
+}
+
+export function breadcrumbSchema(crumbs: Crumb[]) {
+  return {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    itemListElement: crumbs.map((crumb, index) => ({
+      "@type": "ListItem",
+      position: index + 1,
+      name: crumb.name,
+      item: absoluteUrl(crumb.path),
+    })),
+  };
+}
+
+export function softwareSchema(path: string, name: string, description: string) {
+  return {
+    "@context": "https://schema.org",
+    "@type": "SoftwareApplication",
+    name,
+    applicationCategory: "FinanceApplication",
+    operatingSystem: "Web",
+    url: absoluteUrl(path),
+    description,
+    offers: {
+      "@type": "Offer",
+      price: "0",
+      priceCurrency: "USD",
+    },
+    provider: organization(),
+  };
+}
+
+export function articleSchema(input: {
+  path: string;
+  headline: string;
+  description: string;
+  publishedAt: string;
+  updatedAt: string;
+  kind: "Article" | "BlogPosting";
+}) {
+  return {
+    "@context": "https://schema.org",
+    "@type": input.kind,
+    headline: input.headline,
+    description: input.description,
+    datePublished: input.publishedAt,
+    dateModified: input.updatedAt,
+    mainEntityOfPage: absoluteUrl(input.path),
+    url: absoluteUrl(input.path),
+    author: {
+      "@type": "Organization",
+      name: "GigToPKR Editorial",
+      url: absoluteUrl("/about"),
+    },
+    publisher: organization(),
+  };
+}
+
+export function aboutPageSchema() {
+  return {
+    "@context": "https://schema.org",
+    "@type": "AboutPage",
+    name: "About GigToPKR",
+    url: absoluteUrl("/about"),
+    description: "What GigToPKR estimates, who it is for, and what it does not do.",
+    isPartOf: { "@type": "WebSite", name: site.name, url: site.url },
+  };
+}
+
+export function contactPageSchema() {
+  return {
+    "@context": "https://schema.org",
+    "@type": "ContactPage",
+    name: "Contact GigToPKR",
+    url: absoluteUrl("/contact"),
+    description: "Contact the GigToPKR editorial desk about corrections and the calculator.",
+  };
+}

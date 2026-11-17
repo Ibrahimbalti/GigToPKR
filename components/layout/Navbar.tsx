@@ -1,0 +1,113 @@
+"use client";
+
+import { useEffect, useState } from "react";
+import Link from "next/link";
+import { usePathname } from "next/navigation";
+import { Menu, X } from "@/components/icons";
+import { Logo } from "@/components/layout/Logo";
+import { Skeleton } from "@/components/ui/Skeleton";
+import { desktopNav, mainNav } from "@/config/navigation";
+
+function isCurrent(pathname: string, href: string) {
+  if (href === "/") return pathname === "/";
+  return pathname === href || pathname.startsWith(`${href}/`);
+}
+
+export function Navbar() {
+  const pathname = usePathname();
+  const [rate, setRate] = useState("USD/PKR");
+  const [isLoading, setIsLoading] = useState(true);
+
+  useEffect(() => {
+    let cancelled = false;
+    fetch("/api/exchange-rate")
+      .then((response) => response.json())
+      .then((data) => {
+        if (cancelled) return;
+        setRate(data && data.rate ? `USD/PKR ${Number(data.rate).toFixed(2)}` : "Rate unavailable");
+        setIsLoading(false);
+      })
+      .catch(() => {
+        if (cancelled) return;
+        setRate("Rate unavailable");
+        setIsLoading(false);
+      });
+    return () => {
+      cancelled = true;
+    };
+  }, []);
+
+  return (
+    <header className="sticky top-0 z-40 px-3 pt-3">
+      <div className="shell relative flex h-[72px] items-center gap-3 rounded-2xl border border-line bg-white px-3 shadow-[var(--shadow)]">
+        <Logo />
+        <nav className="absolute left-1/2 hidden -translate-x-1/2 items-center gap-0.5 xl:flex" aria-label="Primary">
+          {desktopNav.map((item) => (
+            <Link
+              key={item.href}
+              href={item.href}
+              scroll
+              aria-current={isCurrent(pathname, item.href) ? "page" : undefined}
+              className="inline-flex min-h-10 items-center whitespace-nowrap rounded-lg px-2.5 text-[13.5px] font-medium tracking-[-0.01em] text-navy-2 aria-[current=page]:bg-brand-50 aria-[current=page]:text-brand-ink hover:bg-canvas hover:text-ink"
+            >
+              {item.label}
+            </Link>
+          ))}
+        </nav>
+        <div className="ml-auto flex shrink-0 items-center gap-2">
+          <p
+            className="hidden min-h-8 min-w-[9.75rem] items-center justify-center whitespace-nowrap rounded-full border border-line bg-white px-3 text-xs font-semibold text-navy shadow-[var(--shadow)] lg:inline-flex"
+            aria-busy={isLoading}
+          >
+            {isLoading ? (
+              <>
+                <span className="sr-only">Loading exchange rate</span>
+                <Skeleton variant="text" className="h-3 w-24" />
+              </>
+            ) : (
+              rate
+            )}
+          </p>
+          <Link
+            href="/calculator"
+            scroll
+            className="cta-gradient hidden min-h-10 items-center whitespace-nowrap rounded-xl px-3.5 text-sm font-semibold text-white sm:inline-flex"
+          >
+            Calculate Now
+          </Link>
+          <details key={pathname} className="group relative xl:hidden">
+            <summary className="flex size-10 cursor-pointer items-center justify-center rounded-xl border border-line bg-white text-ink">
+              <Menu aria-hidden className="size-5 group-open:hidden" />
+              <X aria-hidden className="hidden size-5 group-open:block" />
+              <span className="sr-only">Menu</span>
+            </summary>
+            <nav
+              id="mobile-navigation"
+              className="absolute right-0 z-50 mt-3 w-[min(20rem,calc(100vw-2rem))] rounded-2xl border border-line bg-white p-3 shadow-[var(--shadow)]"
+              aria-label="Mobile"
+            >
+              {mainNav.map((item) => (
+                <Link
+                  key={item.href}
+                  href={item.href}
+                  scroll
+                  aria-current={isCurrent(pathname, item.href) ? "page" : undefined}
+                  className="flex min-h-11 items-center rounded-xl px-3 text-base font-medium text-ink aria-[current=page]:bg-brand-50 aria-[current=page]:text-brand-ink hover:bg-brand-50"
+                >
+                  {item.label}
+                </Link>
+              ))}
+              <Link
+                href="/calculator"
+                scroll
+                className="cta-gradient mt-2 flex min-h-11 items-center justify-center rounded-xl px-3 text-base font-semibold text-white"
+              >
+                Calculate Earnings
+              </Link>
+            </nav>
+          </details>
+        </div>
+      </div>
+    </header>
+  );
+}
