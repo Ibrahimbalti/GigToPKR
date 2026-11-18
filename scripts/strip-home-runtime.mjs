@@ -1,9 +1,17 @@
 import fs from "node:fs";
 import path from "node:path";
 
-const source = ".next/server/app/index.html";
-if (!fs.existsSync(source)) {
-  console.log("Homepage is server-rendered, so there is no static index.html to trim.");
+// The prerendered homepage location can differ between build environments
+// (for example when a deployment adapter is active), so look in known spots.
+const candidates = [
+  ".next/server/app/index.html",
+  ".next/server/app/(home).html",
+  ".next/server/app/(home)/index.html",
+  ".next/server/pages/index.html",
+];
+const source = candidates.find((file) => fs.existsSync(file));
+if (!source) {
+  console.warn("strip-home-runtime: prerendered homepage not found; skipping static homepage optimization.");
   process.exit(0);
 }
 let html = fs.readFileSync(source, "utf8");
@@ -51,8 +59,8 @@ if (hiddenStart !== -1) {
 
 const cssMatch = html.match(/href="(\/_next\/static\/chunks\/[^"]+\.css)"/);
 if (!cssMatch) {
-  console.error("homepage stylesheet missing");
-  process.exit(1);
+  console.warn("strip-home-runtime: homepage stylesheet missing; skipping static homepage optimization.");
+  process.exit(0);
 }
 const cssUrl = cssMatch[1];
 let css = fs.readFileSync(path.join(".next", "static", "chunks", path.basename(cssUrl)), "utf8");
