@@ -18,7 +18,7 @@ export function PlatformComparison() {
           <p className="mt-3 text-sm leading-6 text-muted">
             Gig-based freelance marketplace. Fiverr&apos;s earnings help page says freelancers earn 80% of the purchase amount, including extras and tips. The client&apos;s checkout fee is separate.
           </p>
-          <Link href="/fiverr-fee-calculator-pakistan" className="mt-4 inline-flex text-sm font-semibold text-brand">
+          <Link href="/fiverr-fee-calculator" className="mt-4 inline-flex text-sm font-semibold text-brand">
             Open the Fiverr calculator
           </Link>
         </article>
@@ -30,7 +30,7 @@ export function PlatformComparison() {
           <p className="mt-3 text-sm leading-6 text-muted">
             Hourly and fixed-price freelance marketplace. Upwork publishes a freelancer service fee from 0% to 15% per contract. Ten percent is a midpoint this calculator can show, not your offer.
           </p>
-          <Link href="/upwork-fee-calculator-pakistan" className="mt-4 inline-flex text-sm font-semibold text-brand">
+          <Link href="/upwork-fee-calculator" className="mt-4 inline-flex text-sm font-semibold text-brand">
             Open the Upwork calculator
           </Link>
         </article>

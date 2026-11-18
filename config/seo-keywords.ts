@@ -30,7 +30,7 @@ export const keywordMap: KeywordMapping[] = [
   {
     keyword: "Fiverr Fee Calculator Pakistan",
     intent: "transactional",
-    path: "/fiverr-fee-calculator-pakistan",
+    path: "/fiverr-fee-calculator",
     title: "Fiverr Fee Calculator Pakistan",
     description:
       "Estimate a Fiverr order in PKR using a 20% platform-fee assumption, a 2% withdrawal assumption, and an illustrative tax rate.",
@@ -43,7 +43,7 @@ export const keywordMap: KeywordMapping[] = [
   {
     keyword: "Upwork Fee Calculator Pakistan",
     intent: "transactional",
-    path: "/upwork-fee-calculator-pakistan",
+    path: "/upwork-fee-calculator",
     title: "Upwork Fee Calculator Pakistan",
     description:
       "Estimate an Upwork payment in PKR. The 10% fee is an assumption inside Upwork's published 0% to 15% range.",
@@ -114,7 +114,7 @@ export const keywordMap: KeywordMapping[] = [
       "Follow the six-step estimate from a Fiverr order amount to an illustrative PKR bank deposit.",
     h1: "How to Calculate Fiverr Earnings in PKR",
     relatedTerms: ["how much is $100 on Fiverr after deductions"],
-    internalLinks: ["/fiverr-fee-calculator-pakistan", "/guides/fiverr-fees-pakistan"],
+    internalLinks: ["/fiverr-fee-calculator", "/guides/fiverr-fees-pakistan"],
     conversion: "Open the Fiverr calculator",
     metrics: "unverified",
   },

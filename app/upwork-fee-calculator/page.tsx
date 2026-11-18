@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import { ToolScreen, toolMetadata } from "@/components/tools/ToolScreen";
 
-const path = "/upwork-fee-calculator-pakistan";
+const path = "/upwork-fee-calculator";
 
 export const metadata: Metadata = toolMetadata(path);
 

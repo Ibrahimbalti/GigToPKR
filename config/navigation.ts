@@ -6,8 +6,8 @@ export type NavItem = {
 
 export const mainNav: NavItem[] = [
   { href: "/", label: "Home" },
-  { href: "/fiverr-fee-calculator-pakistan", label: "Fiverr Calculator", shortLabel: "Fiverr" },
-  { href: "/upwork-fee-calculator-pakistan", label: "Upwork Calculator", shortLabel: "Upwork" },
+  { href: "/fiverr-fee-calculator", label: "Fiverr Calculator", shortLabel: "Fiverr" },
+  { href: "/upwork-fee-calculator", label: "Upwork Calculator", shortLabel: "Upwork" },
   { href: "/creators/youtube-earnings-calculator", label: "YouTube Calculator", shortLabel: "YouTube" },
   { href: "/guides", label: "Guides" },
   { href: "/tax-guide", label: "Tax Guide", shortLabel: "Tax" },
@@ -19,8 +19,8 @@ export const mainNav: NavItem[] = [
 /** Desktop bar keeps labels on one line. About and Contact stay in the drawer and footer. */
 export const desktopNav: NavItem[] = [
   { href: "/", label: "Home" },
-  { href: "/fiverr-fee-calculator-pakistan", label: "Fiverr" },
-  { href: "/upwork-fee-calculator-pakistan", label: "Upwork" },
+  { href: "/fiverr-fee-calculator", label: "Fiverr" },
+  { href: "/upwork-fee-calculator", label: "Upwork" },
   { href: "/creators/youtube-earnings-calculator", label: "YouTube" },
   { href: "/guides", label: "Guides" },
   { href: "/tax-guide", label: "Tax Guide" },
@@ -29,8 +29,8 @@ export const desktopNav: NavItem[] = [
 
 export const footerCalculators: NavItem[] = [
   { href: "/", label: "Home" },
-  { href: "/fiverr-fee-calculator-pakistan", label: "Fiverr Calculator" },
-  { href: "/upwork-fee-calculator-pakistan", label: "Upwork Calculator" },
+  { href: "/fiverr-fee-calculator", label: "Fiverr Calculator" },
+  { href: "/upwork-fee-calculator", label: "Upwork Calculator" },
   { href: "/creators/youtube-earnings-calculator", label: "YouTube Calculator" },
 ];
 

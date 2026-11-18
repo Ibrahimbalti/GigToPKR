@@ -147,8 +147,8 @@ export const posts: Article[] = [
     ],
     sources: [sourceLinks.fiverrEarnings, sourceLinks.upworkFee, sourceLinks.upworkBank],
     related: [
-      { href: "/fiverr-fee-calculator-pakistan", label: "Fiverr calculator" },
-      { href: "/upwork-fee-calculator-pakistan", label: "Upwork calculator" },
+      { href: "/fiverr-fee-calculator", label: "Fiverr calculator" },
+      { href: "/upwork-fee-calculator", label: "Upwork calculator" },
       { href: "/guides/upwork-fees-pakistan", label: "Upwork fee guide" },
     ],
   }),
@@ -365,7 +365,7 @@ export const posts: Article[] = [
     sources: [sourceLinks.fiverrEarnings, sourceLinks.fiverrHow, sourceLinks.payoneerWithdraw, sourceLinks.payoneerPricing],
     related: [
       { href: "/guides/fiverr-withdrawal-pakistan", label: "Fiverr withdrawal guide" },
-      { href: "/fiverr-fee-calculator-pakistan", label: "Fiverr calculator" },
+      { href: "/fiverr-fee-calculator", label: "Fiverr calculator" },
       { href: "/guides/payoneer-withdrawal-charges", label: "Payoneer checklist" },
     ],
   }),
@@ -449,7 +449,7 @@ export const posts: Article[] = [
     ],
     sources: [sourceLinks.upworkFee, sourceLinks.upworkPricing, sourceLinks.upworkBank],
     related: [
-      { href: "/upwork-fee-calculator-pakistan", label: "Upwork calculator" },
+      { href: "/upwork-fee-calculator", label: "Upwork calculator" },
       { href: "/guides/upwork-fees-pakistan", label: "Upwork fee guide" },
       { href: "/guides/upwork-payment-methods-pakistan", label: "Upwork payout methods" },
     ],

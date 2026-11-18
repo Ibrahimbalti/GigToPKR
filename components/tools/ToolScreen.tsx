@@ -43,18 +43,18 @@ export function ToolScreen({ path, crumbs }: { path: string; crumbs: Crumb[] }) 
         defaultTax={page.defaultTax}
         showMonthly={page.mode === "income"}
         lockedPlatform={
-          page.path === "/fiverr-fee-calculator-pakistan"
+          page.path === "/fiverr-fee-calculator"
             ? "fiverr"
-            : page.path === "/upwork-fee-calculator-pakistan"
+            : page.path === "/upwork-fee-calculator"
               ? "upwork"
               : undefined
         }
       >
         <CalculatorPreview
           lockedPlatform={
-            page.path === "/fiverr-fee-calculator-pakistan"
+            page.path === "/fiverr-fee-calculator"
               ? "fiverr"
-              : page.path === "/upwork-fee-calculator-pakistan"
+              : page.path === "/upwork-fee-calculator"
                 ? "upwork"
                 : undefined
           }

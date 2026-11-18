@@ -99,7 +99,7 @@ export const guides: Article[] = [
     ],
     sources: [sourceLinks.fiverrEarnings, sourceLinks.fiverrHow],
     related: [
-      { href: "/fiverr-fee-calculator-pakistan", label: "Open the Fiverr calculator" },
+      { href: "/fiverr-fee-calculator", label: "Open the Fiverr calculator" },
       { href: "/guides/fiverr-withdrawal-pakistan", label: "Fiverr withdrawals in Pakistan" },
       { href: "/guides/fiverr-earnings-calculation", label: "Calculate Fiverr earnings step by step" },
     ],
@@ -184,7 +184,7 @@ export const guides: Article[] = [
     related: [
       { href: "/guides/fiverr-payment-methods-pakistan", label: "Fiverr payment methods" },
       { href: "/guides/payoneer-withdrawal-charges", label: "Payoneer withdrawal charges" },
-      { href: "/fiverr-fee-calculator-pakistan", label: "Estimate a Fiverr order" },
+      { href: "/fiverr-fee-calculator", label: "Estimate a Fiverr order" },
     ],
   }),
   guide({
@@ -265,7 +265,7 @@ export const guides: Article[] = [
     ],
     sources: [sourceLinks.fiverrEarnings, sourceLinks.payoneerPricing],
     related: [
-      { href: "/fiverr-fee-calculator-pakistan", label: "Fiverr fee calculator" },
+      { href: "/fiverr-fee-calculator", label: "Fiverr fee calculator" },
       { href: "/guides/usd-to-pkr-conversion-guide", label: "USD to PKR conversion guide" },
       { href: "/guides/fiverr-fees-pakistan", label: "Which Fiverr fee is which" },
     ],
@@ -332,7 +332,7 @@ export const guides: Article[] = [
     related: [
       { href: "/guides/payoneer-fees-pakistan", label: "Payoneer fees in Pakistan" },
       { href: "/tax-guide/freelancer-tax-record-keeping", label: "Freelance income records" },
-      { href: "/fiverr-fee-calculator-pakistan", label: "Fiverr calculator" },
+      { href: "/fiverr-fee-calculator", label: "Fiverr calculator" },
     ],
   }),
   guide({
@@ -401,7 +401,7 @@ export const guides: Article[] = [
     ],
     sources: [sourceLinks.upworkFee, sourceLinks.upworkPricing, sourceLinks.upworkBank],
     related: [
-      { href: "/upwork-fee-calculator-pakistan", label: "Upwork calculator" },
+      { href: "/upwork-fee-calculator", label: "Upwork calculator" },
       { href: "/guides/upwork-withdrawal-pakistan", label: "Upwork withdrawals" },
       { href: "/blog/fiverr-vs-upwork-for-pakistani-freelancers", label: "Fiverr and Upwork fee models" },
     ],
@@ -470,7 +470,7 @@ export const guides: Article[] = [
     ],
     sources: [sourceLinks.upworkBank, sourceLinks.upworkBankHow],
     related: [
-      { href: "/upwork-fee-calculator-pakistan", label: "Upwork calculator" },
+      { href: "/upwork-fee-calculator", label: "Upwork calculator" },
       { href: "/guides/upwork-payment-methods-pakistan", label: "Upwork payment methods" },
       { href: "/guides/payoneer-withdrawal-charges", label: "Payoneer charges" },
     ],
@@ -531,7 +531,7 @@ export const guides: Article[] = [
     ],
     sources: [sourceLinks.upworkFee, sourceLinks.upworkBank],
     related: [
-      { href: "/upwork-fee-calculator-pakistan", label: "Upwork fee calculator" },
+      { href: "/upwork-fee-calculator", label: "Upwork fee calculator" },
       { href: "/guides/upwork-fees-pakistan", label: "How the Upwork fee is set" },
       { href: "/freelancer-income-calculator", label: "Project a month of orders" },
     ],
@@ -591,7 +591,7 @@ export const guides: Article[] = [
     related: [
       { href: "/guides/upwork-withdrawal-pakistan", label: "Withdrawal timing and the $0.99 fee" },
       { href: "/blog/how-to-receive-international-payments-in-pakistan", label: "Receiving international payments" },
-      { href: "/upwork-fee-calculator-pakistan", label: "Upwork calculator" },
+      { href: "/upwork-fee-calculator", label: "Upwork calculator" },
     ],
   }),
   guide({

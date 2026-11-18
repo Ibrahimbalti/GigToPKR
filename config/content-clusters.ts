@@ -15,8 +15,8 @@ export const contentClusters: ContentCluster[] = [
     paths: [
       "/",
       "/calculator",
-      "/fiverr-fee-calculator-pakistan",
-      "/upwork-fee-calculator-pakistan",
+      "/fiverr-fee-calculator",
+      "/upwork-fee-calculator",
       "/payoneer-fee-calculator-pakistan",
       "/usd-to-pkr-calculator",
       "/freelancer-income-calculator",
@@ -33,7 +33,7 @@ export const contentClusters: ContentCluster[] = [
       "/guides/fiverr-withdrawal-pakistan",
       "/guides/fiverr-earnings-calculation",
       "/guides/fiverr-payment-methods-pakistan",
-      "/fiverr-fee-calculator-pakistan",
+      "/fiverr-fee-calculator",
     ],
   },
   {
@@ -46,7 +46,7 @@ export const contentClusters: ContentCluster[] = [
       "/guides/upwork-withdrawal-pakistan",
       "/guides/upwork-earnings-calculation",
       "/guides/upwork-payment-methods-pakistan",
-      "/upwork-fee-calculator-pakistan",
+      "/upwork-fee-calculator",
     ],
   },
   {

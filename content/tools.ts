@@ -54,13 +54,13 @@ export const toolPages: ToolPage[] = [
     ],
     sources: [sourceLinks.fiverrEarnings, sourceLinks.upworkFee, sourceLinks.payoneerPricing],
     related: [
-      { href: "/fiverr-fee-calculator-pakistan", label: "Fiverr calculator" },
-      { href: "/upwork-fee-calculator-pakistan", label: "Upwork calculator" },
+      { href: "/fiverr-fee-calculator", label: "Fiverr calculator" },
+      { href: "/upwork-fee-calculator", label: "Upwork calculator" },
       { href: "/guides/fiverr-earnings-calculation", label: "See the formula written out" },
     ],
   },
   {
-    path: "/fiverr-fee-calculator-pakistan",
+    path: "/fiverr-fee-calculator",
     title: "Fiverr Fee Calculator",
     description:
       "Estimate a Fiverr order after the 20% platform assumption and a withdrawal percent you can edit. The result stays in the order currency until you add your own rate.",
@@ -111,14 +111,14 @@ export const toolPages: ToolPage[] = [
     ],
     sources: [sourceLinks.fiverrEarnings, sourceLinks.fiverrHow, sourceLinks.payoneerPricing],
     related: [
-      { href: "/upwork-fee-calculator-pakistan", label: "Upwork calculator" },
+      { href: "/upwork-fee-calculator", label: "Upwork calculator" },
       { href: "/guides/fiverr-fees-pakistan", label: "Fiverr fees explained" },
       { href: "/guides/fiverr-earnings-calculation", label: "Step-by-step Fiverr math" },
       { href: "/guides/fiverr-withdrawal-pakistan", label: "Withdrawals after the fee" },
     ],
   },
   {
-    path: "/upwork-fee-calculator-pakistan",
+    path: "/upwork-fee-calculator",
     title: "Upwork Fee Calculator",
     description:
       "Estimate an Upwork order with a fee inside the published 0% to 15% range. This page does not include Fiverr.",
@@ -152,7 +152,7 @@ export const toolPages: ToolPage[] = [
     ],
     sources: [sourceLinks.upworkFee, sourceLinks.upworkPricing, sourceLinks.upworkBank],
     related: [
-      { href: "/fiverr-fee-calculator-pakistan", label: "Fiverr calculator" },
+      { href: "/fiverr-fee-calculator", label: "Fiverr calculator" },
       { href: "/guides/upwork-fees-pakistan", label: "How the Upwork fee is set" },
       { href: "/guides/upwork-withdrawal-pakistan", label: "The $0.99 local-bank fee" },
       { href: "/guides/upwork-earnings-calculation", label: "Calculate an Upwork payment" },

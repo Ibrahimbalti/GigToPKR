@@ -40,7 +40,7 @@ export default function HomePage() {
           </p>
         </div>
         <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-3">
-          <Link href="/fiverr-fee-calculator-pakistan" className="surface lift rounded-3xl p-6">
+          <Link href="/fiverr-fee-calculator" className="surface lift rounded-3xl p-6">
             <p className="text-xs font-semibold uppercase tracking-[0.12em] text-muted">Fiverr only</p>
             <h3 className="mt-2 text-xl font-semibold tracking-[-0.02em]">Fiverr calculator</h3>
             <p className="mt-2 text-sm leading-6 text-muted">
@@ -48,7 +48,7 @@ export default function HomePage() {
             </p>
             <span className="mt-4 inline-flex text-sm font-semibold text-brand">Calculate Fiverr earnings</span>
           </Link>
-          <Link href="/upwork-fee-calculator-pakistan" className="surface lift rounded-3xl p-6">
+          <Link href="/upwork-fee-calculator" className="surface lift rounded-3xl p-6">
             <p className="text-xs font-semibold uppercase tracking-[0.12em] text-muted">Upwork only</p>
             <h3 className="mt-2 text-xl font-semibold tracking-[-0.02em]">Upwork calculator</h3>
             <p className="mt-2 text-sm leading-6 text-muted">

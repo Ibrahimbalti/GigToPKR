@@ -5,6 +5,12 @@ const nextConfig: NextConfig = {
   experimental: {
     optimizePackageImports: ["lucide-react"],
   },
+  async redirects() {
+    return [
+      { source: "/fiverr-fee-calculator-pakistan", destination: "/fiverr-fee-calculator", permanent: true },
+      { source: "/upwork-fee-calculator-pakistan", destination: "/upwork-fee-calculator", permanent: true },
+    ];
+  },
   async headers() {
     return [
       {
