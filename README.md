@@ -70,7 +70,7 @@ These steps are not done by installing the repository. Completing them is a sepa
 
 - Set `NEXT_PUBLIC_SITE_URL` to the canonical HTTPS origin with no trailing slash.
 - Trailing-slash policy: Next.js default, no trailing slash. `/calculator/` redirects to `/calculator`.
-- Deploy on Vercel and confirm the production domain serves HTTPS.
+- Deploy on Netlify (settings live in `netlify.toml`) and confirm the production domain serves HTTPS.
 - Add the Google Search Console and Bing Webmaster verification tokens to the environment, redeploy, then finish verification in those tools.
 - Submit `https://YOUR_DOMAIN/sitemap.xml` in both tools.
 - Inspect the calculator, one guide, and one tax page. Do not claim they are indexed until the tools say so.
