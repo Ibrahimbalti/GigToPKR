@@ -60,13 +60,13 @@ export async function POST(request: Request) {
         email: parsed.data.email,
         topic: parsed.data.topic,
         message: parsed.data.message,
-        source: "gigtopkr-contact",
+        source: "realgigpay-contact",
       }),
     });
     if (!response.ok) throw new Error("Webhook rejected the message");
   } catch {
     return Response.json(
-      { ok: false, error: "The delivery service rejected the message. Nothing was stored on GigToPKR." },
+      { ok: false, error: "The delivery service rejected the message. Nothing was stored on RealGigPay." },
       { status: 502 },
     );
   }

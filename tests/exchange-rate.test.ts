@@ -1,6 +1,6 @@
 import assert from "node:assert/strict";
 import test from "node:test";
-import { getUsdToPkrQuote, readFrankfurterPkr, readOpenErApiPkr } from "../lib/exchange-rate";
+import { getUsdToPkrQuote, readFrankfurterPkr, readOpenErApiCrosses, readOpenErApiPkr } from "../lib/exchange-rate";
 
 test("Frankfurter payload without PKR is not a rate", () => {
   assert.equal(readFrankfurterPkr({ rates: { EUR: 0.9 } }), null);
@@ -22,6 +22,17 @@ test("ExchangeRate-API PKR is read only from a successful payload", () => {
     }),
     { rate: 276.5, updatedAt: "Mon, 16 Nov 2026 00:02:31 +0000" },
   );
+});
+
+test("ExchangeRate-API exposes EUR, GBP, and AED crosses without inventing PKR", () => {
+  assert.deepEqual(
+    readOpenErApiCrosses({
+      result: "success",
+      rates: { PKR: 280, EUR: 0.92, GBP: 0.78, AED: 3.67 },
+    }),
+    { EUR: 0.92, GBP: 0.78, AED: 3.67 },
+  );
+  assert.equal(readOpenErApiCrosses({ result: "error" }), null);
 });
 
 test("API failure does not invent a rate", async () => {

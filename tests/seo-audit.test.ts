@@ -1,5 +1,9 @@
 import assert from "node:assert/strict";
 import test from "node:test";
+import { openGraphLocale, resolveSiteUrl } from "../config/site";
+import { buildMetadata } from "../lib/seo/metadata";
+import robots from "../app/robots";
+import sitemap from "../app/sitemap";
 import { contentClusters } from "../config/content-clusters";
 import { keywordMap } from "../config/seo-keywords";
 import { editorialCalendar } from "../content/editorial-calendar";
@@ -52,7 +56,7 @@ test("internal links and keyword targets point at published pages", () => {
   for (const article of articles) {
     for (const link of article.related) assert.ok(reserved.has(link.href), link.href);
     for (const source of article.sources) assert.ok(source.href.startsWith("https://"), source.href);
-    assert.ok(article.publishedAt <= "2026-11-17");
+    assert.ok(article.publishedAt <= "2026-11-19");
     assert.ok(articleText(article).split(/\s+/).length > 180, article.path);
   }
   for (const tool of toolPages) {
@@ -72,5 +76,45 @@ test("the editorial calendar does not pretend planned titles are published", () 
   const planned = editorialCalendar.filter((idea) => idea.status === "planned");
   assert.ok(planned.length >= 10);
   for (const idea of planned) assert.equal(idea.href, undefined);
-  assert.equal(articles.filter((article) => article.kind === "blog").length, 4);
+  assert.equal(articles.filter((article) => article.kind === "blog").length, 7);
+});
+
+test("canonical origin is the public HTTPS site", () => {
+  assert.equal(resolveSiteUrl(""), "https://realgigpay.com");
+  assert.equal(resolveSiteUrl("http://localhost:3000"), "https://realgigpay.com");
+  assert.equal(resolveSiteUrl("https://localhost:3000"), "https://realgigpay.com");
+  assert.equal(resolveSiteUrl("https://realgigpay.com/"), "https://realgigpay.com");
+  assert.equal(resolveSiteUrl("https://www.realgigpay.com"), "https://www.realgigpay.com");
+});
+
+test("every canonical is absolute and Pakistan routes keep en_PK", () => {
+  assert.equal(openGraphLocale("/"), "en_US");
+  assert.equal(openGraphLocale("/calculator"), "en_US");
+  assert.equal(openGraphLocale("/pakistan"), "en_PK");
+  assert.equal(openGraphLocale("/pakistan/tax-guide"), "en_PK");
+
+  const home = buildMetadata({
+    title: "Home title for the test",
+    description: "A description long enough to stand in for the homepage summary.",
+    path: "/",
+  });
+  assert.equal(home.alternates?.canonical, "https://realgigpay.com");
+  assert.equal(home.openGraph && "locale" in home.openGraph ? home.openGraph.locale : "", "en_US");
+  assert.equal(home.openGraph && "url" in home.openGraph ? home.openGraph.url : "", "https://realgigpay.com");
+
+  const pakistan = buildMetadata({
+    title: "Pakistan tax illustration",
+    description: "A description long enough to stand in for the Pakistan tax page.",
+    path: "/pakistan/tax-guide",
+  });
+  assert.equal(pakistan.alternates?.canonical, "https://realgigpay.com/pakistan/tax-guide");
+  assert.equal(pakistan.openGraph && "locale" in pakistan.openGraph ? pakistan.openGraph.locale : "", "en_PK");
+
+  const entries = sitemap();
+  const urls = entries.map((entry) => entry.url);
+  assert.ok(urls.every((url) => url.startsWith("https://realgigpay.com")));
+  assert.equal(urls[0], "https://realgigpay.com");
+  assert.equal(new Set(urls).size, urls.length);
+  assert.equal(robots().sitemap, "https://realgigpay.com/sitemap.xml");
+  assert.equal(robots().host, "https://realgigpay.com");
 });

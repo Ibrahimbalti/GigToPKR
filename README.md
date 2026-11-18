@@ -1,4 +1,4 @@
-# GigToPKR
+# RealGigPay
 
 Freelancer Fee Calculator Pakistan. A Next.js site that estimates a PKR bank deposit from a USD freelance order.
 

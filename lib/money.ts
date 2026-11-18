@@ -66,10 +66,14 @@ export function groupRupees(digits: string): string {
   return `${head.replace(/\B(?=(\d{2})+(?!\d))/g, ",")},${tail}`;
 }
 
-export function formatUsd(amount: number): string {
+export function formatMoney(amount: number, currency: string): string {
   const negative = amount < 0;
   const [whole, fraction] = Math.abs(amount).toFixed(2).split(".");
-  return `${negative ? "-" : ""}USD ${groupWestern(whole ?? "0")}.${fraction}`;
+  return `${negative ? "-" : ""}${currency} ${groupWestern(whole ?? "0")}.${fraction}`;
+}
+
+export function formatUsd(amount: number): string {
+  return formatMoney(amount, "USD");
 }
 
 export function formatPkr(amount: number): string {

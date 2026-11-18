@@ -14,6 +14,7 @@ const staticPages = [
   { path: "/terms-and-conditions", updatedAt: "2026-11-17", priority: 0.3 },
   { path: "/disclaimer", updatedAt: "2026-11-17", priority: 0.3 },
   { path: "/editorial-policy", updatedAt: "2026-11-17", priority: 0.3 },
+  { path: "/creators/youtube-earnings-calculator", updatedAt: "2026-11-19", priority: 0.8 },
 ];
 
 export default function sitemap(): MetadataRoute.Sitemap {

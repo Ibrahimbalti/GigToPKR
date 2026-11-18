@@ -4,7 +4,7 @@ export default function NotFound() {
   return (
     <div className="mx-auto grid min-h-[50vh] max-w-xl place-content-center gap-4 px-4 py-20 text-center">
       <p className="text-sm font-semibold text-brand">404</p>
-      <h1 className="text-4xl font-semibold tracking-tight">This page is not on GigToPKR</h1>
+      <h1 className="text-4xl font-semibold tracking-tight">This page is not on RealGigPay</h1>
       <p className="text-muted">
         The address may be mistyped, or it may be a planned article that has not been published.
       </p>

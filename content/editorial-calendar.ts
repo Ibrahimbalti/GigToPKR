@@ -31,4 +31,22 @@ export const editorialCalendar: EditorialIdea[] = [
   { title: "How to manage multiple freelance platforms", intent: "One record format across Fiverr and Upwork", status: "planned" },
   { title: "Freelancer monthly budget planning", intent: "A floor for thin months", status: "planned" },
   { title: "Financial mistakes new freelancers make", intent: "Spending pending clearance", status: "planned" },
+  {
+    title: "Withdraw Fiverr earnings to a Pakistani bank",
+    intent: "Separate clearing from the payout fee on the confirmation screen",
+    status: "published",
+    href: "/blog/how-to-withdraw-from-fiverr-to-a-pakistani-bank",
+  },
+  {
+    title: "Upwork fees explained",
+    intent: "Put the contract fee and the payout fee on separate lines",
+    status: "published",
+    href: "/blog/upwork-fees-explained",
+  },
+  {
+    title: "Payoneer versus direct bank transfer",
+    intent: "Compare a percentage withdrawal with a flat local-bank fee",
+    status: "published",
+    href: "/blog/payoneer-vs-direct-bank-transfer",
+  },
 ];

@@ -17,15 +17,23 @@ const geistSans = Geist({
 export const metadata: Metadata = {
   metadataBase: new URL(site.url),
   title: {
-    default: "Freelancer Fee Calculator Pakistan | GigToPKR",
-    template: "%s | GigToPKR",
+    default: "Freelancer Fee Calculator | RealGigPay",
+    template: "%s | RealGigPay",
   },
   description: site.description,
   applicationName: site.name,
-  authors: [{ name: "GigToPKR Editorial", url: "/about" }],
-  creator: "GigToPKR Editorial",
+  authors: [{ name: "RealGigPay Editorial", url: "/about" }],
+  creator: "RealGigPay Editorial",
   category: "finance",
   robots: { index: true, follow: true },
+  openGraph: {
+    type: "website",
+    locale: "en_US",
+    url: site.url,
+    siteName: site.name,
+    title: "Freelancer Fee Calculator | RealGigPay",
+    description: site.description,
+  },
   verification: {
     google: process.env.NEXT_PUBLIC_GSC_VERIFICATION,
     other: process.env.NEXT_PUBLIC_BING_VERIFICATION

@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { absoluteUrl, site } from "@/config/site";
+import { absoluteUrl, openGraphLocale, site } from "@/config/site";
 
 type PageMeta = {
   title: string;
@@ -9,6 +9,7 @@ type PageMeta = {
   publishedTime?: string;
   modifiedTime?: string;
   noIndex?: boolean;
+  locale?: "en_US" | "en_PK";
 };
 
 export function buildMetadata({
@@ -19,8 +20,10 @@ export function buildMetadata({
   publishedTime,
   modifiedTime,
   noIndex = false,
+  locale,
 }: PageMeta): Metadata {
   const url = absoluteUrl(path);
+  const pageLocale = locale ?? openGraphLocale(path);
   const verification: Metadata["verification"] = {};
   if (process.env.NEXT_PUBLIC_GSC_VERIFICATION) {
     verification.google = process.env.NEXT_PUBLIC_GSC_VERIFICATION;
@@ -41,7 +44,7 @@ export function buildMetadata({
       description,
       url,
       siteName: site.name,
-      locale: site.locale,
+      locale: pageLocale,
       type,
       ...(type === "article"
         ? { publishedTime, modifiedTime }

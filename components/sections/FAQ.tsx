@@ -1,9 +1,12 @@
 import { Accordion } from "@/components/ui/Accordion";
+import { JsonLd } from "@/components/seo/JsonLd";
 import { homeFaqs } from "@/content/home";
+import { faqSchema } from "@/lib/seo/schema";
 
 export function FAQ() {
   return (
-    <section className="cv-auto shell py-16 lg:py-20" aria-labelledby="faq-heading">
+    <section className="shell py-16 lg:py-20" aria-labelledby="faq-heading">
+      <JsonLd data={faqSchema(homeFaqs)} />
       <h2 id="faq-heading" className="text-[clamp(1.6rem,2.4vw,2rem)] font-semibold tracking-[-0.03em]">
         Frequently asked questions
       </h2>

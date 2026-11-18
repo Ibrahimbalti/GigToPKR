@@ -64,13 +64,6 @@ export function MobileMenu({ open, onClose }: { open: boolean; onClose: () => vo
             {item.label}
           </Link>
         ))}
-        <Link
-          href="/calculator"
-          onClick={onClose}
-          className="cta-gradient mt-2 inline-flex min-h-11 items-center justify-center rounded-xl px-3 text-base font-semibold text-white"
-        >
-          Calculate Earnings
-        </Link>
       </nav>
     </div>
   );

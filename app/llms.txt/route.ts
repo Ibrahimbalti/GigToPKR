@@ -20,7 +20,7 @@ export function GET() {
 
 ## Company
 
-- [About](${absoluteUrl("/about")}): what GigToPKR is and is not
+- [About](${absoluteUrl("/about")}): what RealGigPay is and is not
 - [Contact](${absoluteUrl("/contact")}): corrections and calculation questions
 - [Disclaimer](${absoluteUrl("/disclaimer")}): estimates are not financial, tax, or legal advice
 `;

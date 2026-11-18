@@ -3,7 +3,7 @@ import {
   FRANKFURTER_PKR_NOTE,
   FRANKFURTER_URL,
 } from "@/lib/constants";
-import type { ExchangeRateQuote } from "@/types/calculator";
+import type { CrossRates, ExchangeRateQuote } from "@/types/calculator";
 
 const REQUEST_TIMEOUT_MS = 8000;
 
@@ -17,6 +17,26 @@ export function readFrankfurterPkr(payload: unknown): number | null {
   const rates = (payload as { rates?: unknown }).rates;
   if (!rates || typeof rates !== "object") return null;
   return readPositiveRate((rates as Record<string, unknown>).PKR);
+}
+
+function readRateMap(payload: unknown): Record<string, number | null> | null {
+  if (!payload || typeof payload !== "object") return null;
+  const rates = (payload as { rates?: unknown }).rates;
+  if (!rates || typeof rates !== "object") return null;
+  return {
+    PKR: readPositiveRate((rates as Record<string, unknown>).PKR),
+    EUR: readPositiveRate((rates as Record<string, unknown>).EUR),
+    GBP: readPositiveRate((rates as Record<string, unknown>).GBP),
+    AED: readPositiveRate((rates as Record<string, unknown>).AED),
+  };
+}
+
+export function readOpenErApiCrosses(payload: unknown): CrossRates | null {
+  if (!payload || typeof payload !== "object") return null;
+  if ((payload as { result?: unknown }).result !== "success") return null;
+  const rates = readRateMap(payload);
+  if (!rates) return null;
+  return { EUR: rates.EUR, GBP: rates.GBP, AED: rates.AED };
 }
 
 export function readOpenErApiPkr(payload: unknown): {
@@ -55,7 +75,7 @@ async function request(url: string, fetchImpl: typeof fetch): Promise<Response |
     return await fetchImpl(url, {
       signal: controller.signal,
       headers: { accept: "application/json" },
-      cache: "no-store",
+      next: { revalidate: 1800 },
     });
   } catch {
     return null;
@@ -67,6 +87,7 @@ async function request(url: string, fetchImpl: typeof fetch): Promise<Response |
 const SUCCESS_TTL_MS = 30 * 60 * 1000;
 const FAILURE_TTL_MS = 60 * 1000;
 let memory: { at: number; quote: ExchangeRateQuote } | null = null;
+let lastGood: ExchangeRateQuote | null = null;
 
 /** Same 30-minute quote the calculator API serves, shared with worked examples. */
 export async function getCachedUsdToPkrQuote(
@@ -78,6 +99,22 @@ export async function getCachedUsdToPkrQuote(
     if (now - memory.at < ttl) return { ...memory.quote, fromCache: true };
   }
   const quote = await getUsdToPkrQuote(fetchImpl);
+  if (quote.rate) {
+    lastGood = quote;
+    memory = { at: now, quote };
+    return quote;
+  }
+  if (lastGood) {
+    const stale: ExchangeRateQuote = {
+      ...lastGood,
+      fromCache: true,
+      stale: true,
+      warning: `Live rates could not be refreshed. Showing the last successful quote${lastGood.retrievedAt ? ` from ${lastGood.retrievedAt}` : ""}. Confirm it on your payout screen before you withdraw.`,
+      error: null,
+    };
+    memory = { at: now, quote: stale };
+    return stale;
+  }
   memory = { at: now, quote };
   return quote;
 }
@@ -95,7 +132,13 @@ export async function getUsdToPkrQuote(
   const frankfurterPayload = frankfurterResponse?.ok
     ? await readJson(frankfurterResponse)
     : null;
-  const frankfurterRate = readFrankfurterPkr(frankfurterPayload);
+  const frankfurterRates = readRateMap(frankfurterPayload);
+  const frankfurterRate = frankfurterRates?.PKR ?? null;
+  const frankfurterCrosses: CrossRates = {
+    EUR: frankfurterRates?.EUR ?? null,
+    GBP: frankfurterRates?.GBP ?? null,
+    AED: null,
+  };
 
   if (frankfurterRate) {
     return {
@@ -108,12 +151,20 @@ export async function getUsdToPkrQuote(
         "This is a reference rate, not the rate Payoneer, your bank, or the State Bank of Pakistan will apply.",
       error: null,
       fromCache: false,
+      stale: false,
+      crosses: frankfurterCrosses,
     };
   }
 
   const secondaryResponse = await request(EXCHANGE_RATE_API_URL, fetchImpl);
   const secondaryPayload = secondaryResponse?.ok ? await readJson(secondaryResponse) : null;
   const secondary = readOpenErApiPkr(secondaryPayload);
+  const secondaryCrosses = readOpenErApiCrosses(secondaryPayload);
+  const crosses: CrossRates = {
+    EUR: frankfurterCrosses.EUR ?? secondaryCrosses?.EUR ?? null,
+    GBP: frankfurterCrosses.GBP ?? secondaryCrosses?.GBP ?? null,
+    AED: secondaryCrosses?.AED ?? null,
+  };
 
   if (secondary) {
     return {
@@ -125,6 +176,8 @@ export async function getUsdToPkrQuote(
       warning: `${FRANKFURTER_PKR_NOTE} The figure below is a separate reference quote from ExchangeRate-API, not a Frankfurter, Payoneer, or State Bank rate.`,
       error: null,
       fromCache: false,
+      stale: false,
+      crosses,
     };
   }
 
@@ -138,5 +191,7 @@ export async function getUsdToPkrQuote(
     error:
       "A live USD to PKR rate could not be retrieved. Enter the rate from your bank, Payoneer, or another source you trust. This calculator will not fill in a guessed rate.",
     fromCache: false,
+    stale: false,
+    crosses: frankfurterRates ? crosses : null,
   };
 }

@@ -1,66 +1,70 @@
 import type { Metadata } from "next";
-import dynamic from "next/dynamic";
 import { AppLink as Link } from "@/components/ui/AppLink";
 import { AdSlot } from "@/components/ads/AdSlot";
-import { CalculatorPreview } from "@/components/calculator/CalculatorPreview";
 import { ContentBlocks, SourceList } from "@/components/content/ContentBlocks";
 import { AuthorCard } from "@/components/seo/AuthorCard";
+import { BreadcrumbJsonLd } from "@/components/seo/BreadcrumbJsonLd";
+import { Benefits } from "@/components/sections/Benefits";
+import { FAQ } from "@/components/sections/FAQ";
+import { FinalCta } from "@/components/sections/FinalCta";
 import { Hero } from "@/components/sections/Hero";
-import {
-  BenefitsSkeleton,
-  FAQSkeleton,
-  FinalCtaSkeleton,
-  HowItWorksSkeleton,
-  PlatformComparisonSkeleton,
-} from "@/components/skeletons/pages";
+import { HowItWorks } from "@/components/sections/HowItWorks";
+import { PlatformComparison } from "@/components/sections/PlatformComparison";
 import { homeArticle, homeSources } from "@/content/home";
 import { buildMetadata } from "@/lib/seo/metadata";
 
-const HowItWorks = dynamic(() => import("@/components/sections/HowItWorks").then((mod) => mod.HowItWorks), {
-  loading: () => <HowItWorksSkeleton />,
-});
-const PlatformComparison = dynamic(
-  () => import("@/components/sections/PlatformComparison").then((mod) => mod.PlatformComparison),
-  { loading: () => <PlatformComparisonSkeleton /> },
-);
-const Benefits = dynamic(() => import("@/components/sections/Benefits").then((mod) => mod.Benefits), {
-  loading: () => <BenefitsSkeleton />,
-});
-const FAQ = dynamic(() => import("@/components/sections/FAQ").then((mod) => mod.FAQ), {
-  loading: () => <FAQSkeleton />,
-});
-const FinalCta = dynamic(() => import("@/components/sections/FinalCta").then((mod) => mod.FinalCta), {
-  loading: () => <FinalCtaSkeleton />,
-});
+export const revalidate = 1800;
 
 export const metadata: Metadata = buildMetadata({
-  title: "Freelancer Fee Calculator Pakistan",
+  title: "Freelancer Fee Calculator",
   description:
-    "Estimate what a Pakistani freelancer could receive in PKR after Fiverr or Upwork fees, a Payoneer assumption, currency conversion, and an illustrative tax line.",
+    "Estimate what you keep from a Fiverr or Upwork order after platform and withdrawal fees. Open the calculator for the marketplace you use.",
   path: "/",
 });
 
 export default function HomePage() {
   return (
     <>
+      <BreadcrumbJsonLd items={[{ name: "Home", path: "/" }]} />
       <Hero />
       <div className="pb-2">
         <AdSlot placement="hero" />
       </div>
-      <section id="calculator" className="shell scroll-mt-24 py-10 lg:py-14" aria-labelledby="home-calculator">
+      <section id="calculators" className="shell scroll-mt-24 py-10 lg:py-14" aria-labelledby="home-calculators">
         <div className="mb-5 max-w-2xl">
-          <h2 id="home-calculator" className="text-[clamp(1.6rem,2.4vw,2rem)] font-semibold tracking-[-0.03em]">
-            Estimate a payout
+          <h2 id="home-calculators" className="text-[clamp(1.6rem,2.4vw,2rem)] font-semibold tracking-[-0.03em]">
+            Choose a calculator
           </h2>
           <p className="mt-2 text-sm leading-6 text-muted">
-            The same calculator lives on the{" "}
-            <Link href="/calculator" className="font-semibold text-brand">
-              calculator page
-            </Link>
-            . Results update with the inputs.
+            Fiverr, Upwork, and YouTube each have their own calculator. Open the one you want to estimate.
           </p>
         </div>
-        <CalculatorPreview enhance />
+        <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-3">
+          <Link href="/fiverr-fee-calculator-pakistan" className="surface lift rounded-3xl p-6">
+            <p className="text-xs font-semibold uppercase tracking-[0.12em] text-muted">Fiverr only</p>
+            <h3 className="mt-2 text-xl font-semibold tracking-[-0.02em]">Fiverr calculator</h3>
+            <p className="mt-2 text-sm leading-6 text-muted">
+              Starts at the published 80% share, so the fee field opens at 20%. You can edit it. There is no Upwork option on that page.
+            </p>
+            <span className="mt-4 inline-flex text-sm font-semibold text-brand">Calculate Fiverr earnings</span>
+          </Link>
+          <Link href="/upwork-fee-calculator-pakistan" className="surface lift rounded-3xl p-6">
+            <p className="text-xs font-semibold uppercase tracking-[0.12em] text-muted">Upwork only</p>
+            <h3 className="mt-2 text-xl font-semibold tracking-[-0.02em]">Upwork calculator</h3>
+            <p className="mt-2 text-sm leading-6 text-muted">
+              Fee shortcuts are 0%, 5%, 10%, and 15%. It opens at 10%. There is no Fiverr option on that page.
+            </p>
+            <span className="mt-4 inline-flex text-sm font-semibold text-brand">Calculate Upwork earnings</span>
+          </Link>
+          <Link href="/creators/youtube-earnings-calculator" className="surface lift rounded-3xl p-6">
+            <p className="text-xs font-semibold uppercase tracking-[0.12em] text-muted">YouTube only</p>
+            <h3 className="mt-2 text-xl font-semibold tracking-[-0.02em]">YouTube calculator</h3>
+            <p className="mt-2 text-sm leading-6 text-muted">
+              Estimates a low, expected, and high range from the RPM or CPM you enter. It is not a payout quote.
+            </p>
+            <span className="mt-4 inline-flex text-sm font-semibold text-brand">Estimate YouTube earnings</span>
+          </Link>
+        </div>
       </section>
       <HowItWorks />
       <PlatformComparison />

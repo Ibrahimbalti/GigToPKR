@@ -9,12 +9,14 @@ const initial: QuoteState = {
   status: "loading",
   rate: null,
   origin: null,
-  sourceLabel: "Checking for a USD/PKR reference rate",
+  sourceLabel: "Checking for a reference rate",
   retrievedAt: null,
   frankfurterSupportsPkr: false,
   warning: null,
   error: null,
   fromCache: false,
+  stale: false,
+  crosses: null,
 };
 
 const ExchangeRateContext = createContext<{ quote: QuoteState; retry: () => void }>({
@@ -43,8 +45,10 @@ export function ExchangeRateProvider({ children }: { children: React.ReactNode }
           ...initial,
           status: "unavailable",
           sourceLabel: "No live rate available",
+          stale: false,
+          crosses: null,
           error:
-            "A live USD to PKR rate could not be retrieved. Enter a rate from your bank or Payoneer. No guessed rate will be filled in.",
+            "A live rate could not be retrieved. Enter the PKR rate from your bank or Payoneer. No guessed rate will be filled in.",
         });
       }
     }

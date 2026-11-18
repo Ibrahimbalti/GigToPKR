@@ -9,9 +9,9 @@ import { buildMetadata } from "@/lib/seo/metadata";
 import { aboutPageSchema } from "@/lib/seo/schema";
 
 export const metadata: Metadata = buildMetadata({
-  title: "About GigToPKR",
+  title: "About the calculator",
   description:
-    "GigToPKR estimates Pakistani freelance earnings from visible assumptions. It is not a bank, tax adviser, or marketplace.",
+    "RealGigPay estimates Pakistani freelance earnings from visible assumptions. It is not a bank, tax adviser, or marketplace.",
   path: "/about",
 });
 
@@ -70,7 +70,7 @@ export default function AboutPage() {
             <div className="px-6 py-7 sm:px-8 sm:py-8">
               <p className="text-xs font-semibold uppercase tracking-[0.14em] text-brand">About</p>
               <h1 className="mt-2 max-w-xl text-[clamp(1.85rem,3.2vw,2.6rem)] font-semibold leading-[1.12] tracking-[-0.03em] text-ink">
-                About GigToPKR
+                About RealGigPay
               </h1>
               <p className="mt-3 max-w-xl text-base leading-7 text-muted">
                 A calculator and a set of guides for freelancers who get paid in dollars and spend in rupees.
@@ -103,7 +103,7 @@ export default function AboutPage() {
           <ol className="mt-6 grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
             {pathSteps.map((item) => (
               <li key={item.step} className="surface rounded-3xl p-5">
-                <span className="rounded-full bg-navy px-2.5 py-1 text-xs font-semibold text-white">{item.step}</span>
+                <span className="rounded-full bg-navy px-2.5 py-1 text-xs font-semibold text-white">{`Step ${item.step}`}</span>
                 <h3 className="mt-4 text-base font-semibold tracking-[-0.02em]">{item.title}</h3>
                 <p className="mt-2 text-sm leading-6 text-muted">{item.text}</p>
               </li>

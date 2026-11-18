@@ -6,7 +6,7 @@ import { buildMetadata } from "@/lib/seo/metadata";
 export const metadata: Metadata = buildMetadata({
   title: "Privacy Policy",
   description:
-    "What GigToPKR collects, what the calculator keeps in the browser, and when analytics or ads load.",
+    "What RealGigPay collects, what the calculator keeps in the browser, and when analytics or ads load.",
   path: "/privacy-policy",
 });
 
@@ -53,7 +53,7 @@ export default function PrivacyPage() {
         </InfoCard>
         <InfoCard title="Cookies, analytics, and advertising">
           <p>
-            A consent choice is stored in localStorage under gigtopkr-consent when analytics or
+            A consent choice is stored in localStorage under realgigpay-consent when analytics or
             AdSense environment variables are present. Until you allow it, the Google Analytics and
             AdSense scripts are not added. If you allow analytics, Google Analytics 4 receives page
             views and the calculator events described in the README, with IP anonymization requested.

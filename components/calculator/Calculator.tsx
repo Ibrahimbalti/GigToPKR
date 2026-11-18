@@ -1,60 +1,151 @@
 "use client";
 
-import { useRef, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { ExchangeRateField } from "@/components/calculator/ExchangeRate";
 import { useExchangeRate } from "@/components/calculator/ExchangeRateProvider";
 import { EarningsBreakdown } from "@/components/calculator/EarningsBreakdown";
 import { ResultActions } from "@/components/calculator/ResultActions";
 import { Input } from "@/components/ui/Input";
-import { calculateEarnings, projectMonthly } from "@/lib/calculator";
+import { Select } from "@/components/ui/Select";
+import {
+  CURRENCY_LABELS,
+  DEFAULT_PLATFORM_FEE_PERCENT,
+  DEFAULT_TAX_PERCENT,
+  DIRECT_BANK_FEE_USD,
+  UPWORK_FEE_PERCENTS,
+  WITHDRAWAL_METHODS,
+} from "@/lib/constants";
 import { trackEvent } from "@/lib/analytics";
 import { formatPkr, formatRateInput } from "@/lib/money";
-import { parseExchangeRate, parseOrderAmount } from "@/lib/validation";
+import { prepareCalculation } from "@/lib/prepare-calculation";
+import { projectMonthly } from "@/lib/calculator";
+import { pkrPerOrderUnitInput, unitsPerUsd } from "@/lib/quote-math";
+import { queryToShare, sharePath, type CalculatorShare } from "@/lib/share-result";
 import { cn } from "@/lib/utils";
-import type { Platform, TaxStatus } from "@/types/calculator";
+import type { Currency, Platform, TaxStatus, WithdrawalMethod } from "@/types/calculator";
 
-const platforms: { id: Platform; name: string; fee: string; note: string }[] = [
-  { id: "fiverr", name: "Fiverr", fee: "20% assumed fee", note: "Freelancers earn 80% on the published earnings page." },
-  { id: "upwork", name: "Upwork", fee: "10% assumed fee", note: "Published fee is 0% to 15% per contract." },
+const platforms: { id: Platform; name: string; note: string }[] = [
+  { id: "fiverr", name: "Fiverr", note: "Freelancers earn 80% on the published earnings page. 20% is the default." },
+  { id: "upwork", name: "Upwork", note: "Published fee is 0% to 15% per contract. 10% is the default." },
 ];
 
 export function Calculator({
   defaultPlatform = "fiverr",
   defaultTax = "filer",
   showMonthly = false,
+  lockedPlatform,
 }: {
   defaultPlatform?: Platform;
   defaultTax?: TaxStatus;
   showMonthly?: boolean;
+  /** When set, the other marketplace cannot be selected on this page. */
+  lockedPlatform?: Platform;
 }) {
   const { quote } = useExchangeRate();
   const [amount, setAmount] = useState("");
-  const [platform, setPlatform] = useState<Platform>(defaultPlatform);
+  const [target, setTarget] = useState("");
+  const [reverse, setReverse] = useState(false);
+  const [currency, setCurrency] = useState<Currency>("USD");
+  const [platform, setPlatform] = useState<Platform>(lockedPlatform ?? defaultPlatform);
+  const [platformFee, setPlatformFee] = useState(DEFAULT_PLATFORM_FEE_PERCENT[lockedPlatform ?? defaultPlatform]);
+  const [withdrawalFee, setWithdrawalFee] = useState("2");
   const [taxStatus, setTaxStatus] = useState<TaxStatus>(defaultTax);
-  const [manualRate, setManualRate] = useState<string | null>(null);
+  const [taxFee, setTaxFee] = useState(lockedPlatform ? "0" : DEFAULT_TAX_PERCENT[defaultTax]);
+  const [method, setMethod] = useState<WithdrawalMethod>("payoneer");
+  const [early, setEarly] = useState(false);
+  const [earlyFee, setEarlyFee] = useState("0");
+  const [bankFee, setBankFee] = useState(false);
+  const [flatFee, setFlatFee] = useState(String(DIRECT_BANK_FEE_USD));
+  const [hourly, setHourly] = useState(false);
+  const [hourlyRate, setHourlyRate] = useState("");
+  const [hours, setHours] = useState("");
   const [orders, setOrders] = useState("1");
+  const [manualRate, setManualRate] = useState<string | null>(null);
   const started = useRef(false);
   const resultRef = useRef<HTMLDivElement>(null);
-  const rateInput = manualRate ?? (quote.rate ? formatRateInput(quote.rate) : "");
+  const suggestedRate = lockedPlatform ? "" : pkrPerOrderUnitInput(currency, quote);
+  const rateInput = manualRate ?? suggestedRate;
   const manual = manualRate !== null;
+  const converting = !lockedPlatform || rateInput.trim().length > 0;
 
-  const amountState = parseOrderAmount(amount);
-  const rateState = parseExchangeRate(rateInput);
-  const amountError = amountState.state === "invalid" ? amountState.message : undefined;
-  const rateError = rateState.state === "invalid" ? rateState.message : undefined;
-  const result =
-    amountState.state === "ok" && rateState.state === "ok"
-      ? calculateEarnings({
-          orderAmountUsd: amountState.amount,
-          platform,
-          taxStatus,
-          usdToPkrRate: rateState.rate,
-        })
-      : null;
+  useEffect(() => {
+    const shared = queryToShare(window.location.search);
+    if (!shared) return;
+    if (shared.amount !== undefined) setAmount(shared.amount);
+    if (shared.target !== undefined) setTarget(shared.target);
+    if (shared.reverse) setReverse(true);
+    if (shared.currency) setCurrency(shared.currency);
+    if (!lockedPlatform && shared.platform) {
+      setPlatform(shared.platform);
+      setPlatformFee(shared.platformFee ?? DEFAULT_PLATFORM_FEE_PERCENT[shared.platform]);
+    } else if (shared.platformFee) {
+      setPlatformFee(shared.platformFee);
+    }
+    if (shared.withdrawalFee) setWithdrawalFee(shared.withdrawalFee);
+    if (shared.taxFee) setTaxFee(shared.taxFee);
+    if (shared.method) setMethod(shared.method);
+    if (shared.early) {
+      setEarly(true);
+      setEarlyFee(shared.earlyFee ?? "0");
+    }
+    if (shared.bankFee) {
+      setBankFee(true);
+      setFlatFee(shared.flatFee ?? String(DIRECT_BANK_FEE_USD));
+    }
+    if (shared.hourly) {
+      setHourly(true);
+      setHourlyRate(shared.hourlyRate ?? "");
+      setHours(shared.hours ?? "");
+    }
+    if (shared.rate) setManualRate(shared.rate);
+  }, []);
+
+  const prepared = prepareCalculation({
+    amount,
+    target,
+    reverse,
+    currency,
+    platform,
+    platformFee,
+    withdrawalFee,
+    taxFee,
+    taxStatus,
+    method,
+    early,
+    earlyFee,
+    bankFee,
+    flatFee,
+    hourly,
+    hourlyRate,
+    hours,
+    rate: converting ? rateInput : "1",
+    currencyPerUsd: unitsPerUsd(currency, quote),
+  });
+  const result = prepared.ok ? prepared.result : null;
+  const share: CalculatorShare = {
+    amount,
+    target,
+    reverse,
+    currency,
+    platform,
+    platformFee,
+    withdrawalFee,
+    taxFee,
+    method,
+    early,
+    earlyFee,
+    bankFee,
+    flatFee,
+    hourly,
+    hourlyRate,
+    hours,
+    rate: rateInput,
+  };
+  const shareHref = result && typeof window !== "undefined" ? sharePath(window.location.pathname, share) : null;
 
   let monthly: number | null = null;
   let monthlyError = "";
-  if (showMonthly && result) {
+  if (showMonthly && result && !reverse) {
     const count = Number(orders);
     if (!/^\d+$/.test(orders) || count < 0 || count > 1000) {
       monthlyError = "Enter a whole number of orders from 0 to 1,000.";
@@ -71,15 +162,48 @@ export function Calculator({
 
   function reset() {
     setAmount("");
-    setPlatform(defaultPlatform);
+    setTarget("");
+    setReverse(false);
+    setCurrency("USD");
+    setPlatform(lockedPlatform ?? defaultPlatform);
+    setPlatformFee(DEFAULT_PLATFORM_FEE_PERCENT[lockedPlatform ?? defaultPlatform]);
     setTaxStatus(defaultTax);
+    setTaxFee(lockedPlatform ? "0" : DEFAULT_TAX_PERCENT[defaultTax]);
+    setWithdrawalFee("2");
+    setMethod("payoneer");
+    setEarly(false);
+    setEarlyFee("0");
+    setBankFee(false);
+    setFlatFee(String(DIRECT_BANK_FEE_USD));
+    setHourly(false);
+    setHourlyRate("");
+    setHours("");
     setOrders("1");
     setManualRate(null);
   }
 
   function choosePlatform(next: Platform) {
     setPlatform(next);
+    setPlatformFee((current) => {
+      if (next === "upwork" && current === DEFAULT_PLATFORM_FEE_PERCENT.fiverr) return DEFAULT_PLATFORM_FEE_PERCENT.upwork;
+      if (next === "fiverr" && (UPWORK_FEE_PERCENTS as readonly string[]).includes(current)) {
+        return DEFAULT_PLATFORM_FEE_PERCENT.fiverr;
+      }
+      return current;
+    });
     trackEvent("platform_selected", { platform: next });
+  }
+
+  function chooseMethod(next: WithdrawalMethod) {
+    setMethod(next);
+    const found = WITHDRAWAL_METHODS.find((item) => item.id === next);
+    setWithdrawalFee(found?.defaultPercent ?? "0");
+    if (next === "directBank" && lockedPlatform !== "fiverr") {
+      setBankFee(true);
+      setFlatFee(String(DIRECT_BANK_FEE_USD));
+    } else {
+      setBankFee(false);
+    }
   }
 
   return (
@@ -95,24 +219,129 @@ export function Calculator({
         <div>
           <h2 className="text-xl font-semibold tracking-[-0.02em] text-ink">Calculate Your Earnings</h2>
           <p className="mt-1 text-sm leading-6 text-muted">
-            Enter your project details to see your estimated take-home amount. Fees below are planning assumptions, not a deduction schedule from Fiverr, Upwork, Payoneer, or FBR.
+            {lockedPlatform === "fiverr"
+              ? "Fiverr only. The fee starts at 20% and stays editable. This page does not estimate Upwork."
+              : lockedPlatform === "upwork"
+                ? "Upwork only. The fee starts at 10% inside the published 0% to 15% range. This page does not estimate Fiverr."
+                : "Fees start from published defaults and stay editable. Nothing here is a deduction schedule from Fiverr, Upwork, Payoneer, Wise, or a tax authority."}
           </p>
         </div>
-        <Input
-          label="Order Amount (USD)"
-          name="orderAmount"
-          inputMode="decimal"
-          autoComplete="off"
-          placeholder="500.00"
-          prefix="$"
-          value={amount}
-          error={amountError}
-          hint="Zero is allowed. Negative amounts are not."
+        <Select
+          label="Order currency"
+          name="currency"
+          value={currency}
+          options={(Object.keys(CURRENCY_LABELS) as Currency[]).map((code) => ({
+            value: code,
+            label: `${code} — ${CURRENCY_LABELS[code]}`,
+          }))}
           onChange={(event) => {
             markStarted();
-            setAmount(event.target.value.replace(/-/g, ""));
+            setCurrency(event.target.value as Currency);
+            setManualRate(null);
           }}
         />
+        {lockedPlatform ? null : (
+        <div className="grid grid-cols-2 gap-2 rounded-2xl bg-[#f7f9fd] p-1">
+          <button
+            type="button"
+            aria-pressed={!reverse}
+            onClick={() => setReverse(false)}
+            className={cn("rounded-xl px-3 py-2.5 text-left text-sm font-semibold", !reverse ? "bg-white shadow-[var(--shadow)]" : "text-muted")}
+          >
+            I know the order amount
+          </button>
+          <button
+            type="button"
+            aria-pressed={reverse}
+            onClick={() => setReverse(true)}
+            className={cn("rounded-xl px-3 py-2.5 text-left text-sm font-semibold", reverse ? "bg-white shadow-[var(--shadow)]" : "text-muted")}
+          >
+            I want a local amount
+          </button>
+        </div>
+        )}
+        {reverse ? (
+          <Input
+            label="PKR you want to receive"
+            name="targetPkr"
+            inputMode="decimal"
+            autoComplete="off"
+            placeholder="100000.00"
+            prefix="Rs"
+            value={target}
+            error={prepared.ok ? undefined : prepared.targetError}
+            hint="The calculator solves for the order amount that reaches this deposit."
+            onChange={(event) => {
+              markStarted();
+              setTarget(event.target.value.replace(/-/g, ""));
+            }}
+          />
+        ) : hourly ? (
+          <div className="grid gap-4 sm:grid-cols-2">
+            <Input
+              label={`Hourly rate (${currency})`}
+              name="hourlyRate"
+              inputMode="decimal"
+              value={hourlyRate}
+              error={prepared.ok ? undefined : prepared.amountError}
+              onChange={(event) => {
+                markStarted();
+                setHourlyRate(event.target.value.replace(/-/g, ""));
+              }}
+            />
+            <Input
+              label="Hours"
+              name="hours"
+              inputMode="decimal"
+              value={hours}
+              hint="Order total is the rate times the hours."
+              onChange={(event) => {
+                markStarted();
+                setHours(event.target.value.replace(/-/g, ""));
+              }}
+            />
+          </div>
+        ) : (
+          <Input
+            label={`Order amount (${currency})`}
+            name="orderAmount"
+            inputMode="decimal"
+            autoComplete="off"
+            placeholder="500.00"
+            value={amount}
+            error={prepared.ok ? undefined : prepared.amountError}
+            hint="Zero is allowed. Negative amounts are not."
+            onChange={(event) => {
+              markStarted();
+              setAmount(event.target.value.replace(/-/g, ""));
+            }}
+          />
+        )}
+        <label className="flex items-start gap-2 text-sm text-ink">
+          <input
+            type="checkbox"
+            className="mt-1"
+            checked={hourly}
+            onChange={(event) => setHourly(event.target.checked)}
+          />
+          <span>
+            <span className="font-medium">Hourly contract</span>
+            <span className="mt-0.5 block text-muted">
+              {reverse ? "Also divide the required order by the hours you enter." : "Multiply an hourly rate by hours to get the order total."}
+            </span>
+          </span>
+        </label>
+        {reverse && hourly ? (
+          <Input
+            label="Hours on the contract"
+            name="reverseHours"
+            inputMode="decimal"
+            value={hours}
+            hint="Used only to show the hourly rate that reaches the PKR target."
+            onChange={(event) => setHours(event.target.value.replace(/-/g, ""))}
+          />
+        ) : null}
+        {lockedPlatform ? null : (
         <fieldset className="grid gap-2">
           <legend className="text-sm font-medium text-ink">Platform</legend>
           <div className="grid gap-3 sm:grid-cols-2">
@@ -132,52 +361,189 @@ export function Calculator({
                   )}
                 >
                   <span className="block text-base font-semibold tracking-[-0.02em]">{item.name}</span>
-                  <span className="mt-0.5 block text-sm font-medium text-brand-ink">{item.fee}</span>
                   <span className="mt-1 block text-xs leading-5 text-muted">{item.note}</span>
                 </button>
               );
             })}
           </div>
         </fieldset>
+        )}
+        {platform === "upwork" ? (
+          <div className="grid gap-2">
+            <p className="text-sm font-medium text-ink" id="upwork-fee-label">
+              Upwork fee
+            </p>
+            <div className="flex flex-wrap gap-2" role="group" aria-labelledby="upwork-fee-label">
+              {UPWORK_FEE_PERCENTS.map((value) => (
+                <button
+                  key={value}
+                  type="button"
+                  aria-pressed={platformFee === value}
+                  onClick={() => setPlatformFee(value)}
+                  className={cn(
+                    "rounded-full border px-3 py-1.5 text-sm font-semibold",
+                    platformFee === value ? "border-brand bg-brand-50 text-brand-ink" : "border-line bg-white text-ink",
+                  )}
+                >
+                  {value}%
+                </button>
+              ))}
+            </div>
+          </div>
+        ) : null}
+        <Input
+          label="Platform fee %"
+          name="platformFee"
+          inputMode="decimal"
+          value={platformFee}
+          error={prepared.ok ? undefined : prepared.feeError}
+          hint={platform === "fiverr" ? "Default 20, from Fiverr's published 80% share, including extras and tips. Change it if your screen differs." : "Default 10, inside Upwork's published 0% to 15% range. The exact fee is on your offer."}
+          onChange={(event) => {
+            markStarted();
+            setPlatformFee(event.target.value.replace(/-/g, ""));
+          }}
+        />
+        <Select
+          label="Withdrawal method"
+          name="withdrawalMethod"
+          value={method}
+          hint={
+            lockedPlatform === "upwork"
+              ? "Payoneer defaults to 2%. Direct to local bank is $0.99 per withdrawal and assumes this order is the whole withdrawal. Company accounts in local currency may not be accepted."
+              : "Payoneer defaults to 2%. Real Payoneer bank fees are often about 1.2% to 4%. Type the percentage on your confirmation screen."
+          }
+          options={WITHDRAWAL_METHODS.filter((item) => lockedPlatform !== "fiverr" || item.id !== "directBank").map((item) => ({
+            value: item.id,
+            label: item.label,
+          }))}
+          onChange={(event) => chooseMethod(event.target.value as WithdrawalMethod)}
+        />
+        {lockedPlatform === "upwork" && bankFee ? (
+          <p className="text-sm leading-5 text-muted">
+            The $0.99 fee replaces the withdrawal percent. It is charged per withdrawal, and this estimate assumes the order is the whole withdrawal.
+          </p>
+        ) : (
+        <Input
+          label="Withdrawal fee %"
+          name="withdrawalFee"
+          inputMode="decimal"
+          value={withdrawalFee}
+          hint="Applied after the platform fee. Type the percentage on your confirmation screen."
+          onChange={(event) => setWithdrawalFee(event.target.value.replace(/-/g, ""))}
+        />
+        )}
+        {lockedPlatform === "fiverr" ? null : (
+        <>
+        <label className="flex items-start gap-2 text-sm text-ink">
+          <input
+            type="checkbox"
+            className="mt-1"
+            checked={bankFee}
+            onChange={(event) => {
+              const on = event.target.checked;
+              setBankFee(on);
+              if (on) {
+                setMethod("directBank");
+                setWithdrawalFee("0");
+                setFlatFee(String(DIRECT_BANK_FEE_USD));
+              } else if (method === "directBank") {
+                setMethod("payoneer");
+                setWithdrawalFee("2");
+              }
+            }}
+          />
+          <span>
+            <span className="font-medium">Add the Upwork $0.99 direct-to-bank fee</span>
+            <span className="mt-0.5 block text-muted">A flat USD amount, converted into the order currency. Edit it if your account shows a different figure.</span>
+          </span>
+        </label>
+        {bankFee ? (
+          <Input
+            label="Flat fee (USD)"
+            name="flatFee"
+            inputMode="decimal"
+            value={flatFee}
+            hint="Upwork's published direct-to-local-bank fee is $0.99 per withdrawal. This estimate assumes the order is the whole withdrawal, so it is not stacked on the percent fee."
+            onChange={(event) => setFlatFee(event.target.value.replace(/-/g, ""))}
+          />
+        ) : null}
+        </>
+        )}
+        {lockedPlatform === "upwork" ? null : (
+        <>
+        <label className="flex items-start gap-2 text-sm text-ink">
+          <input type="checkbox" className="mt-1" checked={early} onChange={(event) => setEarly(event.target.checked)} />
+          <span>
+            <span className="font-medium">Fiverr early payout</span>
+            <span className="mt-0.5 block text-muted">This site does not assume an early-payout rate. Type the percentage Fiverr shows, or leave 0.</span>
+          </span>
+        </label>
+        {early ? (
+          <Input
+            label="Early payout fee %"
+            name="earlyFee"
+            inputMode="decimal"
+            value={earlyFee}
+            hint="Taken from the amount left after the platform fee."
+            onChange={(event) => setEarlyFee(event.target.value.replace(/-/g, ""))}
+          />
+        ) : null}
+        </>
+        )}
         <fieldset className="grid gap-2">
-          <legend className="text-sm font-medium text-ink">Tax status</legend>
-          <div className="grid grid-cols-2 rounded-2xl bg-[#f7f9fd] p-1" role="group" aria-label="Tax assumption">
+          <legend className="text-sm font-medium text-ink">Tax percentage</legend>
+          <div className="grid grid-cols-2 rounded-2xl bg-[#f7f9fd] p-1" role="group" aria-label="Tax illustration presets">
             {(
               [
-                ["filer", "Active Filer", "1% illustration"],
-                ["nonFiler", "Non-Filer", "2% illustration"],
+                ["filer", "Start from 1%"],
+                ["nonFiler", "Start from 2%"],
               ] as const
-            ).map(([value, label, hint]) => {
-              const selected = taxStatus === value;
+            ).map(([value, label]) => {
+              const selected = taxStatus === value && taxFee === DEFAULT_TAX_PERCENT[value];
               return (
                 <button
                   key={value}
                   type="button"
                   aria-pressed={selected}
-                  onClick={() => setTaxStatus(value)}
-                  className={cn(
-                    "rounded-xl px-3 py-2.5 text-left transition",
-                    selected ? "bg-white text-ink shadow-[var(--shadow)]" : "text-muted",
-                  )}
+                  onClick={() => {
+                    setTaxStatus(value);
+                    setTaxFee(DEFAULT_TAX_PERCENT[value]);
+                  }}
+                  className={cn("rounded-xl px-3 py-2.5 text-left text-sm font-semibold", selected ? "bg-white shadow-[var(--shadow)]" : "text-muted")}
                 >
-                  <span className="block text-sm font-semibold">{label}</span>
-                  <span className="block text-xs">{hint}</span>
+                  {label}
                 </button>
               );
             })}
           </div>
-          <p className="text-sm leading-5 text-muted">Illustrative only. These are not current FBR rates.</p>
+          <Input
+            label="Tax %"
+            name="taxFee"
+            inputMode="decimal"
+            value={taxFee}
+            hint={lockedPlatform ? "Optional. Not tax advice and not a country tax rate. Leave 0 to skip it." : "1% and 2% are illustrations, not a tax authority's rates. Replace them with the percentage you want to set aside."}
+            onChange={(event) => setTaxFee(event.target.value.replace(/-/g, ""))}
+          />
         </fieldset>
         <ExchangeRateField
+          currency={currency}
           value={rateInput}
           manual={manual}
-          error={rateError}
+          optional={Boolean(lockedPlatform)}
+          error={prepared.ok ? undefined : prepared.rateError}
           onChange={(value) => {
             markStarted();
             setManualRate(value);
           }}
         />
-        {showMonthly ? (
+        {!lockedPlatform && !manual && !suggestedRate && quote.status !== "loading" ? (
+          <p className="text-sm text-muted">
+            {currency === "USD"
+              ? "The reference rate is unavailable, so the field stays empty until you type one."
+              : `No ${currency} cross rate came back. Type how many PKR you get for 1 ${currency}.`}
+          </p>
+        ) : null}
+        {showMonthly && !reverse ? (
           <Input
             label="Similar orders this month"
             name="orders"
@@ -189,8 +555,23 @@ export function Calculator({
           />
         ) : null}
         <button type="submit" className="cta-gradient h-12 rounded-xl text-sm font-semibold text-white">
-          Calculate earnings
+          {reverse ? "Find the order amount" : "Calculate earnings"}
         </button>
+        {prepared.ok && prepared.requiredAmount !== null ? (
+          <div className="rounded-2xl border border-line bg-brand-50 p-4">
+            <p className="text-sm font-semibold text-navy">Charge at least</p>
+            <p className="mt-1 text-2xl font-semibold tabular text-ink">
+              {currency} {formatRateInput(prepared.requiredAmount)}
+            </p>
+            {prepared.impliedHourly !== null ? (
+              <p className="mt-1 text-sm text-muted">
+                About {currency} {formatRateInput(prepared.impliedHourly)} per hour for the hours you entered.
+              </p>
+            ) : (
+              <p className="mt-1 text-sm text-muted">Order amount in {currency} that reaches {formatPkr(Number(target) || prepared.result.finalPkr)} after the fees above.</p>
+            )}
+          </div>
+        ) : null}
         {monthly !== null ? (
           <div className="rounded-2xl border border-line bg-brand-50 p-4">
             <p className="text-sm font-semibold text-navy">Illustrative month</p>
@@ -202,8 +583,8 @@ export function Calculator({
         ) : null}
       </div>
       <div ref={resultRef} tabIndex={-1} className="grid min-w-0 gap-4 outline-none">
-        <EarningsBreakdown result={result} />
-        <ResultActions result={result} onReset={reset} />
+        <EarningsBreakdown result={result} presentation={lockedPlatform ? (converting ? "local" : "order") : "pkr"} />
+        <ResultActions result={result} onReset={reset} shareHref={shareHref} />
       </div>
     </form>
   );

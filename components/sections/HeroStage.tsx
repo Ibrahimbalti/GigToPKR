@@ -5,23 +5,21 @@ export function HeroStage({
   platformFee,
   netUsd,
   converted,
-  rate,
   note,
 }: {
   finalPkr: string;
   platformFee: string;
   netUsd: string;
   converted: string;
-  rate: string;
   note: string;
 }) {
   return (
     <div aria-label="Illustrative earnings preview">
       <article className="surface rounded-3xl p-5 sm:hidden">
         <p className="text-xs font-semibold uppercase tracking-[0.12em] text-muted">Estimate · not a live quote</p>
-        <p className="mt-2 text-sm text-muted">$500 Fiverr · active filer · USD/PKR {rate}</p>
+        <p className="mt-2 text-sm text-muted">$500 Fiverr · 20% fee · 2% withdrawal</p>
         <p className="mt-2 text-3xl font-semibold tracking-tight text-success-ink tabular">{finalPkr}</p>
-        <p className="mt-2 text-sm text-muted">Platform fee {platformFee} · net {netUsd} · converted {converted}</p>
+        <p className="mt-2 text-sm text-muted">Platform fee {platformFee} · net {netUsd}</p>
       </article>
       <div className="relative mx-auto hidden h-[460px] w-full max-w-[540px] sm:block">
         <div aria-hidden className="absolute left-6 top-10 size-28 rounded-full bg-brand/15" />
@@ -36,7 +34,7 @@ export function HeroStage({
             <p className="text-xs font-semibold uppercase tracking-[0.12em] text-muted">Earnings card</p>
             <span className="rounded-full bg-brand-50 px-2 py-0.5 text-xs font-semibold text-brand-ink">Estimate</span>
           </div>
-          <p className="mt-3 text-sm text-muted">$500 Fiverr · active filer</p>
+          <p className="mt-3 text-sm text-muted">$500 Fiverr · 20% fee</p>
           <p className="mt-1 text-[1.7rem] font-semibold tracking-tight text-ink tabular sm:text-3xl">{finalPkr}</p>
           <dl className="mt-3 grid grid-cols-2 gap-2 text-xs">
             <div className="rounded-xl bg-canvas px-3 py-2">
@@ -55,15 +53,15 @@ export function HeroStage({
             <span className="flex size-8 items-center justify-center rounded-lg bg-brand-50 text-brand-ink">
               <ArrowLeftRight aria-hidden className="size-4" />
             </span>
-            USD to PKR
+            After the platform fee
           </div>
-          <p className="mt-3 text-xs text-muted">Converted after fees</p>
+          <p className="mt-3 text-xs text-muted">Before withdrawal</p>
           <p className="text-lg font-semibold tabular">{converted}</p>
         </article>
 
         <p className="float-c absolute right-3 top-4 inline-flex min-h-8 items-center gap-1.5 rounded-full border border-white/80 bg-white px-3 py-1.5 text-xs font-semibold text-navy shadow-[var(--shadow)]">
           <Banknote aria-hidden className="size-3.5 text-brand-ink" />
-          USD/PKR {rate}
+          Editable assumptions
         </p>
 
         <p className="float-d absolute bottom-4 left-8 inline-flex min-h-8 items-center gap-2 rounded-full bg-success-ink px-3 py-2 text-xs font-semibold text-white shadow-[var(--shadow)]">

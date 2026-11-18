@@ -37,21 +37,26 @@ export function ExchangeRateField({
   onChange,
   manual,
   error,
+  currency = "USD",
+  optional = false,
 }: {
   value: string;
   onChange: (value: string) => void;
   manual: boolean;
   error?: string;
+  currency?: string;
+  /** User-typed local rate. No country reference rate is filled in. */
+  optional?: boolean;
 }) {
   const { quote, retry } = useExchangeRate();
-  const isLoading = !manual && quote.status === "loading";
-  const status = manual ? "Manual rate" : quote.rate ? "Reference rate" : "Rate needed";
+  const isLoading = !optional && !manual && quote.status === "loading";
+  const status = optional ? (value.trim() ? "Your rate" : "Optional") : manual ? "Manual rate" : quote.rate ? "Reference rate" : "Rate needed";
 
   return (
     <div className="grid gap-2">
       <div className="flex items-end justify-between gap-3">
         <label htmlFor="usd-pkr-rate" className="text-sm font-medium text-ink">
-          USD to PKR rate
+          {optional ? `Your currency per 1 ${currency}` : `${currency} to PKR rate`}
         </label>
         {isLoading ? (
           <Skeleton variant="rect" className="h-6 w-28 !rounded-full" />
@@ -66,13 +71,14 @@ export function ExchangeRateField({
           id="usd-pkr-rate"
           inputMode="decimal"
           autoComplete="off"
-          placeholder="Enter a rate"
+          placeholder={optional ? "Leave blank to skip" : "Enter a rate"}
           value={value}
           aria-invalid={error ? true : undefined}
           aria-describedby="rate-help"
           onChange={(event) => onChange(event.target.value.replace(/-/g, ""))}
           className="field tabular"
         />
+        {optional ? null : (
         <button
           type="button"
           onClick={retry}
@@ -81,6 +87,7 @@ export function ExchangeRateField({
           <RefreshCw aria-hidden className="size-4" />
           Retry
         </button>
+        )}
       </div>
       <div id="rate-help" className="grid gap-1 text-sm text-muted">
         {isLoading ? (
@@ -88,14 +95,18 @@ export function ExchangeRateField({
             <span className="sr-only">Looking up a reference rate. Frankfurter is checked first.</span>
             <Skeleton variant="text" className="h-5 w-full max-w-md" />
           </p>
+        ) : optional ? (
+          <p>Optional. Leave this blank to keep the result in {currency}. A typed rate is your figure, not a bank quote.</p>
         ) : (
           <p>
-            {quote.sourceLabel}
-            {quote.retrievedAt ? ` · ${formatTimestamp(quote.retrievedAt)}` : ""}
+            <span className="font-semibold text-ink">Rates last updated: </span>
+            {quote.retrievedAt ? formatTimestamp(quote.retrievedAt) : "unavailable"}
+            {quote.stale ? " (last successful quote — the live lookup failed)" : ""}
+            {quote.retrievedAt ? `. ${quote.sourceLabel}.` : ". Type the rate from your bank or Payoneer. No guessed rate is filled in."}
           </p>
         )}
-        {quote.warning ? <p>{quote.warning}</p> : null}
-        {quote.error ? (
+        {!optional && quote.warning ? <p>{quote.warning}</p> : null}
+        {!optional && quote.error ? (
           <p className="font-medium text-danger-ink" role="alert">
             {quote.error}
           </p>

@@ -1,15 +1,15 @@
 "use client";
 
 import { Bar, BarChart, CartesianGrid, Cell, ResponsiveContainer, Tooltip, XAxis, YAxis } from "recharts";
-import { formatUsd } from "@/lib/money";
+import { formatMoney } from "@/lib/money";
 import type { CalculatorResult } from "@/types/calculator";
 
 export default function BreakdownChart({ result }: { result: CalculatorResult }) {
   const data = [
     { name: "Gross", amount: result.grossUsd, fill: "#101B35" },
     { name: "Platform fee", amount: result.platformFeeUsd, fill: "#F05252" },
-    { name: "Payoneer", amount: result.payoneerFeeUsd, fill: "#F5A524" },
-    { name: "Net USD", amount: result.netUsd, fill: "#315BFF" },
+    { name: "Withdrawal", amount: result.payoneerFeeUsd + result.flatFeeInOrderCurrency, fill: "#F5A524" },
+    { name: "Net", amount: result.netUsd, fill: "#315BFF" },
   ];
 
   return (
@@ -20,7 +20,7 @@ export default function BreakdownChart({ result }: { result: CalculatorResult })
           <XAxis dataKey="name" tick={{ fill: "#667085", fontSize: 12 }} axisLine={false} tickLine={false} />
           <YAxis hide />
           <Tooltip
-            formatter={(value) => formatUsd(Number(value))}
+            formatter={(value) => formatMoney(Number(value), result.currency)}
             cursor={{ fill: "#EFF6FF" }}
           />
           <Bar dataKey="amount" radius={[8, 8, 0, 0]}>
@@ -31,7 +31,7 @@ export default function BreakdownChart({ result }: { result: CalculatorResult })
         </BarChart>
       </ResponsiveContainer>
       <p className="mt-2 text-xs text-muted">
-        Dollar steps only. Estimated tax is shown in PKR and is not mixed into this chart.
+        Order-currency steps only. Tax and a local conversion, when you enter them, are not mixed into this chart.
       </p>
     </div>
   );

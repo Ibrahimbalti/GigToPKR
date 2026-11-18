@@ -25,6 +25,26 @@ export function parseOrderAmount(value: string):
   return { state: "ok", amount };
 }
 
+const percentPattern = /^\d{1,3}(\.\d{1,2})?$/;
+
+export function parsePercent(value: string):
+  | { state: "empty" }
+  | { state: "incomplete" }
+  | { state: "invalid"; message: string }
+  | { state: "ok"; rate: number } {
+  const trimmed = value.trim().replace(/%/g, "").replace(/,/g, "");
+  if (!trimmed) return { state: "empty" };
+  if (trimmed.endsWith(".")) return { state: "incomplete" };
+  if (trimmed.startsWith("-") || !percentPattern.test(trimmed)) {
+    return { state: "invalid", message: "Use a percentage from 0 to 100, such as 2 or 1.20." };
+  }
+  const percent = Number(trimmed);
+  if (!Number.isFinite(percent) || percent < 0 || percent > 100) {
+    return { state: "invalid", message: "Enter a percentage from 0 to 100." };
+  }
+  return { state: "ok", rate: Number((percent / 100).toFixed(6)) };
+}
+
 export function parseExchangeRate(value: string):
   | { state: "empty" }
   | { state: "incomplete" }

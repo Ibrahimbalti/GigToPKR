@@ -25,7 +25,7 @@ export const guides: Article[] = [
     excerpt:
       "Fiverr's help center says freelancers earn 80% of the purchase amount. The client pays a separate service fee.",
     directAnswer:
-      "Fiverr's earnings help page says freelancers earn 80% of the purchase amount, including Gig Extras and tips. GigToPKR therefore uses a 20% platform-fee assumption. The service fee shown to a client at checkout is a different charge and, on Fiverr's description, is not deducted again from the freelancer's 80%.",
+      "Fiverr's earnings help page says freelancers earn 80% of the purchase amount, including Gig Extras and tips. RealGigPay therefore uses a 20% platform-fee assumption. The service fee shown to a client at checkout is a different charge and, on Fiverr's description, is not deducted again from the freelancer's 80%.",
     sections: [
       {
         id: "seller-share",
@@ -113,7 +113,7 @@ export const guides: Article[] = [
     excerpt:
       "Clearing time, the payout method, and the provider's fee are three different steps after the Fiverr commission.",
     directAnswer:
-      "Fiverr first applies its own earnings share and a clearing period. Withdrawal happens only after funds are available, through a method your account actually offers. Many freelancers in Pakistan use Payoneer. GigToPKR does not know your enabled methods, so it applies a 2% withdrawal assumption after the platform fee and asks you to replace the exchange rate with the rate you were quoted.",
+      "Fiverr first applies its own earnings share and a clearing period. Withdrawal happens only after funds are available, through a method your account actually offers. Many freelancers in Pakistan use Payoneer. RealGigPay does not know your enabled methods, so it applies a 2% withdrawal assumption after the platform fee and asks you to replace the exchange rate with the rate you were quoted.",
     sections: [
       {
         id: "sequence",
@@ -299,7 +299,7 @@ export const guides: Article[] = [
         blocks: [
           {
             type: "p",
-            text: "If Payoneer is the method, Fiverr sends the cleared earnings toward that account and Payoneer later pays your bank. Those are two transfers. GigToPKR's 2% line represents only the second step, and only as an assumption. It does not represent Fiverr's commission, and it does not represent a rate Payoneer has promised this site.",
+            text: "If Payoneer is the method, Fiverr sends the cleared earnings toward that account and Payoneer later pays your bank. Those are two transfers. RealGigPay's 2% line represents only the second step, and only as an assumption. It does not represent Fiverr's commission, and it does not represent a rate Payoneer has promised this site.",
           },
           {
             type: "table",
@@ -318,7 +318,7 @@ export const guides: Article[] = [
     ],
     faqs: [
       {
-        question: "Does GigToPKR connect to my Fiverr account?",
+        question: "Does RealGigPay connect to my Fiverr account?",
         answer:
           "No. Nothing is imported from Fiverr. You type the order amount.",
       },
@@ -344,7 +344,7 @@ export const guides: Article[] = [
     excerpt:
       "The fee is not a single Pakistan rate. Upwork shows a contract-specific percentage from 0% to 15%.",
     directAnswer:
-      "Upwork's pricing and help pages describe a freelancer service fee from 0% to 15% of earnings, including bonuses. The percentage is shown on the proposal or offer and stays fixed once the contract starts. GigToPKR uses 10% only as a middle assumption so you can sketch a payment. If your offer says 5% or 15%, the sketch will be wrong until you adjust for that difference.",
+      "Upwork's pricing and help pages describe a freelancer service fee from 0% to 15% of earnings, including bonuses. The percentage is shown on the proposal or offer and stays fixed once the contract starts. RealGigPay uses 10% only as a middle assumption so you can sketch a payment. If your offer says 5% or 15%, the sketch will be wrong until you adjust for that difference.",
     sections: [
       {
         id: "variable-fee",
@@ -415,7 +415,7 @@ export const guides: Article[] = [
     excerpt:
       "Local-bank withdrawal pricing and a Payoneer percentage are different products. Do not treat them as the same fee.",
     directAnswer:
-      "Upwork's Direct to Local Bank help page lists a withdrawal cost of $0.99, says funds generally arrive within four business days, and warns that a bank may add its own charge. It also says Upwork cannot accommodate company registrations for PKR bank accounts. GigToPKR's 2% line is a Payoneer-style assumption, not a reproduction of the $0.99 local-bank fee.",
+      "Upwork's Direct to Local Bank help page lists a withdrawal cost of $0.99, says funds generally arrive within four business days, and warns that a bank may add its own charge. It also says Upwork cannot accommodate company registrations for PKR bank accounts. RealGigPay's 2% line is a Payoneer-style assumption, not a reproduction of the $0.99 local-bank fee.",
     sections: [
       {
         id: "local-bank",
@@ -603,7 +603,7 @@ export const guides: Article[] = [
     excerpt:
       "The fee that counts is the one Payoneer shows before you confirm. Public pricing is only a range.",
     directAnswer:
-      "Payoneer's pricing page, which it dated 1 January 2026, lists withdrawals to a bank in the recipient's currency at about 1.2% to 4%, with a possible minimum in some countries. It says the exact fee depends on the corridor and is displayed before confirmation. GigToPKR uses 2% of the post-platform balance as a planning assumption inside that broad range. It is not a Pakistan tariff fetched from your account.",
+      "Payoneer's pricing page, which it dated 1 January 2026, lists withdrawals to a bank in the recipient's currency at about 1.2% to 4%, with a possible minimum in some countries. It says the exact fee depends on the corridor and is displayed before confirmation. RealGigPay uses 2% of the post-platform balance as a planning assumption inside that broad range. It is not a Pakistan tariff fetched from your account.",
     sections: [
       {
         id: "range",
@@ -674,7 +674,7 @@ export const guides: Article[] = [
     excerpt:
       "The confirmation screen is the quote. A calculator can only rehearse the arithmetic.",
     directAnswer:
-      "Before you confirm, read four numbers: the USD balance leaving Payoneer, the fee in percent or in currency, the exchange rate, and the PKR amount expected at the bank. GigToPKR can rehearse a 2% fee and a rate you type. It cannot see Payoneer's quote, a minimum fee, or a margin hidden inside the rate.",
+      "Before you confirm, read four numbers: the USD balance leaving Payoneer, the fee in percent or in currency, the exchange rate, and the PKR amount expected at the bank. RealGigPay can rehearse a 2% fee and a rate you type. It cannot see Payoneer's quote, a minimum fee, or a margin hidden inside the rate.",
     sections: [
       {
         id: "checklist",
@@ -740,7 +740,7 @@ export const guides: Article[] = [
     excerpt:
       "A reference rate, the State Bank's published rates, and Payoneer's payout rate are three different numbers.",
     directAnswer:
-      "Convert the net USD you will actually withdraw, not the gross order. Multiply by the rate on the payout screen when you have it. GigToPKR asks Frankfurter for USD/PKR first. Frankfurter's currency list has no PKR because it follows European Central Bank reference rates, so the site does not invent one. If a secondary open reference quote is available, it is labeled as ExchangeRate-API. You can always type a manual rate.",
+      "Convert the net USD you will actually withdraw, not the gross order. Multiply by the rate on the payout screen when you have it. RealGigPay asks Frankfurter for USD/PKR first. Frankfurter's currency list has no PKR because it follows European Central Bank reference rates, so the site does not invent one. If a secondary open reference quote is available, it is labeled as ExchangeRate-API. You can always type a manual rate.",
     sections: [
       {
         id: "three-rates",
@@ -823,7 +823,7 @@ export const guides: Article[] = [
     excerpt:
       "Store the commercial rate from the payout next to any reference rate you used for planning.",
     directAnswer:
-      "Keep three numbers for every withdrawal: net USD sent, PKR received, and the implied rate (PKR divided by USD). That implied rate is the one that explains your account. A GigToPKR reference rate is only for planning before the payout exists. The difference between them is the practical cost of conversion, whether or not the provider calls it a fee.",
+      "Keep three numbers for every withdrawal: net USD sent, PKR received, and the implied rate (PKR divided by USD). That implied rate is the one that explains your account. A RealGigPay reference rate is only for planning before the payout exists. The difference between them is the practical cost of conversion, whether or not the provider calls it a fee.",
     sections: [
       {
         id: "implied",

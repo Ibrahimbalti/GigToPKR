@@ -2,6 +2,10 @@ import fs from "node:fs";
 import path from "node:path";
 
 const source = ".next/server/app/index.html";
+if (!fs.existsSync(source)) {
+  console.log("Homepage is server-rendered, so there is no static index.html to trim.");
+  process.exit(0);
+}
 let html = fs.readFileSync(source, "utf8");
 
 html = html.replace(/<link rel="preload" as="script"[^>]*>/g, "");
@@ -61,6 +65,25 @@ css = css.replace(/url\((?:'|")?\.\.\/media\/([^"')]+)(?:'|")?\)/g, (_full, file
 });
 fs.writeFileSync(path.join("public", "home.css"), css);
 html = html.replaceAll(cssUrl, "/home.css");
+
+const blocked = [
+  "Loading page",
+  "Loading how it works",
+  "Loading platform comparison",
+  "Loading benefits",
+  "Loading questions",
+  "Loading call to action",
+  "localhost",
+];
+const found = blocked.filter((phrase) => html.includes(phrase));
+if (found.length || !html.includes("Step 01") || !html.includes("Step 02") || !html.includes("Step 03")) {
+  console.error("homepage HTML is missing real step content or still contains:", found.join(", ") || "step labels");
+  process.exit(1);
+}
+if (!html.includes("https://realgigpay.com")) {
+  console.error("homepage HTML is missing the public canonical origin");
+  process.exit(1);
+}
 
 fs.mkdirSync("public", { recursive: true });
 fs.writeFileSync("public/home-static.html", html);

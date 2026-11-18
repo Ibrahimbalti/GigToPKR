@@ -2,16 +2,16 @@ import { BadgePercent, Landmark, ReceiptText, Smartphone, Unlock, WalletCards } 
 
 const benefits = [
   { icon: BadgePercent, title: "Transparent fee calculation", text: "Every percentage is named as an assumption before it touches the result." },
-  { icon: Landmark, title: "USD to PKR conversion", text: "Convert after fees, with a labeled reference rate or a rate you type." },
-  { icon: WalletCards, title: "Fiverr and Upwork support", text: "Switch platforms without changing the order of the formula." },
-  { icon: ReceiptText, title: "Estimated tax breakdown", text: "The illustrative tax line stays visible instead of hiding inside the deposit." },
+  { icon: Landmark, title: "Optional local conversion", text: "The estimate stays in the order currency until you type the rate your bank or payout service shows." },
+  { icon: WalletCards, title: "Separate calculators", text: "Fiverr and Upwork each have their own page. One page does not switch to the other platform." },
+  { icon: ReceiptText, title: "Optional tax set-aside", text: "Add a percentage if you want to hold money back. It is not a country's tax assessment." },
   { icon: Unlock, title: "No registration required", text: "Order amounts stay in the browser. There is no account to create." },
   { icon: Smartphone, title: "Mobile-friendly design", text: "The form becomes one column on a phone, with the same arithmetic." },
 ];
 
 export function Benefits() {
   return (
-    <section className="cv-auto shell py-16 lg:py-20" aria-labelledby="benefits-heading">
+    <section className="shell py-16 lg:py-20" aria-labelledby="benefits-heading">
       <h2 id="benefits-heading" className="text-[clamp(1.6rem,2.4vw,2rem)] font-semibold tracking-[-0.03em]">
         Why freelancers use it
       </h2>

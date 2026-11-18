@@ -4,7 +4,7 @@ import Script from "next/script";
 import { useSyncExternalStore } from "react";
 import { analyticsId } from "@/lib/analytics";
 
-const consentKey = "gigtopkr-consent";
+const consentKey = "realgigpay-consent";
 const listeners = new Set<() => void>();
 
 function subscribe(listener: () => void) {

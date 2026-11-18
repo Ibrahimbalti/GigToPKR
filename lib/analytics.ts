@@ -25,6 +25,6 @@ export function trackEvent(
   params?: Record<string, string | number | boolean>,
 ): void {
   if (typeof window === "undefined" || !analyticsId() || !window.gtag) return;
-  if (window.localStorage.getItem("gigtopkr-consent") !== "accepted") return;
+  if (window.localStorage.getItem("realgigpay-consent") !== "accepted") return;
   window.gtag("event", name, params);
 }

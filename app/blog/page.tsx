@@ -9,7 +9,7 @@ import { buildMetadata } from "@/lib/seo/metadata";
 import Link from "next/link";
 
 export const metadata: Metadata = buildMetadata({
-  title: "GigToPKR Blog",
+  title: "Freelance fee articles",
   description:
     "Published articles on calculating freelance income, comparing Fiverr and Upwork, and planning PKR cash flow.",
   path: "/blog",

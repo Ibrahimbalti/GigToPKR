@@ -34,7 +34,7 @@ export function Footer() {
         <div>
           <Logo onDark />
           <p className="mt-4 max-w-xs text-sm leading-6 text-slate-300">
-            {site.productName} estimates PKR earnings from published assumptions. It is not a bank, a tax filing, or a payout quote.
+            {site.productName} estimates what is left after marketplace and withdrawal assumptions. It is not a bank quote or a tax filing.
           </p>
         </div>
         <Column title="Calculators" links={footerCalculators} />

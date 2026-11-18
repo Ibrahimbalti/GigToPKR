@@ -25,7 +25,7 @@ export const taxGuides: Article[] = [
     excerpt:
       "Filer status, records, and the Finance Act matter. A 1% calculator line is not an assessment.",
     directAnswer:
-      "Freelance income received from foreign clients can be taxable in Pakistan, and the treatment depends on the Income Tax Ordinance, the latest Finance Act, your status on the Active Taxpayers List, and whether any special export regime applies to you. GigToPKR does not determine that treatment. Its 1% and 2% options are labeled illustrations so two results can be compared. File from FBR guidance or a tax adviser, not from this estimate.",
+      "Freelance income received from foreign clients can be taxable in Pakistan, and the treatment depends on the Income Tax Ordinance, the latest Finance Act, your status on the Active Taxpayers List, and whether any special export regime applies to you. RealGigPay does not determine that treatment. Its 1% and 2% options are labeled illustrations so two results can be compared. File from FBR guidance or a tax adviser, not from this estimate.",
     sections: [
       {
         id: "what-it-is",
@@ -91,7 +91,7 @@ export const taxGuides: Article[] = [
       {
         question: "Does the calculator store my income?",
         answer:
-          "No account is required, and order amounts are not saved on a GigToPKR server. They stay in the browser while the page is open.",
+          "No account is required, and order amounts are not saved on a RealGigPay server. They stay in the browser while the page is open.",
       },
     ],
     sources: [sourceLinks.fbr],
@@ -110,7 +110,7 @@ export const taxGuides: Article[] = [
     excerpt:
       "Filer status is an FBR classification. The percentages in the calculator are a separate, clearly labeled model.",
     directAnswer:
-      "An active filer, in ordinary Pakistani usage, is a person who appears on FBR's Active Taxpayers List after meeting the filing conditions FBR sets. A non-filer does not. Banks and withholding agents often apply different treatments to the two groups. The exact difference is defined by current law, not by GigToPKR. The calculator's 'Active filer — 1%' and 'Non-filer — 2%' labels are assumptions for a side-by-side estimate.",
+      "An active filer, in ordinary Pakistani usage, is a person who appears on FBR's Active Taxpayers List after meeting the filing conditions FBR sets. A non-filer does not. Banks and withholding agents often apply different treatments to the two groups. The exact difference is defined by current law, not by RealGigPay. The calculator's 'Active filer — 1%' and 'Non-filer — 2%' labels are assumptions for a side-by-side estimate.",
     sections: [
       {
         id: "atl",
@@ -170,7 +170,7 @@ export const taxGuides: Article[] = [
     excerpt:
       "Special rules for IT exporters have changed with Finance Acts. Verify the current text before you rely on a percentage.",
     directAnswer:
-      "Pakistan has used special income-tax provisions for the export of IT and IT-enabled services, sometimes connected with registration conditions such as PSEB. Those provisions are amended. GigToPKR will not state a current statutory rate, because stating a remembered rate from an older Finance Act would mislead. Use FBR's current law and any registration body named in that law.",
+      "Pakistan has used special income-tax provisions for the export of IT and IT-enabled services, sometimes connected with registration conditions such as PSEB. Those provisions are amended. RealGigPay will not state a current statutory rate, because stating a remembered rate from an older Finance Act would mislead. Use FBR's current law and any registration body named in that law.",
     sections: [
       {
         id: "questions",
@@ -236,7 +236,7 @@ export const taxGuides: Article[] = [
     excerpt:
       "Keep the document that created each number. A calculator screenshot is not a substitute for the payout receipt.",
     directAnswer:
-      "Keep the platform earnings statement, the payout-provider confirmation, and the bank credit for each receipt. Add the implied exchange rate, the fee, and the tax year. Keep expense invoices you may claim. A GigToPKR PDF is a working paper from assumptions. It does not replace those source documents, and this site does not store it for you.",
+      "Keep the platform earnings statement, the payout-provider confirmation, and the bank credit for each receipt. Add the implied exchange rate, the fee, and the tax year. Keep expense invoices you may claim. A RealGigPay PDF is a working paper from assumptions. It does not replace those source documents, and this site does not store it for you.",
     sections: [
       {
         id: "checklist",
@@ -283,7 +283,7 @@ export const taxGuides: Article[] = [
     ],
     faqs: [
       {
-        question: "Does GigToPKR keep a copy of my calculation?",
+        question: "Does RealGigPay keep a copy of my calculation?",
         answer:
           "No. The PDF is generated in your browser. If you need it later, download it and store it yourself.",
       },

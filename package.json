@@ -1,5 +1,5 @@
 {
-  "name": "gigtopkr",
+  "name": "realgigpay",
   "version": "0.1.0",
   "private": true,
   "scripts": {
@@ -8,7 +8,7 @@
     "start": "next start",
     "lint": "eslint",
     "typecheck": "tsc --noEmit",
-    "test": "tsx --test tests/calculator.test.ts tests/exchange-rate.test.ts tests/seo-audit.test.ts"
+    "test": "tsx --test tests/calculator.test.ts tests/exchange-rate.test.ts tests/seo-audit.test.ts lib/youtubeCalc.test.ts"
   },
   "dependencies": {
     "@hookform/resolvers": "^7.0.6",

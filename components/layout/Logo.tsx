@@ -2,16 +2,22 @@ import Link from "next/link";
 
 export function Logo({ onDark = false }: { onDark?: boolean }) {
   return (
-    <Link href="/" scroll aria-label="GigToPKR" className="block h-10 w-36 shrink-0">
+    <Link
+      href="/"
+      scroll
+      aria-label="RealGigPay"
+      className={`inline-flex h-10 items-center gap-2 ${onDark ? "text-white" : "text-ink"}`}
+    >
       <img
-        src={onDark ? "/brand-mark-on-dark.png" : "/brand-mark.png"}
+        src={onDark ? "/realgigpay-mark-on-dark.png" : "/realgigpay-mark.png"}
         alt=""
-        width={144}
-        height={40}
+        width={1159}
+        height={677}
         decoding="sync"
         draggable={false}
-        className="block h-10 w-36"
+        className="h-9 w-auto"
       />
+      <span className="text-[1.15rem] font-semibold tracking-[-0.04em]">RealGigPay</span>
     </Link>
   );
 }

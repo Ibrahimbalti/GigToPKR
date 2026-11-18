@@ -7,7 +7,7 @@ function organization() {
     "@type": "Organization",
     name: site.name,
     url: site.url,
-    logo: absoluteUrl("/logo.jpg"),
+    logo: absoluteUrl("/realgigpay-logo.png"),
     description: site.description,
     email: site.contactEmail || undefined,
   };
@@ -29,6 +29,21 @@ export function websiteSchema() {
     description: site.description,
     inLanguage: "en",
     publisher: organization(),
+  };
+}
+
+export function faqSchema(faqs: { question: string; answer: string }[]) {
+  return {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    mainEntity: faqs.map((faq) => ({
+      "@type": "Question",
+      name: faq.question,
+      acceptedAnswer: {
+        "@type": "Answer",
+        text: faq.answer,
+      },
+    })),
   };
 }
 
@@ -63,6 +78,25 @@ export function softwareSchema(path: string, name: string, description: string) 
   };
 }
 
+export function webApplicationSchema(path: string, name: string, description: string) {
+  return {
+    "@context": "https://schema.org",
+    "@type": "WebApplication",
+    name,
+    applicationCategory: "FinanceApplication",
+    operatingSystem: "Web",
+    browserRequirements: "Requires a modern web browser",
+    url: absoluteUrl(path),
+    description,
+    offers: {
+      "@type": "Offer",
+      price: "0",
+      priceCurrency: "USD",
+    },
+    provider: organization(),
+  };
+}
+
 export function articleSchema(input: {
   path: string;
   headline: string;
@@ -82,7 +116,7 @@ export function articleSchema(input: {
     url: absoluteUrl(input.path),
     author: {
       "@type": "Organization",
-      name: "GigToPKR Editorial",
+      name: "RealGigPay Editorial",
       url: absoluteUrl("/about"),
     },
     publisher: organization(),
@@ -93,9 +127,9 @@ export function aboutPageSchema() {
   return {
     "@context": "https://schema.org",
     "@type": "AboutPage",
-    name: "About GigToPKR",
+    name: "About RealGigPay",
     url: absoluteUrl("/about"),
-    description: "What GigToPKR estimates, who it is for, and what it does not do.",
+    description: "What RealGigPay estimates, who it is for, and what it does not do.",
     isPartOf: { "@type": "WebSite", name: site.name, url: site.url },
   };
 }
@@ -104,8 +138,8 @@ export function contactPageSchema() {
   return {
     "@context": "https://schema.org",
     "@type": "ContactPage",
-    name: "Contact GigToPKR",
+    name: "Contact RealGigPay",
     url: absoluteUrl("/contact"),
-    description: "Contact the GigToPKR editorial desk about corrections and the calculator.",
+    description: "Contact the RealGigPay editorial desk about corrections and the calculator.",
   };
 }

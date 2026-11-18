@@ -15,7 +15,7 @@ import { RelatedArticles } from "@/components/seo/RelatedArticles";
 import { Accordion } from "@/components/ui/Accordion";
 import { getTool } from "@/content/tools";
 import { buildMetadata } from "@/lib/seo/metadata";
-import { softwareSchema, type Crumb } from "@/lib/seo/schema";
+import { faqSchema, softwareSchema, type Crumb } from "@/lib/seo/schema";
 import { notFound } from "next/navigation";
 
 export function ToolScreen({ path, crumbs }: { path: string; crumbs: Crumb[] }) {
@@ -25,7 +25,7 @@ export function ToolScreen({ path, crumbs }: { path: string; crumbs: Crumb[] }) 
   return (
     <div className="shell grid gap-8 py-10">
       <BreadcrumbJsonLd items={crumbs} />
-      <JsonLd data={softwareSchema(page.path, page.h1, page.description)} />
+      <JsonLd data={[softwareSchema(page.path, page.h1, page.description), faqSchema(page.faqs)]} />
       <Breadcrumbs items={crumbs} />
       <div>
         <PageHeader compact eyebrow={page.eyebrow} title={page.h1} lede={page.directAnswer} />
@@ -42,8 +42,23 @@ export function ToolScreen({ path, crumbs }: { path: string; crumbs: Crumb[] }) 
         defaultPlatform={page.defaultPlatform}
         defaultTax={page.defaultTax}
         showMonthly={page.mode === "income"}
+        lockedPlatform={
+          page.path === "/fiverr-fee-calculator-pakistan"
+            ? "fiverr"
+            : page.path === "/upwork-fee-calculator-pakistan"
+              ? "upwork"
+              : undefined
+        }
       >
-        <CalculatorPreview />
+        <CalculatorPreview
+          lockedPlatform={
+            page.path === "/fiverr-fee-calculator-pakistan"
+              ? "fiverr"
+              : page.path === "/upwork-fee-calculator-pakistan"
+                ? "upwork"
+                : undefined
+          }
+        />
       </CalculatorGate>
       <AdSlot placement="sidebar" />
       <ContentBlocks sections={page.sections} />

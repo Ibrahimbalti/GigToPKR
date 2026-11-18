@@ -26,11 +26,11 @@ export const toolPages: ToolPage[] = [
           {
             type: "ol",
             items: [
-              "Starts from the gross USD order.",
-              "Subtracts 20% for Fiverr or 10% for Upwork.",
-              "Subtracts 2% of the remainder as a Payoneer-style withdrawal.",
-              "Multiplies the net USD by your rate.",
-              "Subtracts 1% or 2% of the rupees as an illustrative tax line.",
+              "Starts from the order amount, in USD, EUR, GBP, or AED.",
+              "Subtracts the platform fee in the form. Fiverr starts at 20% and Upwork starts at 10%, and both can be edited.",
+              "Subtracts the withdrawal percentage in the form. It starts at 2% for Payoneer and can be replaced. A flat $0.99 fee can be added for Upwork direct-to-bank.",
+              "Multiplies the net amount by the PKR rate in the form.",
+              "Subtracts the tax percentage you typed. The 1% and 2% buttons only fill that field. They are not FBR rates.",
             ],
           },
           {
@@ -61,13 +61,13 @@ export const toolPages: ToolPage[] = [
   },
   {
     path: "/fiverr-fee-calculator-pakistan",
-    title: "Fiverr Fee Calculator Pakistan",
+    title: "Fiverr Fee Calculator",
     description:
-      "Estimate PKR from a Fiverr order using the 80% freelancer share Fiverr describes, plus a separate withdrawal assumption.",
-    h1: "Fiverr fee calculator for Pakistani freelancers",
+      "Estimate a Fiverr order after the 20% platform assumption and a withdrawal percent you can edit. The result stays in the order currency until you add your own rate.",
+    h1: "Fiverr fee calculator",
     eyebrow: "20% platform assumption",
     directAnswer:
-      "On a $100 Fiverr order this model deducts $20, then $1.60 of withdrawal assumption, and converts $78.40. Fiverr's help center describes the 80% share. It does not describe the 2% withdrawal line. That line is ours, and the exchange rate is yours or a labeled reference.",
+      "On a $100 Fiverr order this model deducts $20, then $1.60 at the 2% withdrawal assumption, and leaves $78.40. Fiverr's help center describes the 80% share. It does not describe the 2% withdrawal line. That line is ours. A local-currency rate is optional and is never filled in for you.",
     defaultPlatform: "fiverr",
     defaultTax: "filer",
     mode: "standard",
@@ -79,15 +79,8 @@ export const toolPages: ToolPage[] = [
         level: 2,
         blocks: [
           {
-            type: "example",
-            title: "$100 Fiverr order, active-filer illustration, example rate",
-            orderAmountUsd: 100,
-            platform: "fiverr",
-            taxStatus: "filer",
-          },
-          {
             type: "p",
-            text: "Change the rate in the calculator to the one Payoneer shows you. The worked example uses the current reference rate, not the rate on your payout screen.",
+            text: "A $100 Fiverr order at 20% and a 2% withdrawal assumption leaves $78.40 in the order currency. Type your own rate only if you want that net amount in another currency. The field is not filled with a country rate.",
           },
         ],
       },
@@ -100,7 +93,7 @@ export const toolPages: ToolPage[] = [
             type: "ul",
             items: [
               "The client service fee at checkout.",
-              "Early Payout's optional charge.",
+              "Early Payout, unless you turn it on and type the percent Fiverr shows. It applies to the amount after the platform fee, not the full order.",
               "A Payoneer minimum fee, if your corridor has one.",
               "The margin inside Payoneer's exchange rate.",
               "Any tax already withheld by a bank.",
@@ -111,13 +104,14 @@ export const toolPages: ToolPage[] = [
     ],
     faqs: [
       {
-        question: "Can I type an Upwork order on this page?",
+        question: "Can I estimate an Upwork order on this page?",
         answer:
-          "The form still lets you switch platform. This page opens on Fiverr because that is the question it answers. The Upwork calculator opens on the 10% assumption.",
+          "No. This page is Fiverr only. Use the Upwork calculator for an Upwork order. It opens at 10% and does not include a Fiverr option.",
       },
     ],
     sources: [sourceLinks.fiverrEarnings, sourceLinks.fiverrHow, sourceLinks.payoneerPricing],
     related: [
+      { href: "/upwork-fee-calculator-pakistan", label: "Upwork calculator" },
       { href: "/guides/fiverr-fees-pakistan", label: "Fiverr fees explained" },
       { href: "/guides/fiverr-earnings-calculation", label: "Step-by-step Fiverr math" },
       { href: "/guides/fiverr-withdrawal-pakistan", label: "Withdrawals after the fee" },
@@ -125,13 +119,13 @@ export const toolPages: ToolPage[] = [
   },
   {
     path: "/upwork-fee-calculator-pakistan",
-    title: "Upwork Fee Calculator Pakistan",
+    title: "Upwork Fee Calculator",
     description:
-      "Sketch an Upwork payment in PKR. The 10% fee is an assumption inside Upwork's published 0% to 15% range.",
-    h1: "Upwork fee calculator for Pakistani freelancers",
+      "Estimate an Upwork order with a fee inside the published 0% to 15% range. This page does not include Fiverr.",
+    h1: "Upwork fee calculator",
     eyebrow: "10% contract assumption",
     directAnswer:
-      "Upwork charges a contract-specific freelancer service fee from 0% to 15%. This page opens at 10% so a $500 billing becomes $450 after the platform line, before the withdrawal assumption. If your offer shows another percentage, the sketch is only a starting point. Direct to Local Bank is documented at $0.99, which this 2% model does not reproduce.",
+      "Upwork charges a contract-specific freelancer service fee from 0% to 15%. This page opens at 10% so a $500 billing becomes $450 after the platform line, before the withdrawal assumption. If your offer shows another percentage, change it. Direct to Local Bank is $0.99 per withdrawal and replaces the percent withdrawal. It assumes this order is the whole withdrawal.",
     defaultPlatform: "upwork",
     defaultTax: "filer",
     mode: "standard",
@@ -143,28 +137,22 @@ export const toolPages: ToolPage[] = [
         level: 2,
         blocks: [
           {
-            type: "example",
-            title: "$100 Upwork assumption",
-            orderAmountUsd: 100,
-            platform: "upwork",
-            taxStatus: "filer",
-          },
-          {
             type: "p",
-            text: "A contract at 5% would keep about $5 more per $100 before withdrawal than this 10% line. A contract at 15% would keep about $5 less. That gap is larger than the later difference between a small percentage withdrawal and a $0.99 bank fee on many orders. Adjust the story before you send a quote to a client.",
+            text: "A $100 Upwork order at 10% leaves $90 before withdrawal. At 5% it leaves $95. At 15% it leaves $85. A 2% withdrawal on $90 is $1.80, so the net is $88.20. The $0.99 local-bank fee replaces that percent and leaves $89.01. Use the fee on your offer.",
           },
         ],
       },
     ],
     faqs: [
       {
-        question: "Does Upwork really charge 10% in Pakistan?",
+        question: "Does Upwork charge 10% on every contract?",
         answer:
-          "Not as a flat country rate. Pakistan-based freelancers see the same contract-level range Upwork publishes: 0% to 15%. Ten percent is the assumption selected on this page.",
+          "No. Upwork publishes a freelancer service fee from 0% to 15%, fixed on the contract. Ten percent is only the starting assumption on this page. Use the percentage on your offer.",
       },
     ],
     sources: [sourceLinks.upworkFee, sourceLinks.upworkPricing, sourceLinks.upworkBank],
     related: [
+      { href: "/fiverr-fee-calculator-pakistan", label: "Fiverr calculator" },
       { href: "/guides/upwork-fees-pakistan", label: "How the Upwork fee is set" },
       { href: "/guides/upwork-withdrawal-pakistan", label: "The $0.99 local-bank fee" },
       { href: "/guides/upwork-earnings-calculation", label: "Calculate an Upwork payment" },

@@ -6,7 +6,7 @@ import { buildMetadata } from "@/lib/seo/metadata";
 export const metadata: Metadata = buildMetadata({
   title: "Editorial Policy",
   description:
-    "How GigToPKR researches freelancer fees, labels assumptions, dates reviews, and handles corrections.",
+    "How RealGigPay researches freelancer fees, labels assumptions, dates reviews, and handles corrections.",
   path: "/editorial-policy",
 });
 
@@ -62,7 +62,7 @@ export default function EditorialPolicyPage() {
             when the assumption itself is being changed, and the interface text changes with it.
           </p>
           <p>
-            The people writing this are the GigToPKR editorial desk. That is a role, not a list of
+            The people writing this are the RealGigPay editorial desk. That is a role, not a list of
             professional licenses.
           </p>
         </InfoCard>

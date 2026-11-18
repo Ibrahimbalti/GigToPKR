@@ -8,7 +8,7 @@ import { buildMetadata } from "@/lib/seo/metadata";
 import { contactPageSchema } from "@/lib/seo/schema";
 
 export const metadata: Metadata = buildMetadata({
-  title: "Contact GigToPKR",
+  title: "Contact the editorial desk",
   description:
     "Ask about a calculation or send a correction. Messages are delivered only when a webhook is configured.",
   path: "/contact",

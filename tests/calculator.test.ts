@@ -1,6 +1,6 @@
 import assert from "node:assert/strict";
 import test from "node:test";
-import { calculateEarnings, projectMonthly } from "../lib/calculator";
+import { calculateEarnings, projectMonthly, requiredOrderAmount } from "../lib/calculator";
 
 function run(orderAmountUsd: number, platform: "fiverr" | "upwork", taxStatus: "filer" | "nonFiler", usdToPkrRate = 280) {
   return calculateEarnings({ orderAmountUsd, platform, taxStatus, usdToPkrRate });
@@ -69,6 +69,54 @@ test("decimal platform fee rounds half-up to the cent", () => {
 test("negative amounts and non-positive rates are rejected", () => {
   assert.throws(() => run(-1, "fiverr", "filer"));
   assert.throws(() => run(100, "upwork", "filer", 0));
+});
+
+test("custom withdrawal and tax percentages replace the defaults", () => {
+  const result = calculateEarnings({
+    orderAmountUsd: 100,
+    platform: "fiverr",
+    taxStatus: "filer",
+    usdToPkrRate: 280,
+    withdrawalFeeRate: 0.04,
+    taxRate: 0,
+  });
+  assert.equal(result.payoneerFeeUsd, 3.2);
+  assert.equal(result.netUsd, 76.8);
+  assert.equal(result.taxPkr, 0);
+  assert.equal(result.finalPkr, 21504);
+});
+
+test("a flat 0.99 fee is added after the percentage withdrawal", () => {
+  const result = calculateEarnings({
+    orderAmountUsd: 100,
+    platform: "upwork",
+    taxStatus: "filer",
+    usdToPkrRate: 280,
+    withdrawalFeeRate: 0,
+    flatFeeUsd: 0.99,
+    withdrawalMethod: "directBank",
+    taxRate: 0,
+  });
+  assert.equal(result.platformFeeUsd, 10);
+  assert.equal(result.flatFeeInOrderCurrency, 0.99);
+  assert.equal(result.netUsd, 89.01);
+  assert.equal(result.finalPkr, 24922.8);
+});
+
+test("reverse quote finds the order that reaches a PKR target", () => {
+  const forward = calculateEarnings({
+    orderAmountUsd: 100,
+    platform: "fiverr",
+    taxStatus: "filer",
+    usdToPkrRate: 280,
+  });
+  const required = requiredOrderAmount({
+    platform: "fiverr",
+    taxStatus: "filer",
+    usdToPkrRate: 280,
+    targetPkr: forward.finalPkr,
+  });
+  assert.equal(required, 100);
 });
 
 test("monthly projection multiplies the final deposit", () => {

@@ -6,7 +6,7 @@ import { buildMetadata } from "@/lib/seo/metadata";
 export const metadata: Metadata = buildMetadata({
   title: "Disclaimer",
   description:
-    "GigToPKR estimates can differ from platform fees, Payoneer quotes, bank credits, and FBR assessments.",
+    "RealGigPay estimates can differ from platform fees, Payoneer quotes, bank credits, and FBR assessments.",
   path: "/disclaimer",
 });
 

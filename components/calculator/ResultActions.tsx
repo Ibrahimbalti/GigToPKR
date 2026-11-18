@@ -14,9 +14,11 @@ const action =
 export function ResultActions({
   result,
   onReset,
+  shareHref,
 }: {
   result: CalculatorResult | null;
   onReset: () => void;
+  shareHref?: string | null;
 }) {
   const [message, setMessage] = useState("");
 
@@ -28,9 +30,18 @@ export function ResultActions({
     if (ok) trackEvent("result_copied", { kind });
   }
 
+  async function share() {
+    if (!shareHref || typeof window === "undefined") return;
+    const url = `${window.location.origin}${shareHref}`;
+    window.history.replaceState(null, "", shareHref);
+    const ok = await copyText(url);
+    setMessage(ok ? "Link copied." : "Copy failed. The address bar has the shareable link.");
+    if (ok) trackEvent("result_copied", { kind: "link" });
+  }
+
   function download() {
     if (!result) return;
-    downloadPdf("gigtopkr-earnings-breakdown.pdf", buildBreakdownPdf(result));
+    downloadPdf("realgigpay-earnings-breakdown.pdf", buildBreakdownPdf(result));
     setMessage("PDF downloaded to your device. It is a working paper, not a receipt.");
     trackEvent("pdf_downloaded");
   }
@@ -46,6 +57,9 @@ export function ResultActions({
         </button>
         <button type="button" disabled={!result} onClick={() => void copy("breakdown")} className={action}>
           <Copy aria-hidden className="size-4" /> Copy breakdown
+        </button>
+        <button type="button" disabled={!result || !shareHref} onClick={() => void share()} className={action}>
+          <Copy aria-hidden className="size-4" /> Copy link
         </button>
         <button type="button" disabled={!result} onClick={download} className={action}>
           <Download aria-hidden className="size-4" /> Download PDF

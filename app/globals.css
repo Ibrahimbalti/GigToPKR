@@ -118,7 +118,9 @@ summary::-webkit-details-marker {
   box-shadow: 0 0 0 4px rgba(49, 91, 255, 0.12);
 }
 
-[data-home-calc] [data-tax][aria-pressed="true"] {
+[data-home-calc] [data-tax][aria-pressed="true"],
+[data-home-calc] [data-mode][aria-pressed="true"],
+[data-home-calc] [data-upwork-fee][aria-pressed="true"] {
   background: #fff;
   color: #101828;
   box-shadow: var(--shadow);

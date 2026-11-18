@@ -10,11 +10,13 @@ export function CalculatorGate({
   defaultPlatform,
   defaultTax,
   showMonthly,
+  lockedPlatform,
 }: {
   children: React.ReactNode;
   defaultPlatform?: Platform;
   defaultTax?: TaxStatus;
   showMonthly?: boolean;
+  lockedPlatform?: Platform;
 }) {
   const [live, setLive] = useState(false);
   const scrollY = useRef(0);
@@ -38,7 +40,12 @@ export function CalculatorGate({
 
   return (
     <ExchangeRateProvider>
-      <Calculator defaultPlatform={defaultPlatform} defaultTax={defaultTax} showMonthly={showMonthly} />
+      <Calculator
+        defaultPlatform={defaultPlatform}
+        defaultTax={defaultTax}
+        showMonthly={showMonthly}
+        lockedPlatform={lockedPlatform}
+      />
     </ExchangeRateProvider>
   );
 }
