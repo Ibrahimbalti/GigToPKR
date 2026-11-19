@@ -16,7 +16,9 @@ jobs:
           username: ${{ secrets.VPS_USER }}
           key: ${{ secrets.VPS_SSH_KEY }}
           script: |
+            export PATH=$PATH:/usr/local/bin:/usr/bin
             cd /var/www/GigToPKR
             git pull origin main
             npm ci
             npm run build
+            pm2 restart realgigpay
