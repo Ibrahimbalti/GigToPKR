@@ -20,7 +20,7 @@ export function resolveSiteUrl(configured = process.env.NEXT_PUBLIC_SITE_URL ?? 
 }
 
 /** Global pages use en_US. */
-export function openGraphLocale(path = "/"): "en_PK" | "en_US" {
+export function openGraphLocale(path = "/"): "en_US" {
   return "en_US";
 }
 

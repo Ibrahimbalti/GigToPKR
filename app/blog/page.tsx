@@ -38,7 +38,7 @@ export default function BlogPage() {
         <h2 className="text-2xl font-semibold">Editorial calendar</h2>
         <ul className="surface divide-y divide-line overflow-hidden rounded-3xl">
           {editorialCalendar.map((idea) => (
-            <li key={idea.title} className="flex flex-col gap-1 px-5 py-4 sm:flex-row sm:items-center sm:justify-between">
+            <li key={idea.href ?? idea.title} className="flex flex-col gap-1 px-5 py-4 sm:flex-row sm:items-center sm:justify-between">
               <div>
                 <p className="font-medium">{idea.title}</p>
                 <p className="text-sm text-muted">{idea.intent}</p>

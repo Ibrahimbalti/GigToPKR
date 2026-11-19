@@ -31,8 +31,8 @@ export default function EditorialPolicyPage() {
           <p>
             Fee statements are checked against the provider&apos;s own help or pricing page when one is
             available: Fiverr Help, Upwork Help, and Payoneer&apos;s pricing page. Tax pages describe
-            questions and point to the Federal Board of Revenue rather than quoting a statutory rate
-            the desk has not re-read in the current Finance Act. Exchange-rate behavior is checked
+            questions and point readers to their official tax authority rather than quoting a statutory rate
+            the desk has not verified for their circumstances. Exchange-rate behavior is checked
             against Frankfurter&apos;s currency list.
           </p>
         </InfoCard>

@@ -18,14 +18,14 @@ function tax(
 export const taxGuides: Article[] = [
   tax({
     slug: "freelancer-tax",
-    title: "Pakistan Freelancer Tax Guide",
+    title: "Freelancer Tax Guide",
     description:
-      "A practical map of freelancer tax questions in Pakistan, and a clear line between an estimate and an assessment.",
-    h1: "How should Pakistani freelancers think about tax on foreign income?",
+      "A practical map of tax questions for freelancers receiving income from clients or platforms in other countries.",
+    h1: "How should freelancers plan for tax on cross-border income?",
     excerpt:
-      "Filer status, records, and the Finance Act matter. A 1% calculator line is not an assessment.",
+      "Filing status and records matter. A calculator percentage is not an assessment.",
     directAnswer:
-      "Freelance income received from foreign clients can be taxable in Pakistan, and the treatment depends on the Income Tax Ordinance, the latest Finance Act, your status on the Active Taxpayers List, and whether any special export regime applies to you. RealGigPay does not determine that treatment. Its 1% and 2% options are labeled illustrations so two results can be compared. File from FBR guidance or a tax adviser, not from this estimate.",
+      "Cross-border freelance income may be taxable where you live, where your business is registered, or in both places. The treatment depends on current local law, your filing status, business structure, and any rules for exported services. RealGigPay does not determine your tax treatment. Its 1% and 2% options are illustrations only. Use guidance from your official tax authority or a qualified local adviser, not this estimate.",
     sections: [
       {
         id: "what-it-is",
@@ -34,14 +34,14 @@ export const taxGuides: Article[] = [
         blocks: [
           {
             type: "p",
-            text: "It will help you name the documents and the questions. It will not quote a current statutory percentage as if it were stable. Rates, final-tax provisions, and withholding rules for exporters of services have changed across Finance Acts. Quoting a remembered percentage would be worse than sending you to the Federal Board of Revenue.",
+            text: "It will help you identify records and questions to ask. It will not quote a statutory percentage as if it applied everywhere. Rates, withholding rules, and special treatment for exported services vary by jurisdiction and change over time. Check current law with your official tax authority or a qualified adviser.",
           },
           {
             type: "ul",
             items: [
-              "Are you on the Active Taxpayers List?",
-              "Is the income from IT or IT-enabled services, or from another service?",
-              "Are you registered with any body that a special regime requires?",
+              "What registration or filing status applies to you?",
+              "How does your jurisdiction classify the service you provide?",
+              "Do any local rules require business or professional registration?",
               "Did a bank or payment provider withhold tax on the credit?",
               "Which tax year does the receipt fall in?",
             ],
@@ -55,7 +55,7 @@ export const taxGuides: Article[] = [
         blocks: [
           {
             type: "p",
-            text: "The illustrative percentage is applied to the PKR amount after platform fees, the withdrawal assumption, and conversion. It is not applied to the gross USD order. Active filer uses 1% in the model. Non-filer uses 2%. Changing the label does not change your legal status. Only the FBR record does.",
+            text: "The calculator applies its illustrative percentage after platform fees, the withdrawal assumption, and currency conversion. The 1% and 2% options are comparison inputs, not tax brackets or filing statuses. Changing a calculator option does not change your legal status or determine your tax bill.",
           },
           {
             type: "example",
@@ -66,7 +66,7 @@ export const taxGuides: Article[] = [
           },
           {
             type: "note",
-            text: "Run the calculator again with the non-filer illustration to see the rupee gap. The gap is a comparison of assumptions, not the penalty or the extra tax FBR would compute.",
+            text: "Run the calculator with each illustration to compare the arithmetic. The difference is not a penalty or an estimate of what a tax authority would assess.",
           },
         ],
       },
@@ -77,7 +77,7 @@ export const taxGuides: Article[] = [
         blocks: [
           {
             type: "p",
-            text: "Register or confirm your status with FBR, keep the payout records described in the record-keeping guide, and ask a tax practitioner to map your facts onto the current Finance Act. If you export IT services, read the IT export page on this site only as a list of questions, then read FBR's current material.",
+            text: "Confirm your registration status with the relevant authority, keep the payout records described in the record-keeping guide, and ask a tax practitioner how current rules apply to your facts. If you export services, verify any special requirements with the official guidance for your jurisdiction.",
           },
         ],
       },
@@ -94,32 +94,32 @@ export const taxGuides: Article[] = [
           "No account is required, and order amounts are not saved on a RealGigPay server. They stay in the browser while the page is open.",
       },
     ],
-    sources: [sourceLinks.fbr],
+    sources: [],
     related: [
       { href: "/freelancer-tax-calculator", label: "Illustrative tax calculator" },
-      { href: "/tax-guide/fbr-active-filer-vs-non-filer", label: "Active filer and non-filer" },
+      { href: "/tax-guide/tax-filing-status", label: "Tax filing status" },
       { href: "/tax-guide/it-export-tax", label: "IT export tax context" },
     ],
   }),
   tax({
-    slug: "fbr-active-filer-vs-non-filer",
-    title: "Active Filer vs Non-Filer in Pakistan",
+    slug: "tax-filing-status",
+    title: "Freelancer Tax Filing Status",
     description:
-      "What the Active Taxpayers List is for, and why this site's 1% and 2% labels are not FBR categories with those rates.",
-    h1: "What is the difference between an active filer and a non-filer?",
+      "How filing and registration status can affect tax treatment, and why the calculator's percentages are examples only.",
+    h1: "How can filing status affect freelancer taxes?",
     excerpt:
-      "Filer status is an FBR classification. The percentages in the calculator are a separate, clearly labeled model.",
+      "Filing categories differ by jurisdiction. The calculator's percentages are separate, clearly labeled examples.",
     directAnswer:
-      "An active filer, in ordinary Pakistani usage, is a person who appears on FBR's Active Taxpayers List after meeting the filing conditions FBR sets. A non-filer does not. Banks and withholding agents often apply different treatments to the two groups. The exact difference is defined by current law, not by RealGigPay. The calculator's 'Active filer — 1%' and 'Non-filer — 2%' labels are assumptions for a side-by-side estimate.",
+      "Tax authorities use different registration and filing categories, and the consequences depend on local law. Banks or payment providers may also apply withholding rules. The calculator's percentage options are assumptions for a side-by-side arithmetic example, not a description of your legal status.",
     sections: [
       {
-        id: "atl",
-        heading: "The Active Taxpayers List",
+        id: "filing-status",
+        heading: "Check your filing status",
         level: 2,
         blocks: [
           {
             type: "p",
-            text: "FBR publishes the list and the process for appearing on it. Check the list against your own CNIC or registration rather than assuming last year's return is enough. A name can be missing because a return was late, incomplete, or filed under a different registration. The remedy is on FBR's side, not in a calculator dropdown.",
+            text: "Use your official tax authority's records to confirm your registration and filing status. Do not assume a prior-year return is enough; a record may be missing or incomplete. A calculator dropdown cannot confirm or change your status.",
           },
         ],
       },
@@ -130,11 +130,11 @@ export const taxGuides: Article[] = [
         blocks: [
           {
             type: "p",
-            text: "Freelancers asked for a way to see that status can change the rupee outcome. A single hidden percentage would pretend we know the law. Two labeled illustrations show the arithmetic sensitivity without impersonating a withholding table. If a bank has already deducted tax on the inward remittance, do not deduct the illustration again in your head. Reconcile the bank challan or statement with the return.",
+            text: "A filing status can affect obligations in some jurisdictions, but no single percentage applies to everyone. The calculator's labeled examples show arithmetic only. If a bank or provider has already withheld tax, record it and reconcile it with your return rather than counting the illustrative amount again.",
           },
           {
             type: "example",
-            title: "Non-filer illustration on a $500 Upwork assumption",
+            title: "2% tax illustration on a $500 Upwork assumption",
             orderAmountUsd: 500,
             platform: "upwork",
             taxStatus: "nonFiler",
@@ -144,17 +144,17 @@ export const taxGuides: Article[] = [
     ],
     faqs: [
       {
-        question: "If I am on the Active Taxpayers List, is my rate 1%?",
+        question: "Does being registered mean my tax rate is 1%?",
         answer:
-          "No. Being on the list and owing 1% are not the same statement. Your rate depends on the provision that applies to your income in the current tax year.",
+          "No. Registration status and the tax due are different questions. Your liability depends on current rules and your circumstances.",
       },
       {
-        question: "Can this page tell me if I am a filer?",
+        question: "Can this page confirm my tax status?",
         answer:
-          "No. Search the Active Taxpayers List on FBR's own site with your own particulars.",
+          "No. Check your status with the official tax authority for your jurisdiction.",
       },
     ],
-    sources: [sourceLinks.fbr],
+    sources: [],
     related: [
       { href: "/freelancer-tax-calculator", label: "Compare the two illustrations" },
       { href: "/tax-guide/freelancer-tax", label: "Freelancer tax overview" },
@@ -163,14 +163,14 @@ export const taxGuides: Article[] = [
   }),
   tax({
     slug: "it-export-tax",
-    title: "Pakistan IT Export Tax Context",
+    title: "Tax on Exported Services",
     description:
-      "Questions to take to FBR and PSEB about IT and IT-enabled service exports, without a fabricated current rate.",
-    h1: "How are IT export receipts discussed in Pakistan's tax rules?",
+      "Questions to ask about tax treatment for exported services, without assuming a universal rate.",
+    h1: "How can exported services affect tax treatment?",
     excerpt:
-      "Special rules for IT exporters have changed with Finance Acts. Verify the current text before you rely on a percentage.",
+      "Some jurisdictions have special rules for exported services. Verify the current rules before relying on a percentage.",
     directAnswer:
-      "Pakistan has used special income-tax provisions for the export of IT and IT-enabled services, sometimes connected with registration conditions such as PSEB. Those provisions are amended. RealGigPay will not state a current statutory rate, because stating a remembered rate from an older Finance Act would mislead. Use FBR's current law and any registration body named in that law.",
+      "Tax treatment for exported services varies by jurisdiction and can depend on service type, business structure, registration, and how payment is received. Rules change over time. RealGigPay will not state a universal statutory rate; check your official tax authority's current rules and any registration requirements that apply to you.",
     sections: [
       {
         id: "questions",
@@ -180,7 +180,7 @@ export const taxGuides: Article[] = [
           {
             type: "ol",
             items: [
-              "Does the current Finance Act still give export-of-services income a special final or reduced treatment?",
+              "Does current local law give exported-services income a special or reduced treatment?",
               "Which services are inside the definition: software, support, design, or a narrower list?",
               "Is registration with a named body a condition, and are you actually registered?",
               "Does the foreign-exchange receipt have to arrive through a specified banking channel?",
@@ -197,7 +197,7 @@ export const taxGuides: Article[] = [
         blocks: [
           {
             type: "p",
-            text: "A hardcoded 'IT exporter' percentage would go stale at the next Finance Act and would still be wrong for freelancers who do not meet the conditions. The illustrative filer and non-filer lines stay visibly generic. If your adviser gives you a percentage that applies to your facts, you can use the calculator only as arithmetic: it will not know that you have replaced the legal analysis.",
+            text: "A hardcoded export-services percentage could become outdated and may not fit your circumstances. The calculator's tax line is only arithmetic. If a qualified adviser gives you an applicable rate, the calculator still cannot confirm the legal analysis behind it.",
           },
         ],
       },
@@ -208,22 +208,22 @@ export const taxGuides: Article[] = [
         blocks: [
           {
             type: "p",
-            text: "Provincial sales tax on services is a separate conversation from federal income tax. This calculator does not model it. If a marketplace invoice or a local client triggers sales tax, that cash movement will not appear in the PKR deposit estimate.",
+            text: "Local sales taxes, value-added taxes, and income taxes are separate obligations. This calculator does not model them. Any tax or fee that applies to your invoice or payment will not appear unless you include it yourself.",
           },
         ],
       },
     ],
     faqs: [
       {
-        question: "Does PSEB registration by itself set the tax rate?",
+        question: "Does a business registration by itself set the tax rate?",
         answer:
           "Not by itself. Registration matters only if the current provision says it does, and only if the rest of the conditions are met. Read the provision or ask an adviser.",
       },
     ],
-    sources: [sourceLinks.fbr, sourceLinks.sbp],
+    sources: [],
     related: [
       { href: "/tax-guide/freelancer-tax", label: "Freelancer tax overview" },
-      { href: "/tax-guide/freelancer-tax-record-keeping", label: "Records that support an export position" },
+      { href: "/tax-guide/freelancer-tax-record-keeping", label: "Freelancer tax records" },
       { href: "/freelancer-tax-calculator", label: "Illustrative calculator" },
     ],
   }),
@@ -231,8 +231,8 @@ export const taxGuides: Article[] = [
     slug: "freelancer-tax-record-keeping",
     title: "Freelancer Tax Record Checklist",
     description:
-      "A record set for Pakistani freelancers: platform statements, payout confirmations, bank credits, and the rate actually received.",
-    h1: "What income records should a Pakistani freelancer keep?",
+      "A record set for freelancers: platform statements, payout confirmations, bank credits, and the rate actually received.",
+    h1: "What income records should freelancers keep?",
     excerpt:
       "Keep the document that created each number. A calculator screenshot is not a substitute for the payout receipt.",
     directAnswer:
@@ -249,8 +249,8 @@ export const taxGuides: Article[] = [
               "Annual or monthly earnings export from Fiverr or Upwork.",
               "Contract fee percentage, saved from the offer, for Upwork.",
               "Payoneer or bank withdrawal confirmation, including fee and rate.",
-              "Bank statement line showing the PKR credit and the date.",
-              "Implied rate: PKR received divided by USD sent.",
+              "Bank statement line showing the destination-currency credit and date.",
+              "Implied rate: amount received divided by amount sent.",
               "Withholding evidence, if a bank deducted tax.",
               "Expense invoices: software, Connects, equipment, and professional fees.",
               "A note of which tax year you will report the receipt in.",
@@ -265,7 +265,7 @@ export const taxGuides: Article[] = [
         blocks: [
           {
             type: "p",
-            text: "Download the calculator PDF if you want a neat breakdown for your own planning. File it in a 'working papers' folder, not in the folder of FBR evidence. If the numbers differ from Payoneer, the Payoneer PDF wins. The currency-conversion guide shows how to compute the implied rate that explains the difference.",
+            text: "Download the calculator PDF if you want a breakdown for your own planning. File it with your working papers, not as a substitute for official tax records. If its numbers differ from your payment-provider statement, the statement records the actual transaction. The currency-conversion guide shows how to compute the implied rate.",
           },
         ],
       },
@@ -288,12 +288,12 @@ export const taxGuides: Article[] = [
           "No. The PDF is generated in your browser. If you need it later, download it and store it yourself.",
       },
       {
-        question: "What if the bank credit is a few rupees different?",
+        question: "What if the bank credit differs slightly from my estimate?",
         answer:
           "Record the bank credit. A small gap is often rounding or a correspondent charge. The statement is the amount you received.",
       },
     ],
-    sources: [sourceLinks.fbr, sourceLinks.payoneerPricing],
+    sources: [sourceLinks.payoneerPricing],
     related: [
       { href: "/guides/freelancer-currency-conversion", label: "Record the implied rate" },
       { href: "/tax-guide/freelancer-tax", label: "Tax overview" },

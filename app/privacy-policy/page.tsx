@@ -66,7 +66,7 @@ export default function PrivacyPage() {
           <p>
             Frankfurter, ExchangeRate-API, and any configured webhook, analytics, or ad service
             process the requests described above under their own terms. Links to Fiverr, Upwork,
-            Payoneer, FBR, the State Bank, and other sources leave this site.
+            payment providers, banks, tax authorities, and other sources leave this site.
           </p>
         </InfoCard>
         <InfoCard title="Security and your choices">

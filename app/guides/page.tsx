@@ -7,9 +7,9 @@ import { articlesByKind } from "@/content/registry";
 import { buildMetadata } from "@/lib/seo/metadata";
 
 export const metadata: Metadata = buildMetadata({
-  title: "Freelancer Guides for Pakistan",
+  title: "Freelance Platform and Payment Guides",
   description:
-    "Guides on Fiverr fees, Upwork fees, Payoneer withdrawals, and USD to PKR conversion for Pakistani freelancers.",
+    "Practical guides to marketplace fees, withdrawals, currency conversion, and payment records for freelancers worldwide.",
   path: "/guides",
 });
 
@@ -24,7 +24,7 @@ export default function GuidesPage() {
       <Breadcrumbs items={crumbs} />
       <PageHeader
         title="Freelancer guides"
-        lede="Each guide answers a different question: the platform fee, the withdrawal, the formula, or the exchange rate. They share one calculator so the numbers do not drift."
+        lede="These guides cover marketplace fees, withdrawals, and currency conversion for freelancers worldwide. Payout methods, provider charges, bank fees, and tax rules vary by account and country, so confirm the terms that apply to you. Embedded calculator examples use PKR and illustrative tax assumptions; they are not universal quotes or tax advice."
       />
       <div className="grid gap-4 md:grid-cols-2">
         {articlesByKind("guide").map((article) => (

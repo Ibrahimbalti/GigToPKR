@@ -4,7 +4,7 @@ export const dynamic = "force-static";
 
 export const size = { width: 1200, height: 630 };
 export const contentType = "image/png";
-export const alt = "RealGigPay freelancer fee calculator for Pakistan";
+export const alt = "RealGigPay freelance fee calculator";
 
 export default function OpenGraphImage() {
   return new ImageResponse(
@@ -23,7 +23,7 @@ export default function OpenGraphImage() {
       >
         <div style={{ display: "flex", fontSize: 28, color: "#2563EB", fontWeight: 700 }}>RealGigPay</div>
         <div style={{ display: "flex", flexDirection: "column", fontSize: 64, fontWeight: 700, lineHeight: 1.1, maxWidth: 900 }}>
-          Calculate freelance earnings in Pakistan
+          Calculate freelance earnings after fees
         </div>
         <div style={{ display: "flex", fontSize: 28, color: "#64748B" }}>
           Fiverr and Upwork assumptions, Payoneer, USD to PKR, illustrative tax

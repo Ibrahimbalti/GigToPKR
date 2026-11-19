@@ -39,7 +39,7 @@ function ExampleCard({
     <figure className="rounded-2xl border border-line bg-brand-50 p-4 shadow-[var(--shadow)]">
       <figcaption className="font-semibold text-ink">{title}</figcaption>
       <p className="mt-1 text-sm text-muted">
-        {PLATFORM_LABELS[platform]} · {taxStatus === "filer" ? "1% filer illustration" : "2% non-filer illustration"}
+        {PLATFORM_LABELS[platform]} · {taxStatus === "filer" ? "1% tax illustration" : "2% tax illustration"}
       </p>
       <dl className="mt-3 grid gap-1 text-sm">
         {rows.map(([label, value]) => (

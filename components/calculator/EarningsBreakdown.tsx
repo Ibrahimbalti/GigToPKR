@@ -109,7 +109,7 @@ export function EarningsBreakdown({
       ["Converted amount", "Net amount multiplied by the rate.", formatPkr(result.convertedPkr), "neutral"],
       [
         "Tax set-aside",
-        `${formatFeePercent(result.taxRate)} of the converted rupees. Not an FBR assessment.`,
+        `${formatFeePercent(result.taxRate)} of the converted amount. Not a statutory tax assessment.`,
         `− ${formatPkr(result.taxPkr)}`,
         "deduction",
       ],

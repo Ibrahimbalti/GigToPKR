@@ -58,7 +58,7 @@ function groupWestern(digits: string): string {
   return digits.replace(/\B(?=(\d{3})+(?!\d))/g, ",");
 }
 
-/** Pakistani grouping: last three digits, then groups of two. */
+/** South Asian grouping: last three digits, then groups of two. */
 export function groupRupees(digits: string): string {
   if (digits.length <= 3) return digits;
   const head = digits.slice(0, -3);

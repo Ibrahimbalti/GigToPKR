@@ -11,7 +11,7 @@ import { aboutPageSchema } from "@/lib/seo/schema";
 export const metadata: Metadata = buildMetadata({
   title: "About the calculator",
   description:
-    "RealGigPay estimates Pakistani freelance earnings from visible assumptions. It is not a bank, tax adviser, or marketplace.",
+    "RealGigPay estimates freelance earnings from visible assumptions. It is not a bank, tax adviser, or marketplace.",
   path: "/about",
 });
 
@@ -46,12 +46,12 @@ const assumptions = [
   {
     figure: "1–2%",
     title: "Tax",
-    text: "Labeled illustrative. It is not taken from a current FBR schedule.",
+    text: "Labeled illustrative. It is not a statutory rate or tax assessment.",
   },
 ];
 
 const limits = [
-  "Not affiliated with Fiverr, Upwork, Payoneer, the Federal Board of Revenue, or the State Bank of Pakistan.",
+  "Not affiliated with Fiverr, Upwork, Payoneer, any bank, or any tax authority.",
   "Does not hold money, file returns, or open payment accounts.",
   "The editorial desk is not presented as a licensed tax adviser or a chartered accountant.",
   "Where a credential would have to be invented, it is left out.",
@@ -73,7 +73,7 @@ export default function AboutPage() {
                 About RealGigPay
               </h1>
               <p className="mt-3 max-w-xl text-base leading-7 text-muted">
-                A calculator and a set of guides for freelancers who get paid in dollars and spend in rupees.
+                A calculator and a set of guides for freelancers working across platforms and currencies.
               </p>
               <div className="mt-5">
                 <LastUpdated publishedAt="2026-11-17" updatedAt="2026-11-17" />
@@ -82,7 +82,7 @@ export default function AboutPage() {
             <div className="result-panel m-3 flex flex-col justify-between rounded-[1.35rem] px-6 py-6 text-white lg:my-3 lg:mr-3 lg:ml-0">
               <p className="text-xs font-semibold uppercase tracking-[0.14em] text-white/80">Who it is for</p>
               <p className="mt-3 text-xl font-semibold leading-snug tracking-[-0.02em]">
-                Freelancers in Pakistan, paid in dollars and spending in rupees.
+                Freelancers earning through online platforms and managing cross-border payments.
               </p>
               <p className="mt-3 text-sm leading-6 text-white/90">
                 The audience is people working on platforms such as Fiverr and Upwork.
@@ -147,7 +147,7 @@ export default function AboutPage() {
             <h2 className="text-xl font-semibold tracking-[-0.02em]">Editorial standards</h2>
             <p className="mt-4 text-sm leading-6 text-navy-2">
               Pages name their sources, their review date, and the assumptions in the arithmetic.
-              Frankfurter is not given a PKR rate it does not publish. Planned articles stay on the
+              Rates are not invented when a source does not publish them. Planned articles stay on the
               editorial calendar until they are actually written.
             </p>
             <div className="mt-5 flex flex-wrap gap-3">

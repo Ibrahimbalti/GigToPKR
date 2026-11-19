@@ -65,7 +65,7 @@ function renderOutput(result: CalculatorResult | null) {
     ["Net amount", "Left before conversion.", money(result.netUsd), false],
     [`${result.currency} to PKR rate`, "The rate currently in the form.", String(result.usdToPkrRate), false],
     ["Converted amount", "Net amount multiplied by the rate.", formatPkr(result.convertedPkr), false],
-    ["Tax set-aside", `${formatFeePercent(result.taxRate)}. Not an FBR assessment.`, `− ${formatPkr(result.taxPkr)}`, true],
+    ["Tax set-aside", `${formatFeePercent(result.taxRate)}. Not a statutory tax assessment.`, `− ${formatPkr(result.taxPkr)}`, true],
   );
 
   output.innerHTML = `

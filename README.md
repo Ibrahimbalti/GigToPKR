@@ -1,13 +1,13 @@
 # RealGigPay
 
-Freelancer Fee Calculator Pakistan. A Next.js site that estimates a PKR bank deposit from a USD freelance order.
+Freelancer Fee Calculator. A Next.js site that estimates a payout from a freelance order after platform and withdrawal assumptions.
 
 The estimate uses visible assumptions:
 
 - Fiverr platform fee: 20%, based on Fiverr's published 80% freelancer share.
-- Upwork platform fee: 10%, a midpoint inside Upwork's published 0% to 15% contract range. It is not a Pakistan tariff.
+- Upwork platform fee: 10%, a midpoint inside Upwork's published 0% to 15% contract range. It is not a contract-specific rate.
 - Payoneer-style withdrawal: 2% of the amount left after the platform fee. Payoneer's public bank-withdrawal range is about 1.2% to 4%, and the fee on the confirmation screen wins.
-- Tax: 1% for the active-filer illustration and 2% for the non-filer illustration. These are not FBR rates.
+- Tax: 1% for the active-filer illustration and 2% for the non-filer illustration. These are not statutory tax rates.
 - Exchange rate: Frankfurter is requested first. It does not publish PKR, so the site does not invent a Frankfurter rate. A labeled ExchangeRate-API reference is used when that feed returns PKR. Otherwise the visitor types a rate.
 
 ## Requirements
@@ -50,7 +50,7 @@ Worked examples in articles use 280 PKR per USD and say so. That number is not a
 
 `lib/exchange-rate.ts` calls `https://api.frankfurter.app/latest?from=USD&to=PKR`. PKR is outside the European Central Bank set Frankfurter publishes. On 17 November 2026 that request did not return a PKR rate.
 
-The fallback is `https://open.er-api.com/v6/latest/USD`, labeled ExchangeRate-API open access. It is not Payoneer and not the State Bank of Pakistan. If both requests fail, the field stays empty.
+The fallback is `https://open.er-api.com/v6/latest/USD`, labeled ExchangeRate-API open access. It is not Payoneer or a central-bank rate. If both requests fail, the field stays empty.
 
 `/api/exchange-rate` keeps a successful quote for 30 minutes in the server instance and a failed lookup for one minute.
 

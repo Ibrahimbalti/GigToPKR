@@ -87,11 +87,10 @@ test("canonical origin is the public HTTPS site", () => {
   assert.equal(resolveSiteUrl("https://www.realgigpay.com"), "https://www.realgigpay.com");
 });
 
-test("every canonical is absolute and Pakistan routes keep en_PK", () => {
+test("every canonical is absolute and uses the site's default locale", () => {
   assert.equal(openGraphLocale("/"), "en_US");
   assert.equal(openGraphLocale("/calculator"), "en_US");
-  assert.equal(openGraphLocale("/pakistan"), "en_PK");
-  assert.equal(openGraphLocale("/pakistan/tax-guide"), "en_PK");
+  assert.equal(openGraphLocale("/tax-guide"), "en_US");
 
   const home = buildMetadata({
     title: "Home title for the test",
@@ -102,13 +101,13 @@ test("every canonical is absolute and Pakistan routes keep en_PK", () => {
   assert.equal(home.openGraph && "locale" in home.openGraph ? home.openGraph.locale : "", "en_US");
   assert.equal(home.openGraph && "url" in home.openGraph ? home.openGraph.url : "", "https://realgigpay.com");
 
-  const pakistan = buildMetadata({
-    title: "Pakistan tax illustration",
-    description: "A description long enough to stand in for the Pakistan tax page.",
-    path: "/pakistan/tax-guide",
+  const taxGuide = buildMetadata({
+    title: "Freelancer tax illustration",
+    description: "A description long enough to stand in for the freelancer tax guide.",
+    path: "/tax-guide",
   });
-  assert.equal(pakistan.alternates?.canonical, "https://realgigpay.com/pakistan/tax-guide");
-  assert.equal(pakistan.openGraph && "locale" in pakistan.openGraph ? pakistan.openGraph.locale : "", "en_PK");
+  assert.equal(taxGuide.alternates?.canonical, "https://realgigpay.com/tax-guide");
+  assert.equal(taxGuide.openGraph && "locale" in taxGuide.openGraph ? taxGuide.openGraph.locale : "", "en_US");
 
   const entries = sitemap();
   const urls = entries.map((entry) => entry.url);

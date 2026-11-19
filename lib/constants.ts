@@ -41,7 +41,7 @@ export const WITHDRAWAL_LABELS: Record<WithdrawalMethod, string> = {
 
 /**
  * Illustrative tax assumptions for comparison only.
- * These are not statutory FBR rates.
+ * These are not statutory tax rates.
  */
 export const TAX_RATES: Record<TaxStatus, number> = {
   filer: 0.01,
@@ -54,8 +54,8 @@ export const PLATFORM_LABELS: Record<Platform, string> = {
 };
 
 export const TAX_LABELS: Record<TaxStatus, string> = {
-  filer: "Active filer",
-  nonFiler: "Non-filer",
+  filer: "1% tax illustration",
+  nonFiler: "2% tax illustration",
 };
 
 export const DEFAULT_TAX_PERCENT: Record<TaxStatus, string> = {
@@ -74,8 +74,8 @@ export function exampleRateNote(rate: number | null) {
   if (!rate) {
     return "A current USD to PKR reference rate could not be loaded, so this example has no rupee figure.";
   }
-  return `Converted at the current reference rate of ${rate} PKR per USD. This is not a Payoneer, bank, or State Bank rate.`;
+  return `Converted at the current reference rate of ${rate} PKR per USD. This is not a Payoneer, bank, or central-bank rate.`;
 }
 
 export const RESULT_DISCLAIMER =
-  "This is an estimate from the assumptions shown above. Fiverr, Upwork, Payoneer, your bank, and the Federal Board of Revenue can apply different fees, rates, and taxes. Nothing on this page is financial, tax, or legal advice.";
+  "This is an estimate from the assumptions shown above. Fiverr, Upwork, Payoneer, your bank, and tax authorities can apply different fees, rates, and rules. Nothing on this page is financial, tax, or legal advice.";

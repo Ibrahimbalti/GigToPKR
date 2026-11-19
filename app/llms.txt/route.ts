@@ -16,7 +16,7 @@ export function GET() {
 ## Guides
 
 - [Guides](${absoluteUrl("/guides")}): fee, withdrawal, and conversion explainers
-- [Tax guide](${absoluteUrl("/tax-guide")}): filer context. These pages are not an FBR assessment
+- [Tax guide](${absoluteUrl("/tax-guide")}): general tax-planning questions and record keeping. These pages are not tax advice
 - [Blog](${absoluteUrl("/blog")}): published articles only
 
 ## Company

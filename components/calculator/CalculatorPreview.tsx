@@ -174,10 +174,10 @@ export function CalculatorPreview({
           <legend className="text-sm font-medium text-ink">Tax percentage</legend>
           <div className="grid grid-cols-2 rounded-2xl bg-[#f7f9fd] p-1">
             <button type="button" data-tax="filer" aria-pressed={lockedPlatform ? false : true} className="rounded-xl px-3 py-2.5 text-left text-sm font-semibold">
-              Start from 1%
+              1% illustration
             </button>
             <button type="button" data-tax="nonFiler" aria-pressed="false" className="rounded-xl px-3 py-2.5 text-left text-sm font-semibold text-muted">
-              Start from 2%
+              2% illustration
             </button>
           </div>
           <label htmlFor="tax-fee" className="text-sm font-medium text-ink">Tax %</label>

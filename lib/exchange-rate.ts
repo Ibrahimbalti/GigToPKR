@@ -148,7 +148,7 @@ export async function getUsdToPkrQuote(
       retrievedAt: new Date().toISOString(),
       frankfurterSupportsPkr: true,
       warning:
-        "This is a reference rate, not the rate Payoneer, your bank, or the State Bank of Pakistan will apply.",
+        "This is a reference rate, not the rate Payoneer, your bank, or a central bank will apply.",
       error: null,
       fromCache: false,
       stale: false,
@@ -173,7 +173,7 @@ export async function getUsdToPkrQuote(
       sourceLabel: "ExchangeRate-API open access",
       retrievedAt: secondary.updatedAt,
       frankfurterSupportsPkr: false,
-      warning: `${FRANKFURTER_PKR_NOTE} The figure below is a separate reference quote from ExchangeRate-API, not a Frankfurter, Payoneer, or State Bank rate.`,
+      warning: `${FRANKFURTER_PKR_NOTE} The figure below is a separate reference quote from ExchangeRate-API, not a Frankfurter, Payoneer, or central-bank rate.`,
       error: null,
       fromCache: false,
       stale: false,

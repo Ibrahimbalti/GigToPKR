@@ -495,8 +495,8 @@ export function Calculator({
           <div className="grid grid-cols-2 rounded-2xl bg-[#f7f9fd] p-1" role="group" aria-label="Tax illustration presets">
             {(
               [
-                ["filer", "Start from 1%"],
-                ["nonFiler", "Start from 2%"],
+                ["filer", "1% illustration"],
+                ["nonFiler", "2% illustration"],
               ] as const
             ).map(([value, label]) => {
               const selected = taxStatus === value && taxFee === DEFAULT_TAX_PERCENT[value];

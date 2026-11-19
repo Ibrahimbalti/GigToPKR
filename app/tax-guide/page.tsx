@@ -7,9 +7,9 @@ import { articlesByKind } from "@/content/registry";
 import { buildMetadata } from "@/lib/seo/metadata";
 
 export const metadata: Metadata = buildMetadata({
-  title: "Pakistan Freelancer Tax Guides",
+  title: "Freelancer Tax Guides",
   description:
-    "Plain-language tax context for Pakistani freelancers. Illustrative calculator rates are not FBR assessments.",
+    "Plain-language tax planning questions for freelancers. Calculator percentages are illustrations, not statutory rates or tax assessments.",
   path: "/tax-guide",
 });
 
@@ -24,7 +24,7 @@ export default function TaxIndexPage() {
       <Breadcrumbs items={crumbs} />
       <PageHeader
         title="Tax guide"
-        lede="These pages explain filer status, IT-export questions, and records. They do not quote a current statutory rate, because that rate belongs in the latest Finance Act and on FBR."
+        lede="Tax rules depend on your residence, business structure, income type, and current local law. These guides help you organize questions and records; consult your official tax authority or a qualified local adviser for rules that apply to you."
       />
       <div className="grid gap-4 md:grid-cols-2">
         {articlesByKind("tax").map((article) => (

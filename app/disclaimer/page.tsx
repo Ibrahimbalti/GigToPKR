@@ -6,7 +6,7 @@ import { buildMetadata } from "@/lib/seo/metadata";
 export const metadata: Metadata = buildMetadata({
   title: "Disclaimer",
   description:
-    "RealGigPay estimates can differ from platform fees, Payoneer quotes, bank credits, and FBR assessments.",
+    "RealGigPay estimates can differ from platform fees, payment-provider quotes, bank credits, and tax assessments.",
   path: "/disclaimer",
 });
 
@@ -31,14 +31,14 @@ export default function DisclaimerPage() {
           <p>
             Platform fees change, and Upwork&apos;s fee is specific to the contract. Payoneer shows its
             fee and rate before you confirm a withdrawal. Banks can add incoming charges. Exchange
-            rates move during the day and differ between a reference feed, the State Bank&apos;s
+            rates move during the day and differ between a reference feed, a central bank&apos;s
             publications, and a commercial payout.
           </p>
         </InfoCard>
         <InfoCard title="Tax lines">
           <p>
             The 1% and 2% tax lines are illustrations. They are not the Income Tax Ordinance, a
-            Finance Act, a withholding table, or a computation of your liability. Tax already
+            local tax law, a withholding table, or a computation of your liability. Tax already
             deducted by a bank is not detected by this site. Provincial sales tax is not modeled.
           </p>
         </InfoCard>
@@ -52,7 +52,7 @@ export default function DisclaimerPage() {
         <InfoCard title="Before you rely on a figure">
           <p>
             For a decision about your own income, read the provider&apos;s screen and, where tax is
-            involved, FBR&apos;s current material or a qualified adviser.
+            involved, your tax authority&apos;s current material or a qualified adviser.
           </p>
           <p>
             More detail sits in the{" "}

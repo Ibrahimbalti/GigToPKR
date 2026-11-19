@@ -30,12 +30,12 @@ export const toolPages: ToolPage[] = [
               "Subtracts the platform fee in the form. Fiverr starts at 20% and Upwork starts at 10%, and both can be edited.",
               "Subtracts the withdrawal percentage in the form. It starts at 2% for Payoneer and can be replaced. A flat $0.99 fee can be added for Upwork direct-to-bank.",
               "Multiplies the net amount by the PKR rate in the form.",
-              "Subtracts the tax percentage you typed. The 1% and 2% buttons only fill that field. They are not FBR rates.",
+              "Subtracts the tax percentage you typed. The 1% and 2% buttons only fill that field. They are not statutory rates.",
             ],
           },
           {
             type: "note",
-            text: "Upwork's real contract fee can be anywhere from 0% to 15%. Payoneer's real withdrawal fee is the number on your confirmation screen. The tax line is not an FBR assessment.",
+            text: "Upwork's contract fee and a provider's withdrawal fee depend on the terms shown to you. The tax line is an illustration, not a tax assessment.",
           },
         ],
       },
@@ -154,16 +154,16 @@ export const toolPages: ToolPage[] = [
     related: [
       { href: "/fiverr-fee-calculator", label: "Fiverr calculator" },
       { href: "/guides/upwork-fees", label: "How the Upwork fee is set" },
-      { href: "/guides/upwork-withdrawal", label: "The $0.99 local-bank fee" },
+      { href: "/guides/upwork-withdrawal", label: "Withdrawal options and fees" },
       { href: "/guides/upwork-earnings-calculation", label: "Calculate an Upwork payment" },
     ],
   },
   {
     path: "/payoneer-fee-calculator",
-    title: "Payoneer Fee Calculator Pakistan",
+    title: "Payoneer Fee Calculator",
     description:
       "See the rupee effect of a 2% withdrawal assumption after Fiverr or Upwork fees. Compare it with the fee on your Payoneer screen.",
-    h1: "Payoneer withdrawal calculator for Pakistani freelancers",
+    h1: "Payoneer withdrawal calculator for freelancers",
     eyebrow: "2% withdrawal assumption",
     directAnswer:
       "The 2% line is calculated on the balance after the platform fee. On $80 left from a Fiverr-style $100 order, it is $1.60. Payoneer's public range for bank withdrawals is about 1.2% to 4%, and your confirmation screen is the actual fee. Use this page to see the shape of a percentage withdrawal, then replace the rate with the one Payoneer quotes.",
@@ -179,7 +179,7 @@ export const toolPages: ToolPage[] = [
         blocks: [
           {
             type: "p",
-            text: "It never applies to the gross order. It never applies to the rupees after conversion. A minimum fee, if your corridor has one, will not appear. An exchange-rate margin will not appear inside the 2% either. If the screen says 3%, expect a higher fee than the breakdown and treat the difference as the useful result of the comparison.",
+            text: "It never applies to the gross order or to the converted amount. A minimum fee, if your route has one, will not appear. An exchange-rate margin will not appear inside the 2% either. Compare this illustration with the quote in your account.",
           },
           {
             type: "example",
@@ -206,7 +206,7 @@ export const toolPages: ToolPage[] = [
   },
   {
     path: "/freelancer-income-calculator",
-    title: "Freelancer Income Calculator Pakistan",
+    title: "Freelancer Income Calculator",
     description:
       "Project one freelance order or a month of similar orders in PKR from the same transparent assumptions.",
     h1: "Freelancer income calculator",
@@ -225,7 +225,7 @@ export const toolPages: ToolPage[] = [
         blocks: [
           {
             type: "p",
-            text: "It multiplies the final PKR line, not the gross USD line. Ten orders are ten times the deposit, including ten platform fees and ten withdrawal assumptions. If each withdrawal would instead be a flat $0.99, this multiplication overstates the payout cost. Use it for a Payoneer-style plan, and read the income-planning article before you spend against it.",
+            text: "It multiplies the final converted amount, not the gross order amount. Ten orders are ten times the estimate, including ten platform fees and ten withdrawal assumptions. If your method uses a flat fee, this multiplication may overstate the payout cost. Use the assumptions only for planning.",
           },
           {
             type: "example",
@@ -253,13 +253,13 @@ export const toolPages: ToolPage[] = [
   },
   {
     path: "/freelancer-tax-calculator",
-    title: "Freelancer Tax Calculator Pakistan",
+    title: "Freelancer Tax Estimate Calculator",
     description:
-      "Compare illustrative 1% and 2% deductions on converted freelance income. These are not FBR rates.",
-    h1: "Freelancer tax calculator for Pakistan",
+      "Compare illustrative tax assumptions on converted freelance income. These percentages are not statutory rates or a tax assessment.",
+    h1: "Freelancer tax estimate calculator",
     eyebrow: "Illustrative tax only",
     directAnswer:
-      "The tax line is a percentage of the PKR amount after fees and conversion. Active filer uses 1%. Non-filer uses 2%. Neither figure is copied from a current FBR withholding table. Switch the dropdown to see the rupee gap, then take your facts to the tax guide and to FBR or an adviser before you treat either number as payable.",
+      "The tax line applies an illustrative percentage after fees and currency conversion. The 1% and 2% options are examples only; they are not derived from the tax rules that apply to you. Review current official guidance or ask a qualified local adviser before treating any amount as payable.",
     defaultPlatform: "fiverr",
     defaultTax: "filer",
     mode: "standard",
@@ -272,11 +272,11 @@ export const toolPages: ToolPage[] = [
         blocks: [
           {
             type: "p",
-            text: "On the same converted amount, the non-filer illustration is twice the filer illustration, because 2 is twice 1. That is arithmetic, not a description of how much extra tax a non-filer owes. Real differences can be larger, smaller, or structured as withholding that later becomes a credit. The value of the control is that it stops the tax line from hiding inside the platform fee.",
+            text: "On the same converted amount, the 2% illustration is twice the 1% illustration. That is arithmetic only, not a statement about the tax treatment that applies to you. Actual rules and withholding can differ by jurisdiction.",
           },
           {
             type: "example",
-            title: "Filer illustration on a $100 Fiverr assumption",
+            title: "1% tax illustration on a $100 Fiverr assumption",
             orderAmountUsd: 100,
             platform: "fiverr",
             taxStatus: "filer",
@@ -286,15 +286,15 @@ export const toolPages: ToolPage[] = [
     ],
     faqs: [
       {
-        question: "Will this tell me what to pay FBR?",
+        question: "Will this tell me what tax I need to pay?",
         answer:
           "No. It will not calculate slabs, credits, or a special export regime. The disclaimer and the tax guide both say so, because a confident wrong percentage is more harmful than a clearly labeled illustration.",
       },
     ],
-    sources: [sourceLinks.fbr],
+    sources: [],
     related: [
       { href: "/tax-guide/freelancer-tax", label: "Freelancer tax guide" },
-      { href: "/tax-guide/fbr-active-filer-vs-non-filer", label: "Filer and non-filer" },
+      { href: "/tax-guide/tax-filing-status", label: "Tax filing status" },
       { href: "/tax-guide/it-export-tax", label: "IT export context" },
     ],
   },

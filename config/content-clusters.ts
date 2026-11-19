@@ -24,7 +24,7 @@ export const contentClusters: ContentCluster[] = [
   },
   {
     id: "fiverr",
-    name: "Fiverr in Pakistan",
+    name: "Fiverr fees and payments",
     description: "Seller fees, withdrawals, payment methods, and earnings math.",
     hub: "/guides/fiverr-fees",
     paths: [
@@ -37,7 +37,7 @@ export const contentClusters: ContentCluster[] = [
   },
   {
     id: "upwork",
-    name: "Upwork in Pakistan",
+    name: "Upwork fees and payments",
     description: "Contract fees, local-bank withdrawals, and earnings math.",
     hub: "/guides/upwork-fees",
     paths: [
@@ -56,19 +56,19 @@ export const contentClusters: ContentCluster[] = [
     paths: [
       "/guides/payoneer-fees",
       "/guides/payoneer-withdrawal-charges",
-      "/guides/usd-to-pkr-conversion-guide",
+      "/guides/currency-conversion-guide",
       "/guides/freelancer-currency-conversion",
       "/payoneer-fee-calculator",
     ],
   },
   {
     id: "tax",
-    name: "Pakistan freelancer tax",
-    description: "Filer concepts, IT export context, and record keeping.",
+    name: "Freelancer tax planning",
+    description: "Local tax questions, exported services, and record keeping.",
     hub: "/tax-guide/freelancer-tax",
     paths: [
       "/tax-guide/freelancer-tax",
-      "/tax-guide/fbr-active-filer-vs-non-filer",
+      "/tax-guide/tax-filing-status",
       "/tax-guide/it-export-tax",
       "/tax-guide/freelancer-tax-record-keeping",
       "/freelancer-tax-calculator",

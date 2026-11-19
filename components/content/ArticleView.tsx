@@ -42,6 +42,11 @@ export function ArticleView({ article, crumbs }: { article: Article; crumbs: Cru
           updatedAt={article.updatedAt}
           readingTime={articleReadingTime(article)}
         />
+        {article.kind === "guide" ? (
+          <p className="rounded-2xl border border-line bg-white px-4 py-3 text-sm leading-6 text-muted">
+            Payment methods, fees, currencies, and tax treatment vary by account and country. Embedded examples use PKR and RealGigPay assumptions; confirm your provider&apos;s quote and local rules.
+          </p>
+        ) : null}
         <ArticleContent sections={article.sections} />
         <section className="grid gap-3">
           <h2 className="text-2xl font-semibold">Questions</h2>

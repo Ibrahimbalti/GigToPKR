@@ -31,7 +31,7 @@ export default function TermsPage() {
           <p>
             You may use the calculator and read the guides for personal or internal business
             planning. You may not present a RealGigPay result as an official statement from Fiverr,
-            Upwork, Payoneer, a bank, or FBR. You may not attempt to disrupt the site or submit
+            Upwork, a payment provider, a bank, or a tax authority. You may not attempt to disrupt the site or submit
             automated contact messages.
           </p>
         </InfoCard>

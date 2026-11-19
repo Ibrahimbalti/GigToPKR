@@ -24,7 +24,7 @@ export const posts: Article[] = [
     slug: "how-to-calculate-freelance-income",
     title: "How to Calculate Freelance Income",
     description:
-      "A monthly method for Pakistani freelancers: gross billings, platform fees, withdrawal, conversion, and a tax working paper.",
+      "A monthly method for freelancers working across borders: gross billings, platform fees, withdrawal, conversion, and a tax working paper.",
     h1: "How do I calculate freelance income for a month?",
     excerpt: "Add cleared orders, take off the fees you can document, and keep estimates in a separate column.",
     directAnswer:
@@ -87,14 +87,14 @@ export const posts: Article[] = [
   }),
   post({
     slug: "fiverr-vs-upwork-for-freelancers",
-    title: "Fiverr vs Upwork for Pakistani Freelancers",
+    title: "Fiverr vs Upwork for Freelancers",
     description:
-      "Compare the fee structures Pakistani freelancers actually have to model: Fiverr's earnings share and Upwork's contract-specific fee.",
-    h1: "How do Fiverr and Upwork fees differ for Pakistani freelancers?",
+      "Compare the fee structures freelancers need to model: Fiverr's earnings share and Upwork's contract-specific fee.",
+    h1: "How do Fiverr and Upwork fees differ?",
     excerpt:
       "One publishes an 80% earnings share. The other publishes a 0% to 15% contract fee. The payout route is a second decision.",
     directAnswer:
-      "Fiverr's help center describes an 80% freelancer share of the purchase amount. Upwork describes a freelancer service fee from 0% to 15% that is fixed on each contract and shown before you accept. Neither number is the amount a Pakistani bank will credit. Withdrawal method and the exchange rate come after. RealGigPay can run a 20% Fiverr assumption or a 10% Upwork assumption, then the same 2% withdrawal assumption, so the platform gap is visible.",
+      "Fiverr's help center describes an 80% freelancer share of the purchase amount. Upwork displays a contract-specific service fee before you accept. Neither platform fee is the amount your bank or payment provider will credit. Withdrawal method, conversion, and local charges come after. RealGigPay can compare editable platform and withdrawal assumptions.",
     sections: [
       {
         id: "fee-models",
@@ -110,7 +110,7 @@ export const posts: Article[] = [
               ["What this site assumes", "20%", "10%, only as a midpoint"],
               ["Client-side fee", "Shown at the client's checkout", "Separate from the freelancer fee"],
               ["Documented local-bank withdrawal", "Check the methods on your account", "$0.99 Direct to Local Bank"],
-              ["Company PKR account", "Check your withdrawal screen", "Upwork documents a restriction"],
+              ["Account type and destination", "Check your withdrawal screen", "Requirements vary by route"],
             ],
           },
           {
@@ -140,9 +140,9 @@ export const posts: Article[] = [
     ],
     faqs: [
       {
-        question: "Which platform pays more in Pakistan?",
+        question: "Which platform pays more after fees?",
         answer:
-          "This site does not rank them. Your category, close rate, contract fee, and payout route decide the rupees. Run the two calculators with your own order size and the fee printed on the offer.",
+          "This site does not rank them. Your category, close rate, contract fee, and payout route determine your result. Compare the same order size and use the fees shown on your own offer and withdrawal screen.",
       },
     ],
     sources: [sourceLinks.fiverrEarnings, sourceLinks.upworkFee, sourceLinks.upworkBank],
@@ -154,14 +154,14 @@ export const posts: Article[] = [
   }),
   post({
     slug: "how-to-receive-international-payments",
-    title: "Receive International Payments in Pakistan",
+    title: "How to Receive International Payments",
     description:
-      "A clear path from a foreign client or marketplace to a Pakistani bank, without inventing a universal best provider.",
-    h1: "How can freelancers receive international payments in Pakistan?",
+      "A clear path from a foreign client or marketplace to your bank, without assuming one provider works for everyone.",
+    h1: "How can freelancers receive international payments?",
     excerpt:
       "Marketplace balance, payout provider, and bank credit are three steps. Each one can charge you.",
     directAnswer:
-      "A foreign client pays the marketplace or, on a direct contract, a provider you both can use. You then withdraw to a Pakistani bank through a method that provider offers in Pakistan. Fiverr and Upwork each control the methods on their own accounts. Payoneer is a common intermediate account, and Upwork also documents Direct to Local Bank. There is no single method this site can recommend for every freelancer, because eligibility is decided inside those accounts.",
+      "A client pays through the marketplace or, on a direct contract, a provider you both can use. You then withdraw through a method available on your account and supported for your destination. Fiverr and Upwork control the methods shown in their accounts. Availability, fees, currencies, and bank requirements vary, so confirm the details before invoicing or planning income.",
     sections: [
       {
         id: "path",
@@ -174,7 +174,7 @@ export const posts: Article[] = [
               "The client pays the platform or invoice.",
               "The platform deducts its fee and may hold the balance through clearing.",
               "You withdraw through a listed method.",
-              "The method converts to PKR or sends a currency your bank converts.",
+              "The method converts to your destination currency or sends a currency your bank converts.",
               "The bank posts the credit and may deduct an incoming charge.",
             ],
           },
@@ -194,7 +194,7 @@ export const posts: Article[] = [
             items: [
               "If Fiverr shows Payoneer, price that withdrawal from Payoneer's confirmation, not from a forum post.",
               "If Upwork shows Direct to Local Bank, start from the $0.99 help-page fee and then ask your bank about incoming charges.",
-              "If a direct client wants to pay you, confirm the provider works for a person in Pakistan before you print it on an invoice.",
+              "If a direct client wants to pay you, confirm the provider supports your country and account type before you print it on an invoice.",
               "Keep the account name identical across the profile, the provider, and the bank.",
             ],
           },
@@ -208,7 +208,7 @@ export const posts: Article[] = [
           "No. It is a calculator and a set of guides. It is not a payment institution and it does not hold balances.",
       },
     ],
-    sources: [sourceLinks.fiverrHow, sourceLinks.upworkBankHow, sourceLinks.payoneerWithdraw, sourceLinks.sbp],
+    sources: [sourceLinks.fiverrHow, sourceLinks.upworkBankHow, sourceLinks.payoneerWithdraw],
     related: [
       { href: "/guides/fiverr-payment-methods", label: "Fiverr methods" },
       { href: "/guides/upwork-payment-methods", label: "Upwork methods" },
@@ -217,10 +217,10 @@ export const posts: Article[] = [
   }),
   post({
     slug: "freelancer-income-planning",
-    title: "Freelancer Income Planning in Pakistan",
+    title: "Freelancer Income Planning",
     description:
       "Turn one calculated order into a cautious monthly plan, with room for a weaker exchange rate and a late clearance.",
-    h1: "How can Pakistani freelancers plan income in PKR?",
+    h1: "How can freelancers plan income across currencies?",
     excerpt:
       "Plan from cleared money and a weaker rate. Treat the calculator's final figure as a ceiling, not a salary.",
     directAnswer:
@@ -266,26 +266,26 @@ export const posts: Article[] = [
       {
         question: "How many orders should I type into the monthly field?",
         answer:
-          "Use orders you can deliver and collect, not the number you hope to pitch. The field accepts whole numbers up to 1,000 and multiplies the final PKR figure.",
+          "Use orders you can deliver and collect, not the number you hope to pitch. The field accepts whole numbers up to 1,000 and multiplies the final converted amount.",
       },
     ],
-    sources: [sourceLinks.sbp, sourceLinks.fbr],
+    sources: [],
     related: [
       { href: "/freelancer-income-calculator", label: "Income calculator" },
       { href: "/blog/how-to-calculate-freelance-income", label: "Calculate a month" },
-      { href: "/guides/usd-to-pkr-conversion-guide", label: "Understand the rate" },
+      { href: "/guides/currency-conversion-guide", label: "Understand the rate" },
     ],
   }),
   post({
     slug: "how-to-withdraw-from-fiverr-to-a-bank",
     publishedAt: "2026-11-19",
-    title: "Withdraw Fiverr Earnings to a Pakistani Bank",
+    title: "Withdraw Fiverr Earnings to Your Bank",
     description:
-      "Follow a cleared Fiverr balance into a Pakistani bank account, and read the withdrawal fee on the confirmation screen before you accept it.",
-    h1: "How do you withdraw Fiverr earnings to a Pakistani bank?",
+      "Follow a cleared Fiverr balance to your bank, and read the withdrawal fee on the confirmation screen before you accept it.",
+    h1: "How do you withdraw Fiverr earnings to your bank?",
     excerpt: "Clearance, a payout method, and the fee on the confirmation screen are three different steps.",
     directAnswer:
-      "Wait until Fiverr marks the order as cleared, open the withdrawal methods on your account, and send the balance through a method Fiverr offers you in Pakistan. Payoneer is a common route into a local bank. The fee is the number on the confirmation screen, not a fixed 2%. RealGigPay can sketch the rupees with a withdrawal percentage you type, and it does not move the money.",
+      "Wait until Fiverr marks the order as cleared, open the withdrawal methods on your account, and choose a method available for your destination. Fees, processing times, and conversion vary. Use the amount shown on the confirmation screen rather than assuming a fixed percentage. RealGigPay estimates a result; it does not move money.",
     sections: [
       {
         id: "clearing",
@@ -294,7 +294,7 @@ export const posts: Article[] = [
         blocks: [
           {
             type: "p",
-            text: "A completed order can still sit in clearing. Fiverr's own help pages describe how earnings become available, and that schedule is the one on your account, not a number copied from a forum. Until the balance is available to withdraw, a Pakistani bank has nothing to credit. Put pending orders in a separate column of your sheet so rent is not planned from money that has not cleared.",
+            text: "A completed order can still sit in clearing. Fiverr's help pages describe when earnings become available; use the schedule shown on your account. Until the balance is available to withdraw, your bank has nothing to credit. Put pending orders in a separate column so you do not plan spending against money that has not cleared.",
           },
           {
             type: "p",
@@ -312,7 +312,7 @@ export const posts: Article[] = [
             items: [
               "Open Fiverr's withdrawal screen and list only the methods shown for your account.",
               "If Payoneer is listed, continue into Payoneer and read the bank-withdrawal fee before you confirm. Public pricing has described a range of about 1.2% to 4%, and the confirmation screen wins.",
-              "Match the name on Fiverr, the payout provider, and the Pakistani bank account.",
+              "Match the account-holder name across Fiverr, the payout provider, and your bank account.",
               "After the credit arrives, replace the calculator's estimate with the PKR figure on the bank statement.",
             ],
           },
@@ -372,13 +372,13 @@ export const posts: Article[] = [
   post({
     slug: "upwork-fees-explained",
     publishedAt: "2026-11-19",
-    title: "Upwork Fees Explained for Pakistani Freelancers",
+    title: "Upwork Fees Explained",
     description:
-      "Upwork's freelancer service fee is 0% to 15% on the contract, not a Pakistan tariff. Here is how to put that fee into a PKR estimate.",
-    h1: "How do Upwork fees work for a freelancer in Pakistan?",
+      "Upwork shows a service fee for each contract. Separate that fee from withdrawal and currency-conversion costs.",
+    h1: "How do Upwork fees work?",
     excerpt: "Read the percentage on the offer, then decide whether the payout is a percent or the $0.99 local-bank fee.",
     directAnswer:
-      "Upwork describes a freelancer service fee from 0% to 15% that is fixed on each contract and shown before you accept. It is not a single Pakistan rate. A 10% field is only a midpoint for sketching. Direct to Local Bank is documented at $0.99, which is a flat fee rather than a percentage. Put the contract fee and the payout fee into the calculator separately, then convert what remains at the rate you will actually receive.",
+      "Upwork shows the service fee for each contract before you accept. Keep that fee separate from the withdrawal charge, conversion rate, and any receiving-bank fee. Use the terms shown on your own contract and withdrawal screen; calculator percentages are editable examples.",
     sections: [
       {
         id: "contract-fee",
@@ -402,7 +402,7 @@ export const posts: Article[] = [
         blocks: [
           {
             type: "table",
-            caption: "Two payout shapes Pakistani freelancers actually compare",
+            caption: "Two withdrawal fee types freelancers can compare",
             headers: ["Payout", "What to type", "What not to assume"],
             rows: [
               ["Payoneer or another percentage method", "The percentage on the confirmation screen", "That 2% is your corridor"],
@@ -430,14 +430,14 @@ export const posts: Article[] = [
         blocks: [
           {
             type: "p",
-            text: "The rupees are the net amount times the rate, minus whatever tax percentage you choose to set aside. The 1% and 2% buttons are illustrations so the line is visible. They are not FBR rates. Replace them when you have a figure from a current rule or from your adviser, and keep the date of that source next to the sheet. A reference exchange rate is not the rate Upwork, Payoneer, or the bank will apply, so the rate field stays editable and shows when the reference quote was last retrieved.",
+            text: "The converted amount is the net order amount times the rate, less any tax amount you choose to model. The 1% and 2% buttons are illustrations, not statutory rates. Use current guidance from your tax authority or adviser, and keep the source date with your records. A reference exchange rate may differ from the rate your provider or bank applies.",
           },
         ],
       },
     ],
     faqs: [
       {
-        question: "Is 10% the Upwork fee in Pakistan?",
+        question: "Is 10% the Upwork fee for every contract?",
         answer:
           "No. Ten percent is the default in this calculator because it sits inside the published 0% to 15% range. Use the percentage on your contract.",
       },
@@ -517,7 +517,7 @@ export const posts: Article[] = [
     ],
     faqs: [
       {
-        question: "Which method pays more in Pakistan?",
+        question: "Which withdrawal method pays more?",
         answer:
           "It depends on the order size and the fee on your screen. Compare them with the same platform fee and the same PKR rate, then change only the withdrawal line.",
       },
@@ -527,7 +527,7 @@ export const posts: Article[] = [
           "Yes. Choose EUR, GBP, or AED and enter how many rupees you get for one unit, or use the reference rate when it loads.",
       },
     ],
-    sources: [sourceLinks.payoneerPricing, sourceLinks.upworkBank, sourceLinks.payoneerWithdraw, sourceLinks.sbp],
+    sources: [sourceLinks.payoneerPricing, sourceLinks.upworkBank, sourceLinks.payoneerWithdraw],
     related: [
       { href: "/payoneer-fee-calculator", label: "Payoneer calculator" },
       { href: "/guides/payoneer-fees", label: "Payoneer fees" },

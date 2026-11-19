@@ -169,7 +169,7 @@ export function formatBreakdownText(result: CalculatorResult): string {
     `Tax set-aside (${formatPercent(result.taxRate)}): PKR ${result.taxPkr.toFixed(2)}`,
     `Final bank deposit: PKR ${result.finalPkr.toFixed(2)}`,
     "",
-    "Percentages are the ones entered in the calculator. They are not a quote from Fiverr, Upwork, Payoneer, a bank, or FBR.",
+    "Percentages are the ones entered in the calculator. They are not a quote from Fiverr, Upwork, Payoneer, a bank, or a tax authority.",
   );
   return lines.join("\n");
 }

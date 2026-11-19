@@ -31,8 +31,6 @@ export const sourceLinks = {
     label: "Payoneer: withdraw funds to a local bank",
     href: "https://www.payoneer.com/withdraw-funds/",
   },
-  fbr: { label: "Federal Board of Revenue", href: "https://www.fbr.gov.pk/" },
-  sbp: { label: "State Bank of Pakistan", href: "https://www.sbp.org.pk/" },
   ecb: {
     label: "European Central Bank euro foreign exchange reference rates",
     href: "https://www.ecb.europa.eu/stats/policy_and_exchange_rates/euro_reference_exchange_rates/html/index.en.html",
