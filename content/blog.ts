@@ -81,12 +81,12 @@ export const posts: Article[] = [
     sources: [sourceLinks.fiverrEarnings, sourceLinks.upworkFee],
     related: [
       { href: "/freelancer-income-calculator", label: "Monthly income calculator" },
-      { href: "/blog/freelancer-income-planning-pakistan", label: "Plan the month in PKR" },
+      { href: "/blog/freelancer-income-planning", label: "Plan the month in PKR" },
       { href: "/tax-guide/freelancer-tax-record-keeping", label: "Records to keep" },
     ],
   }),
   post({
-    slug: "fiverr-vs-upwork-for-pakistani-freelancers",
+    slug: "fiverr-vs-upwork-for-freelancers",
     title: "Fiverr vs Upwork for Pakistani Freelancers",
     description:
       "Compare the fee structures Pakistani freelancers actually have to model: Fiverr's earnings share and Upwork's contract-specific fee.",
@@ -149,11 +149,11 @@ export const posts: Article[] = [
     related: [
       { href: "/fiverr-fee-calculator", label: "Fiverr calculator" },
       { href: "/upwork-fee-calculator", label: "Upwork calculator" },
-      { href: "/guides/upwork-fees-pakistan", label: "Upwork fee guide" },
+      { href: "/guides/upwork-fees", label: "Upwork fee guide" },
     ],
   }),
   post({
-    slug: "how-to-receive-international-payments-in-pakistan",
+    slug: "how-to-receive-international-payments",
     title: "Receive International Payments in Pakistan",
     description:
       "A clear path from a foreign client or marketplace to a Pakistani bank, without inventing a universal best provider.",
@@ -210,13 +210,13 @@ export const posts: Article[] = [
     ],
     sources: [sourceLinks.fiverrHow, sourceLinks.upworkBankHow, sourceLinks.payoneerWithdraw, sourceLinks.sbp],
     related: [
-      { href: "/guides/fiverr-payment-methods-pakistan", label: "Fiverr methods" },
-      { href: "/guides/upwork-payment-methods-pakistan", label: "Upwork methods" },
+      { href: "/guides/fiverr-payment-methods", label: "Fiverr methods" },
+      { href: "/guides/upwork-payment-methods", label: "Upwork methods" },
       { href: "/guides/payoneer-withdrawal-charges", label: "Payoneer checklist" },
     ],
   }),
   post({
-    slug: "freelancer-income-planning-pakistan",
+    slug: "freelancer-income-planning",
     title: "Freelancer Income Planning in Pakistan",
     description:
       "Turn one calculated order into a cautious monthly plan, with room for a weaker exchange rate and a late clearance.",
@@ -277,7 +277,7 @@ export const posts: Article[] = [
     ],
   }),
   post({
-    slug: "how-to-withdraw-from-fiverr-to-a-pakistani-bank",
+    slug: "how-to-withdraw-from-fiverr-to-a-bank",
     publishedAt: "2026-11-19",
     title: "Withdraw Fiverr Earnings to a Pakistani Bank",
     description:
@@ -364,7 +364,7 @@ export const posts: Article[] = [
     ],
     sources: [sourceLinks.fiverrEarnings, sourceLinks.fiverrHow, sourceLinks.payoneerWithdraw, sourceLinks.payoneerPricing],
     related: [
-      { href: "/guides/fiverr-withdrawal-pakistan", label: "Fiverr withdrawal guide" },
+      { href: "/guides/fiverr-withdrawal", label: "Fiverr withdrawal guide" },
       { href: "/fiverr-fee-calculator", label: "Fiverr calculator" },
       { href: "/guides/payoneer-withdrawal-charges", label: "Payoneer checklist" },
     ],
@@ -450,8 +450,8 @@ export const posts: Article[] = [
     sources: [sourceLinks.upworkFee, sourceLinks.upworkPricing, sourceLinks.upworkBank],
     related: [
       { href: "/upwork-fee-calculator", label: "Upwork calculator" },
-      { href: "/guides/upwork-fees-pakistan", label: "Upwork fee guide" },
-      { href: "/guides/upwork-payment-methods-pakistan", label: "Upwork payout methods" },
+      { href: "/guides/upwork-fees", label: "Upwork fee guide" },
+      { href: "/guides/upwork-payment-methods", label: "Upwork payout methods" },
     ],
   }),
   post({
@@ -529,8 +529,8 @@ export const posts: Article[] = [
     ],
     sources: [sourceLinks.payoneerPricing, sourceLinks.upworkBank, sourceLinks.payoneerWithdraw, sourceLinks.sbp],
     related: [
-      { href: "/payoneer-fee-calculator-pakistan", label: "Payoneer calculator" },
-      { href: "/guides/payoneer-fees-pakistan", label: "Payoneer fees" },
+      { href: "/payoneer-fee-calculator", label: "Payoneer calculator" },
+      { href: "/guides/payoneer-fees", label: "Payoneer fees" },
       { href: "/blog/upwork-fees-explained", label: "Upwork fees explained" },
     ],
   }),

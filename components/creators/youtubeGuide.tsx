@@ -115,9 +115,8 @@ export function YouTubeGuide() {
         <h2 id="payout-and-withholding" className="text-2xl font-semibold tracking-[-0.03em]">US withholding</h2>
         <p className="text-base leading-7 text-muted">
           This page does not state a US withholding rate. If you name a row US, USA, or United States, you may type a percent for that portion only. The rate depends on the tax information submitted to Google and any treaty claim. Use the figure from your own documents.{" "}
-          <a className={linkClass} href={youtubeConfig.usWithholding.sourceUrl}>The earnings overview</a>, reviewed {reviewed}, is the stored Help link, not a tax table. A display currency converts finished USD amounts only when its reference rate is positive, and it is not a payout rate. The{" "}
-          <Link className={linkClass} href="/usd-to-pkr-calculator">USD to PKR calculator</Link>{" "}
-          is a separate tool. Read the <Link className={linkClass} href="/disclaimer">disclaimer</Link> before treating a card as money you will receive.
+          <a className={linkClass} href={youtubeConfig.usWithholding.sourceUrl}>The earnings overview</a>, reviewed {reviewed}, is the stored Help link, not a tax table. A display currency converts finished USD amounts only when its reference rate is positive, and it is not a payout rate. Read the{" "}
+          <Link className={linkClass} href="/disclaimer">disclaimer</Link> before treating a card as money you will receive.
         </p>
       </section>
 

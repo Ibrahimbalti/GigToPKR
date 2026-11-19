@@ -1,8 +1,9 @@
 import type { Metadata } from "next";
+import { Suspense } from "react";
 import { AdSlot } from "@/components/ads/AdSlot";
 import { YouTubeCalculator } from "@/components/creators/YouTubeCalculator";
 import { YouTubeGuide, youtubeFaqs } from "@/components/creators/youtubeGuide";
-import { formFromQuery } from "@/components/creators/youtubeModel";
+import { defaultYouTubeForm } from "@/components/creators/youtubeModel";
 import { PageHeader } from "@/components/layout/PageHeader";
 import { Breadcrumbs } from "@/components/seo/Breadcrumbs";
 import { BreadcrumbJsonLd } from "@/components/seo/BreadcrumbJsonLd";
@@ -33,12 +34,7 @@ function positive(value: number | null | undefined): number | null {
   return value;
 }
 
-export default async function Page({
-  searchParams,
-}: {
-  searchParams: Promise<Record<string, string | string[] | undefined>>;
-}) {
-  const query = await searchParams;
+export default async function Page() {
   const quote = await getCachedUsdToPkrQuote();
   const offers = (
     [
@@ -62,13 +58,15 @@ export default async function Page({
         />
         <p className="max-w-3xl text-sm leading-6 text-muted">{YOUTUBE_DISCLAIMER}</p>
         <p className="max-w-3xl text-sm leading-6 text-muted">{YOUTUBE_NOT_AFFILIATED}</p>
-        <YouTubeCalculator
-          initial={formFromQuery(query)}
-          today={new Date().toISOString().slice(0, 10)}
-          offers={offers}
-          rateSource={offers.length ? quote.sourceLabel : null}
-          rateUpdatedAt={offers.length ? quote.retrievedAt : null}
-        />
+        <Suspense fallback={<div className="min-h-[600px]" aria-hidden="true" />}>
+          <YouTubeCalculator
+            initial={defaultYouTubeForm()}
+            today={new Date().toISOString().slice(0, 10)}
+            offers={offers}
+            rateSource={offers.length ? quote.sourceLabel : null}
+            rateUpdatedAt={offers.length ? quote.retrievedAt : null}
+          />
+        </Suspense>
       </div>
       <AdSlot placement="in-content" />
       <YouTubeGuide />

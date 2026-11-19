@@ -6,6 +6,37 @@ import { formatUsd } from "@/lib/money";
 
 const trust = ["Free to use", "No registration required", "Transparent breakdown"];
 
+const platforms = [
+  { name: "Fiverr", color: "#1dbf73", icon: "fiverr" },
+  { name: "Upwork", color: "#14a800", icon: "upwork" },
+  { name: "YouTube", color: "#ff0033", icon: "youtube" },
+] as const;
+
+function PlatformIcon({ name }: { name: (typeof platforms)[number]["icon"] }) {
+  if (name === "youtube") {
+    return (
+      <svg viewBox="0 0 24 24" aria-hidden className="size-5">
+        <rect x="2" y="6" width="20" height="12" rx="3" fill="currentColor" />
+        <path d="M10 9.2v5.6l5.2-2.8L10 9.2Z" fill="white" />
+      </svg>
+    );
+  }
+  if (name === "upwork") {
+    return (
+      <svg viewBox="0 0 24 24" aria-hidden className="size-5">
+        <circle cx="12" cy="12" r="9" fill="currentColor" />
+        <path d="M12 16.5V10.2M8.8 12.4 12 8.5l3.2 3.9" fill="none" stroke="white" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" />
+      </svg>
+    );
+  }
+  return (
+    <svg viewBox="0 0 24 24" aria-hidden className="size-5">
+      <rect x="3" y="3" width="18" height="18" rx="5" fill="currentColor" />
+      <path d="M9 16.5V7.5h3.2a2.6 2.6 0 0 1 0 5.2H9" fill="none" stroke="white" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" />
+    </svg>
+  );
+}
+
 export async function Hero() {
   const preview = calculateEarnings({
     orderAmountUsd: 500,
@@ -31,6 +62,17 @@ export async function Hero() {
         <p className="mt-4 max-w-xl text-base leading-7 text-muted sm:text-[17px]">
           Estimate a Fiverr or Upwork order after the platform fee and a withdrawal charge. Each marketplace has its own calculator.
         </p>
+        <div className="platform-rotator mt-5">
+          <p className="sr-only">Calculators for Fiverr, Upwork, and YouTube.</p>
+          <div className="platform-rotator-viewport">
+            {platforms.map((platform) => (
+              <p key={platform.name} className="platform-rotator-item" style={{ color: platform.color }} aria-hidden>
+                <PlatformIcon name={platform.icon} />
+                <span className="text-sm font-semibold text-ink">{platform.name}</span>
+              </p>
+            ))}
+          </div>
+        </div>
         <div className="mt-6 flex flex-col gap-3 sm:flex-row">
           <Link
             href="#calculators"

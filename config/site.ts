@@ -19,9 +19,9 @@ export function resolveSiteUrl(configured = process.env.NEXT_PUBLIC_SITE_URL ?? 
   return value;
 }
 
-/** Global pages use en_US. Pakistan section pages keep en_PK. */
+/** Global pages use en_US. */
 export function openGraphLocale(path = "/"): "en_PK" | "en_US" {
-  return path === "/pakistan" || path.startsWith("/pakistan/") ? "en_PK" : "en_US";
+  return "en_US";
 }
 
 export const site = {

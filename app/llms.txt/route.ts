@@ -1,5 +1,7 @@
 import { absoluteUrl, site } from "@/config/site";
 
+export const dynamic = "force-static";
+
 export function GET() {
   const body = `# ${site.name}
 
@@ -10,7 +12,6 @@ export function GET() {
 - [Main calculator](${absoluteUrl("/calculator")}): estimate a PKR deposit after a Fiverr or Upwork fee, a Payoneer assumption, USD to PKR conversion, and an illustrative tax line
 - [Fiverr calculator](${absoluteUrl("/fiverr-fee-calculator")}): opens on the 20 percent platform assumption
 - [Upwork calculator](${absoluteUrl("/upwork-fee-calculator")}): opens on the 10 percent platform assumption
-- [USD to PKR](${absoluteUrl("/usd-to-pkr-calculator")}): convert dollars without removing marketplace fees
 
 ## Guides
 

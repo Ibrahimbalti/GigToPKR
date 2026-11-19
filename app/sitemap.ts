@@ -3,6 +3,8 @@ import { articles } from "@/content/registry";
 import { toolPages } from "@/content/tools";
 import { absoluteUrl } from "@/config/site";
 
+export const dynamic = "force-static";
+
 const staticPages = [
   { path: "/", updatedAt: "2026-11-17", priority: 1 },
   { path: "/guides", updatedAt: "2026-11-17", priority: 0.7 },

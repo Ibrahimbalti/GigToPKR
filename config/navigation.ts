@@ -38,7 +38,6 @@ export const footerLearn: NavItem[] = [
   { href: "/guides", label: "Guides" },
   { href: "/tax-guide", label: "Tax Guide" },
   { href: "/blog", label: "Blog" },
-  { href: "/usd-to-pkr-calculator", label: "USD to PKR" },
 ];
 
 export const footerCompany: NavItem[] = [

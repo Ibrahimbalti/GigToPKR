@@ -16,6 +16,7 @@ export const metadata: Metadata = buildMetadata({
 });
 
 export default function BlogPage() {
+  const posts = articlesByKind("blog");
   const crumbs = [
     { name: "Home", path: "/" },
     { name: "Blog", path: "/blog" },
@@ -26,10 +27,10 @@ export default function BlogPage() {
       <Breadcrumbs items={crumbs} />
       <PageHeader
         title="Blog"
-        lede="Four articles are published. The editorial calendar below is a plan, not a set of articles, and those planned titles are not separate pages."
+        lede="Published articles appear above. The editorial calendar below is a plan, not a set of articles, and planned titles are not separate pages."
       />
       <div className="grid gap-4 md:grid-cols-2">
-        {articlesByKind("blog").map((article) => (
+        {posts.map((article) => (
           <BlogCard key={article.path} article={article} />
         ))}
       </div>

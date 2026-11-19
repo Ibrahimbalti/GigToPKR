@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import { ToolScreen, toolMetadata } from "@/components/tools/ToolScreen";
 
-const path = "/payoneer-fee-calculator-pakistan";
+const path = "/payoneer-fee-calculator";
 
 export const metadata: Metadata = toolMetadata(path);
 

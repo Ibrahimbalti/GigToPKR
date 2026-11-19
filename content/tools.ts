@@ -112,9 +112,9 @@ export const toolPages: ToolPage[] = [
     sources: [sourceLinks.fiverrEarnings, sourceLinks.fiverrHow, sourceLinks.payoneerPricing],
     related: [
       { href: "/upwork-fee-calculator", label: "Upwork calculator" },
-      { href: "/guides/fiverr-fees-pakistan", label: "Fiverr fees explained" },
+      { href: "/guides/fiverr-fees", label: "Fiverr fees explained" },
       { href: "/guides/fiverr-earnings-calculation", label: "Step-by-step Fiverr math" },
-      { href: "/guides/fiverr-withdrawal-pakistan", label: "Withdrawals after the fee" },
+      { href: "/guides/fiverr-withdrawal", label: "Withdrawals after the fee" },
     ],
   },
   {
@@ -153,13 +153,13 @@ export const toolPages: ToolPage[] = [
     sources: [sourceLinks.upworkFee, sourceLinks.upworkPricing, sourceLinks.upworkBank],
     related: [
       { href: "/fiverr-fee-calculator", label: "Fiverr calculator" },
-      { href: "/guides/upwork-fees-pakistan", label: "How the Upwork fee is set" },
-      { href: "/guides/upwork-withdrawal-pakistan", label: "The $0.99 local-bank fee" },
+      { href: "/guides/upwork-fees", label: "How the Upwork fee is set" },
+      { href: "/guides/upwork-withdrawal", label: "The $0.99 local-bank fee" },
       { href: "/guides/upwork-earnings-calculation", label: "Calculate an Upwork payment" },
     ],
   },
   {
-    path: "/payoneer-fee-calculator-pakistan",
+    path: "/payoneer-fee-calculator",
     title: "Payoneer Fee Calculator Pakistan",
     description:
       "See the rupee effect of a 2% withdrawal assumption after Fiverr or Upwork fees. Compare it with the fee on your Payoneer screen.",
@@ -200,49 +200,8 @@ export const toolPages: ToolPage[] = [
     ],
     sources: [sourceLinks.payoneerPricing, sourceLinks.payoneerWithdraw],
     related: [
-      { href: "/guides/payoneer-fees-pakistan", label: "Payoneer's published range" },
+      { href: "/guides/payoneer-fees", label: "Payoneer's published range" },
       { href: "/guides/payoneer-withdrawal-charges", label: "Withdrawal checklist" },
-      { href: "/usd-to-pkr-calculator", label: "Convert the net dollars" },
-    ],
-  },
-  {
-    path: "/usd-to-pkr-calculator",
-    title: "USD to PKR Calculator for Freelancers",
-    description:
-      "Convert USD to PKR with a labeled reference rate or your own rate, then see the same amount after freelance fees.",
-    h1: "USD to PKR calculator",
-    eyebrow: "Reference rate, clearly sourced",
-    directAnswer:
-      "The converter multiplies a USD amount by the rate shown. It does not subtract Fiverr, Upwork, or Payoneer fees. The earnings form below does. Frankfurter is checked first and, because it has no PKR rate, is not used as a silent source. If no reference rate loads, type one. A blank rate is left blank on purpose.",
-    defaultPlatform: "fiverr",
-    defaultTax: "filer",
-    mode: "converter",
-    updatedAt,
-    sections: [
-      {
-        id: "which-amount",
-        heading: "Which dollars should you convert?",
-        level: 2,
-        blocks: [
-          {
-            type: "p",
-            text: "For a bank forecast, convert net dollars after fees. Converting the client's $100 and calling it salary ignores the marketplace. The pure converter is here for the rate itself: a client asked for a rupee figure, or you want to see what 280 means. The earnings calculator underneath is the one that answers 'what might I receive'.",
-          },
-        ],
-      },
-    ],
-    faqs: [
-      {
-        question: "Why might the live rate be missing?",
-        answer:
-          "Frankfurter does not publish PKR. The secondary reference can also fail. In either case the field stays empty until you type a rate from a source you trust.",
-      },
-    ],
-    sources: [sourceLinks.frankfurter, sourceLinks.ecb, sourceLinks.exchangeRateApi, sourceLinks.sbp],
-    related: [
-      { href: "/guides/usd-to-pkr-conversion-guide", label: "Conversion guide" },
-      { href: "/guides/freelancer-currency-conversion", label: "Record the implied rate" },
-      { href: "/calculator", label: "Full fee calculator" },
     ],
   },
   {
@@ -287,13 +246,13 @@ export const toolPages: ToolPage[] = [
     ],
     sources: [sourceLinks.upworkFee, sourceLinks.fiverrEarnings],
     related: [
-      { href: "/blog/freelancer-income-planning-pakistan", label: "Plan a month with a cushion" },
+      { href: "/blog/freelancer-income-planning", label: "Plan a month with a cushion" },
       { href: "/blog/how-to-calculate-freelance-income", label: "Columns for a real month" },
       { href: "/calculator", label: "Single-order calculator" },
     ],
   },
   {
-    path: "/freelancer-tax-calculator-pakistan",
+    path: "/freelancer-tax-calculator",
     title: "Freelancer Tax Calculator Pakistan",
     description:
       "Compare illustrative 1% and 2% deductions on converted freelance income. These are not FBR rates.",
@@ -334,9 +293,9 @@ export const toolPages: ToolPage[] = [
     ],
     sources: [sourceLinks.fbr],
     related: [
-      { href: "/tax-guide/pakistan-freelancer-tax", label: "Freelancer tax guide" },
+      { href: "/tax-guide/freelancer-tax", label: "Freelancer tax guide" },
       { href: "/tax-guide/fbr-active-filer-vs-non-filer", label: "Filer and non-filer" },
-      { href: "/tax-guide/pakistan-it-export-tax", label: "IT export context" },
+      { href: "/tax-guide/it-export-tax", label: "IT export context" },
     ],
   },
 ];

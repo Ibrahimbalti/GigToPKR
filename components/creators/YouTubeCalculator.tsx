@@ -1,11 +1,13 @@
 "use client";
 
 import { useState } from "react";
+import { useSearchParams } from "next/navigation";
 import { youtubeConfig, YOUTUBE_DISCLAIMER, DISPLAY_CONVERSION_LABEL } from "@/data/youtube";
 import { ScenarioChart } from "@/components/creators/ScenarioChart";
 import {
   defaultYouTubeForm,
   estimateYouTube,
+  formFromQuery,
   formToQuery,
   formatConverted,
   type RateOffer,
@@ -72,7 +74,10 @@ export function YouTubeCalculator({
   rateSource: string | null;
   rateUpdatedAt: string | null;
 }) {
-  const [form, setForm] = useState(initial);
+  const searchParams = useSearchParams();
+  const [form, setForm] = useState(() =>
+    formFromQuery(Object.fromEntries(searchParams.entries())) ?? initial ?? defaultYouTubeForm(),
+  );
   const [status, setStatus] = useState("Results stay on this device.");
 
   const availableCurrency = offers.some((offer) => offer.code === form.currency) ? form.currency : "";

@@ -161,6 +161,76 @@ summary::-webkit-details-marker {
   animation: float-y 6.2s ease-in-out 0.7s infinite;
 }
 
+.platform-rotator-viewport {
+  position: relative;
+  height: 2.75rem;
+  perspective: 600px;
+}
+
+.platform-rotator-item {
+  position: absolute;
+  left: 0;
+  top: 0;
+  display: inline-flex;
+  min-height: 2.75rem;
+  align-items: center;
+  gap: 0.55rem;
+  border-radius: 999px;
+  border: 1px solid var(--line);
+  background: #fff;
+  padding: 0 0.9rem 0 0.7rem;
+  box-shadow: var(--shadow);
+  opacity: 0;
+  transform: rotateX(70deg);
+  animation: platform-rotate 9s ease-in-out infinite;
+  animation-delay: -0.7s;
+}
+
+.platform-rotator-item:nth-child(2) {
+  animation-delay: -6.7s;
+}
+
+.platform-rotator-item:nth-child(3) {
+  animation-delay: -3.7s;
+}
+
+@keyframes platform-rotate {
+  0% {
+    opacity: 0;
+    transform: rotateX(70deg);
+  }
+  8% {
+    opacity: 1;
+    transform: rotateX(0);
+  }
+  28% {
+    opacity: 1;
+    transform: rotateX(0);
+  }
+  36%,
+  100% {
+    opacity: 0;
+    transform: rotateX(-70deg);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .platform-rotator-viewport {
+    display: flex;
+    height: auto;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+    perspective: none;
+  }
+
+  .platform-rotator-item {
+    position: static;
+    opacity: 1;
+    transform: none;
+    animation: none;
+  }
+}
+
 .field {
   height: 3.25rem;
   width: 100%;

@@ -17,7 +17,7 @@ function guide(
 
 export const guides: Article[] = [
   guide({
-    slug: "fiverr-fees-pakistan",
+    slug: "fiverr-fees",
     title: "Fiverr Fees in Pakistan Explained",
     description:
       "See which Fiverr fee comes out of a freelancer's order, which fee the client pays, and what this calculator assumes.",
@@ -100,12 +100,12 @@ export const guides: Article[] = [
     sources: [sourceLinks.fiverrEarnings, sourceLinks.fiverrHow],
     related: [
       { href: "/fiverr-fee-calculator", label: "Open the Fiverr calculator" },
-      { href: "/guides/fiverr-withdrawal-pakistan", label: "Fiverr withdrawals in Pakistan" },
+      { href: "/guides/fiverr-withdrawal", label: "Fiverr withdrawals in Pakistan" },
       { href: "/guides/fiverr-earnings-calculation", label: "Calculate Fiverr earnings step by step" },
     ],
   }),
   guide({
-    slug: "fiverr-withdrawal-pakistan",
+    slug: "fiverr-withdrawal",
     title: "Withdraw Fiverr Earnings in Pakistan",
     description:
       "Separate Fiverr's commission from clearing time and the withdrawal charge that happens after earnings become available.",
@@ -182,7 +182,7 @@ export const guides: Article[] = [
     ],
     sources: [sourceLinks.fiverrHow, sourceLinks.fiverrEarnings, sourceLinks.payoneerWithdraw],
     related: [
-      { href: "/guides/fiverr-payment-methods-pakistan", label: "Fiverr payment methods" },
+      { href: "/guides/fiverr-payment-methods", label: "Fiverr payment methods" },
       { href: "/guides/payoneer-withdrawal-charges", label: "Payoneer withdrawal charges" },
       { href: "/fiverr-fee-calculator", label: "Estimate a Fiverr order" },
     ],
@@ -267,11 +267,11 @@ export const guides: Article[] = [
     related: [
       { href: "/fiverr-fee-calculator", label: "Fiverr fee calculator" },
       { href: "/guides/usd-to-pkr-conversion-guide", label: "USD to PKR conversion guide" },
-      { href: "/guides/fiverr-fees-pakistan", label: "Which Fiverr fee is which" },
+      { href: "/guides/fiverr-fees", label: "Which Fiverr fee is which" },
     ],
   }),
   guide({
-    slug: "fiverr-payment-methods-pakistan",
+    slug: "fiverr-payment-methods",
     title: "Fiverr Payment Methods in Pakistan",
     description:
       "How to read the payout methods Fiverr shows a Pakistani freelancer, and which costs sit outside the platform fee.",
@@ -330,13 +330,13 @@ export const guides: Article[] = [
     ],
     sources: [sourceLinks.fiverrHow, sourceLinks.payoneerWithdraw],
     related: [
-      { href: "/guides/payoneer-fees-pakistan", label: "Payoneer fees in Pakistan" },
+      { href: "/guides/payoneer-fees", label: "Payoneer fees in Pakistan" },
       { href: "/tax-guide/freelancer-tax-record-keeping", label: "Freelance income records" },
       { href: "/fiverr-fee-calculator", label: "Fiverr calculator" },
     ],
   }),
   guide({
-    slug: "upwork-fees-pakistan",
+    slug: "upwork-fees",
     title: "Upwork Fees for Pakistani Freelancers",
     description:
       "Upwork publishes a 0% to 15% freelancer service fee that is fixed per contract. This calculator assumes 10%.",
@@ -402,12 +402,12 @@ export const guides: Article[] = [
     sources: [sourceLinks.upworkFee, sourceLinks.upworkPricing, sourceLinks.upworkBank],
     related: [
       { href: "/upwork-fee-calculator", label: "Upwork calculator" },
-      { href: "/guides/upwork-withdrawal-pakistan", label: "Upwork withdrawals" },
-      { href: "/blog/fiverr-vs-upwork-for-pakistani-freelancers", label: "Fiverr and Upwork fee models" },
+      { href: "/guides/upwork-withdrawal", label: "Upwork withdrawals" },
+      { href: "/blog/fiverr-vs-upwork-for-freelancers", label: "Fiverr and Upwork fee models" },
     ],
   }),
   guide({
-    slug: "upwork-withdrawal-pakistan",
+    slug: "upwork-withdrawal",
     title: "Withdraw Upwork Earnings in Pakistan",
     description:
       "Upwork documents a $0.99 Direct to Local Bank withdrawal. Compare that with this calculator's 2% assumption.",
@@ -471,7 +471,7 @@ export const guides: Article[] = [
     sources: [sourceLinks.upworkBank, sourceLinks.upworkBankHow],
     related: [
       { href: "/upwork-fee-calculator", label: "Upwork calculator" },
-      { href: "/guides/upwork-payment-methods-pakistan", label: "Upwork payment methods" },
+      { href: "/guides/upwork-payment-methods", label: "Upwork payment methods" },
       { href: "/guides/payoneer-withdrawal-charges", label: "Payoneer charges" },
     ],
   }),
@@ -532,12 +532,12 @@ export const guides: Article[] = [
     sources: [sourceLinks.upworkFee, sourceLinks.upworkBank],
     related: [
       { href: "/upwork-fee-calculator", label: "Upwork fee calculator" },
-      { href: "/guides/upwork-fees-pakistan", label: "How the Upwork fee is set" },
+      { href: "/guides/upwork-fees", label: "How the Upwork fee is set" },
       { href: "/freelancer-income-calculator", label: "Project a month of orders" },
     ],
   }),
   guide({
-    slug: "upwork-payment-methods-pakistan",
+    slug: "upwork-payment-methods",
     title: "Upwork Payment Methods in Pakistan",
     description:
       "Compare Direct to Local Bank with a Payoneer-style withdrawal, including the PKR company-account restriction Upwork documents.",
@@ -589,13 +589,13 @@ export const guides: Article[] = [
     ],
     sources: [sourceLinks.upworkBankHow, sourceLinks.upworkBank],
     related: [
-      { href: "/guides/upwork-withdrawal-pakistan", label: "Withdrawal timing and the $0.99 fee" },
-      { href: "/blog/how-to-receive-international-payments-in-pakistan", label: "Receiving international payments" },
+      { href: "/guides/upwork-withdrawal", label: "Withdrawal timing and the $0.99 fee" },
+      { href: "/blog/how-to-receive-international-payments", label: "Receiving international payments" },
       { href: "/upwork-fee-calculator", label: "Upwork calculator" },
     ],
   }),
   guide({
-    slug: "payoneer-fees-pakistan",
+    slug: "payoneer-fees",
     title: "Payoneer Fees in Pakistan",
     description:
       "Payoneer's public pricing lists a bank-withdrawal range. The calculator's 2% line sits inside that range and is still not your quote.",
@@ -660,7 +660,7 @@ export const guides: Article[] = [
     ],
     sources: [sourceLinks.payoneerPricing, sourceLinks.payoneerWithdraw],
     related: [
-      { href: "/payoneer-fee-calculator-pakistan", label: "Payoneer fee calculator" },
+      { href: "/payoneer-fee-calculator", label: "Payoneer fee calculator" },
       { href: "/guides/payoneer-withdrawal-charges", label: "What to check on a withdrawal" },
       { href: "/guides/freelancer-currency-conversion", label: "How conversion is priced" },
     ],
@@ -726,9 +726,8 @@ export const guides: Article[] = [
     ],
     sources: [sourceLinks.payoneerPricing, sourceLinks.payoneerWithdraw],
     related: [
-      { href: "/payoneer-fee-calculator-pakistan", label: "Try the 2% assumption" },
-      { href: "/guides/payoneer-fees-pakistan", label: "Payoneer's published range" },
-      { href: "/usd-to-pkr-calculator", label: "Convert USD to PKR" },
+      { href: "/payoneer-fee-calculator", label: "Try the 2% assumption" },
+      { href: "/guides/payoneer-fees", label: "Payoneer's published range" },
     ],
   }),
   guide({
@@ -809,7 +808,6 @@ export const guides: Article[] = [
     ],
     sources: [sourceLinks.frankfurter, sourceLinks.ecb, sourceLinks.exchangeRateApi, sourceLinks.sbp],
     related: [
-      { href: "/usd-to-pkr-calculator", label: "USD to PKR calculator" },
       { href: "/guides/freelancer-currency-conversion", label: "Record the rate you received" },
       { href: "/calculator", label: "Full earnings calculator" },
     ],
@@ -880,7 +878,6 @@ export const guides: Article[] = [
     related: [
       { href: "/guides/usd-to-pkr-conversion-guide", label: "Reference rates versus payout rates" },
       { href: "/tax-guide/freelancer-tax-record-keeping", label: "What records to keep" },
-      { href: "/usd-to-pkr-calculator", label: "Convert an amount" },
     ],
   }),
 ];

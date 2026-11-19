@@ -95,5 +95,10 @@ if (!html.includes("https://realgigpay.com")) {
 
 fs.mkdirSync("public", { recursive: true });
 fs.writeFileSync("public/home-static.html", html);
+const staticHome = path.join("out", "static-home", "index.html");
+if (fs.existsSync("out")) {
+  fs.mkdirSync(path.dirname(staticHome), { recursive: true });
+  fs.writeFileSync(staticHome, html);
+}
 const scripts = [...html.matchAll(/<script\b[^>]*>/g)].length;
 console.log("static homepage bytes", html.length, "script tags", scripts);

@@ -17,7 +17,7 @@ function tax(
 
 export const taxGuides: Article[] = [
   tax({
-    slug: "pakistan-freelancer-tax",
+    slug: "freelancer-tax",
     title: "Pakistan Freelancer Tax Guide",
     description:
       "A practical map of freelancer tax questions in Pakistan, and a clear line between an estimate and an assessment.",
@@ -96,9 +96,9 @@ export const taxGuides: Article[] = [
     ],
     sources: [sourceLinks.fbr],
     related: [
-      { href: "/freelancer-tax-calculator-pakistan", label: "Illustrative tax calculator" },
+      { href: "/freelancer-tax-calculator", label: "Illustrative tax calculator" },
       { href: "/tax-guide/fbr-active-filer-vs-non-filer", label: "Active filer and non-filer" },
-      { href: "/tax-guide/pakistan-it-export-tax", label: "IT export tax context" },
+      { href: "/tax-guide/it-export-tax", label: "IT export tax context" },
     ],
   }),
   tax({
@@ -156,13 +156,13 @@ export const taxGuides: Article[] = [
     ],
     sources: [sourceLinks.fbr],
     related: [
-      { href: "/freelancer-tax-calculator-pakistan", label: "Compare the two illustrations" },
-      { href: "/tax-guide/pakistan-freelancer-tax", label: "Freelancer tax overview" },
+      { href: "/freelancer-tax-calculator", label: "Compare the two illustrations" },
+      { href: "/tax-guide/freelancer-tax", label: "Freelancer tax overview" },
       { href: "/disclaimer", label: "Financial and tax disclaimer" },
     ],
   }),
   tax({
-    slug: "pakistan-it-export-tax",
+    slug: "it-export-tax",
     title: "Pakistan IT Export Tax Context",
     description:
       "Questions to take to FBR and PSEB about IT and IT-enabled service exports, without a fabricated current rate.",
@@ -222,9 +222,9 @@ export const taxGuides: Article[] = [
     ],
     sources: [sourceLinks.fbr, sourceLinks.sbp],
     related: [
-      { href: "/tax-guide/pakistan-freelancer-tax", label: "Freelancer tax overview" },
+      { href: "/tax-guide/freelancer-tax", label: "Freelancer tax overview" },
       { href: "/tax-guide/freelancer-tax-record-keeping", label: "Records that support an export position" },
-      { href: "/freelancer-tax-calculator-pakistan", label: "Illustrative calculator" },
+      { href: "/freelancer-tax-calculator", label: "Illustrative calculator" },
     ],
   }),
   tax({
@@ -296,7 +296,7 @@ export const taxGuides: Article[] = [
     sources: [sourceLinks.fbr, sourceLinks.payoneerPricing],
     related: [
       { href: "/guides/freelancer-currency-conversion", label: "Record the implied rate" },
-      { href: "/tax-guide/pakistan-freelancer-tax", label: "Tax overview" },
+      { href: "/tax-guide/freelancer-tax", label: "Tax overview" },
       { href: "/calculator", label: "Create a working-paper estimate" },
     ],
   }),
