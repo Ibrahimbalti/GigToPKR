@@ -4,7 +4,7 @@ import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { Menu, X } from "@/components/icons";
 import { Logo } from "@/components/layout/Logo";
-import { desktopNav, mainNav } from "@/config/navigation";
+import { desktopNav, footerCalculators, mainNav } from "@/config/navigation";
 
 function isCurrent(pathname: string, href: string) {
   if (href === "/") return pathname === "/";
@@ -30,6 +30,25 @@ export function Navbar() {
               {item.label}
             </Link>
           ))}
+          <details key={`calc-${pathname}`} className="group relative">
+            <summary className="inline-flex min-h-10 cursor-pointer list-none items-center gap-1 whitespace-nowrap rounded-lg px-2.5 text-[13.5px] font-medium tracking-[-0.01em] text-navy-2 hover:bg-canvas hover:text-ink">
+              More Calculators
+              <span aria-hidden className="text-[10px] text-muted transition-transform group-open:rotate-180">▼</span>
+            </summary>
+            <div className="absolute left-0 z-50 mt-2 w-60 rounded-2xl border border-line bg-white p-2 shadow-[var(--shadow)]">
+              {footerCalculators.map((item) => (
+                <Link
+                  key={item.href}
+                  href={item.href}
+                  scroll
+                  aria-current={isCurrent(pathname, item.href) ? "page" : undefined}
+                  className="flex min-h-9 items-center rounded-xl px-3 text-sm font-medium text-ink aria-[current=page]:bg-brand-50 aria-[current=page]:text-brand-ink hover:bg-brand-50"
+                >
+                  {item.label}
+                </Link>
+              ))}
+            </div>
+          </details>
         </nav>
         <div className="ml-auto flex shrink-0 items-center gap-2">
           <details key={pathname} className="group relative xl:hidden">
