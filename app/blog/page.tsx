@@ -3,10 +3,8 @@ import { BlogCard } from "@/components/blog/BlogCard";
 import { PageHeader } from "@/components/layout/PageHeader";
 import { BreadcrumbJsonLd } from "@/components/seo/BreadcrumbJsonLd";
 import { Breadcrumbs } from "@/components/seo/Breadcrumbs";
-import { editorialCalendar } from "@/content/editorial-calendar";
 import { articlesByKind } from "@/content/registry";
 import { buildMetadata } from "@/lib/seo/metadata";
-import Link from "next/link";
 
 export const metadata: Metadata = buildMetadata({
   title: "Freelance fee articles",
@@ -27,33 +25,13 @@ export default function BlogPage() {
       <Breadcrumbs items={crumbs} />
       <PageHeader
         title="Blog"
-        lede="Published articles appear above. The editorial calendar below is a plan, not a set of articles, and planned titles are not separate pages."
+        lede="Practical articles on calculating freelance take-home pay, comparing marketplace fees, and planning cross-border payouts."
       />
       <div className="grid gap-4 md:grid-cols-2">
         {posts.map((article) => (
           <BlogCard key={article.path} article={article} />
         ))}
       </div>
-      <section className="grid gap-3">
-        <h2 className="text-2xl font-semibold">Editorial calendar</h2>
-        <ul className="surface divide-y divide-line overflow-hidden rounded-3xl">
-          {editorialCalendar.map((idea) => (
-            <li key={idea.href ?? idea.title} className="flex flex-col gap-1 px-5 py-4 sm:flex-row sm:items-center sm:justify-between">
-              <div>
-                <p className="font-medium">{idea.title}</p>
-                <p className="text-sm text-muted">{idea.intent}</p>
-              </div>
-              {idea.href ? (
-                <Link href={idea.href} className="text-sm font-semibold text-brand">
-                  {idea.status === "published" ? "Read article" : "Read the guide"}
-                </Link>
-              ) : (
-                <span className="text-sm font-semibold text-muted">Planned, not published</span>
-              )}
-            </li>
-          ))}
-        </ul>
-      </section>
     </div>
   );
 }

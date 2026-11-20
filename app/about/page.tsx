@@ -147,8 +147,8 @@ export default function AboutPage() {
             <h2 className="text-xl font-semibold tracking-[-0.02em]">Editorial standards</h2>
             <p className="mt-4 text-sm leading-6 text-navy-2">
               Pages name their sources, their review date, and the assumptions in the arithmetic.
-              Rates are not invented when a source does not publish them. Planned articles stay on the
-              editorial calendar until they are actually written.
+              Rates are not invented when a source does not publish them. Articles are only listed on
+              the public site once they are researched, reviewed, and published in full.
             </p>
             <div className="mt-5 flex flex-wrap gap-3">
               <Link href="/editorial-policy" className="cta-gradient inline-flex rounded-xl px-4 py-2.5 text-sm font-semibold text-white">

@@ -39,8 +39,8 @@ export default function EditorialPolicyPage() {
         <InfoCard title="What we will not do">
           <p>
             We do not invent expert biographies, testimonials, review scores, keyword volumes, or
-            live exchange rates. We do not publish a thin page just to match a keyword. Planned
-            articles stay on the blog calendar until they have their own sources and examples.
+            live exchange rates. We do not publish a thin page just to match a keyword. Articles are
+            only published after they have their own primary sources and worked examples.
           </p>
         </InfoCard>
         <InfoCard title="Review and updates">
