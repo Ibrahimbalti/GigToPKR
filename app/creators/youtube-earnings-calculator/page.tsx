@@ -20,7 +20,6 @@ const description =
   "Estimate YouTube revenue from your own RPM or CPM as a low, expected, and high range in USD. Includes a views check and YPP comparison. Not a payout or tax advice.";
 const crumbs = [
   { name: "Home", path: "/" },
-  { name: "Creators", path: "/creators" },
   { name: "YouTube earnings calculator", path },
 ];
 

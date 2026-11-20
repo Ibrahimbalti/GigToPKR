@@ -11,11 +11,6 @@ const staticPageMeta: Record<string, { eyebrow: string; title: string; subtitle:
     title: "Know what you keep after fees",
     subtitle: "Estimate Fiverr, Upwork, and YouTube earnings after platform and withdrawal fees.",
   },
-  "/creators": {
-    eyebrow: "Creator Tools",
-    title: "Creator Earnings Calculators & Payout Tools",
-    subtitle: "Transparent revenue estimators for video creators and independent publishers.",
-  },
   "/creators/youtube-earnings-calculator": {
     eyebrow: "Creator Estimate",
     title: "YouTube Earnings Calculator",

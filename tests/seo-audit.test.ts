@@ -12,7 +12,6 @@ import { toolPages } from "../content/tools";
 
 const reserved = new Set([
   "/",
-  "/creators",
   "/creators/youtube-earnings-calculator",
   "/guides",
   "/tax-guide",
