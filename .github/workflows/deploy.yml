@@ -19,9 +19,11 @@ jobs:
           echo "$SSH_PRIVATE_KEY_B64" | base64 -d > ~/.ssh/deploy_key
           chmod 600 ~/.ssh/deploy_key
           ssh -o StrictHostKeyChecking=no -i ~/.ssh/deploy_key "$VPS_USER@$VPS_HOST" '
+            set -e
             export PATH=$PATH:/usr/local/bin:/usr/bin
             cd /var/www/GigToPKR
-            git pull origin main
+            git fetch origin main
+            git reset --hard origin/main
             npm ci
             npm run build
             pm2 restart realgigpay
