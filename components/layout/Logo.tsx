@@ -11,7 +11,7 @@ export function Logo({ onDark = false }: { onDark?: boolean }) {
       {/* eslint-disable-next-line @next/next/no-img-element */}
       <img
         src={onDark ? "/realgigpay-mark-on-dark.png" : "/realgigpay-mark.png"}
-        alt=""
+        alt="RealGigPay logo"
         width={1159}
         height={677}
         decoding="sync"
