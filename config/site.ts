@@ -37,7 +37,8 @@ export const site = {
   published: "2026-11-17",
   updated: "2026-11-19",
   social: {
-    x: process.env.NEXT_PUBLIC_SOCIAL_X || "",
+    x: process.env.NEXT_PUBLIC_SOCIAL_X || "https://x.com/LearnTeach12",
+    xHandle: "@LearnTeach12",
     linkedin: process.env.NEXT_PUBLIC_SOCIAL_LINKEDIN || "",
     facebook: process.env.NEXT_PUBLIC_SOCIAL_FACEBOOK || "",
   },

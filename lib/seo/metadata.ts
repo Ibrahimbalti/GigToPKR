@@ -61,6 +61,8 @@ export function buildMetadata({
     },
     twitter: {
       card: "summary_large_image",
+      site: site.social.xHandle,
+      creator: site.social.xHandle,
       title,
       description,
       images: [ogImageUrl],

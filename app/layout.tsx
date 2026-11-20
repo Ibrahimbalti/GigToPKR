@@ -53,6 +53,8 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: "summary_large_image",
+    site: site.social.xHandle,
+    creator: site.social.xHandle,
     title: "Freelancer Fee Calculator | RealGigPay",
     description: site.description,
     images: [`${absoluteUrl("/og")}?path=%2F`],
