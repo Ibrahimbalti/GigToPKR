@@ -4,7 +4,7 @@ import { ConsentSlot } from "@/components/ads/ConsentSlot";
 import { Footer } from "@/components/layout/Footer";
 import { Navbar } from "@/components/layout/Navbar";
 import { JsonLd } from "@/components/seo/JsonLd";
-import { site } from "@/config/site";
+import { absoluteUrl, site } from "@/config/site";
 import { organizationSchema, websiteSchema } from "@/lib/seo/schema";
 import "./globals.css";
 
@@ -42,6 +42,20 @@ export const metadata: Metadata = {
     siteName: site.name,
     title: "Freelancer Fee Calculator | RealGigPay",
     description: site.description,
+    images: [
+      {
+        url: `${absoluteUrl("/og")}?path=%2F`,
+        width: 1200,
+        height: 630,
+        alt: "Freelancer Fee Calculator — RealGigPay",
+      },
+    ],
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Freelancer Fee Calculator | RealGigPay",
+    description: site.description,
+    images: [`${absoluteUrl("/og")}?path=%2F`],
   },
   verification: {
     google: process.env.NEXT_PUBLIC_GSC_VERIFICATION,
