@@ -3,7 +3,7 @@ import test from "node:test";
 import { openGraphLocale, resolveSiteUrl } from "../config/site";
 import { buildMetadata } from "../lib/seo/metadata";
 import robots from "../app/robots";
-import sitemap from "../app/sitemap";
+import sitemap, { renderSitemapXml } from "../app/sitemap.xml/route";
 import { contentClusters } from "../config/content-clusters";
 import { keywordMap } from "../config/seo-keywords";
 import { editorialCalendar } from "../content/editorial-calendar";
@@ -122,6 +122,7 @@ test("every canonical is absolute and uses the site's default locale", () => {
   assert.ok(urls.every((url) => url.startsWith("https://realgigpay.com")));
   assert.equal(urls[0], "https://realgigpay.com");
   assert.equal(new Set(urls).size, urls.length);
+  assert.ok(renderSitemapXml().includes("<priority>1.0</priority>"));
   assert.equal(robots().sitemap, "https://realgigpay.com/sitemap.xml");
   assert.equal(robots().host, "https://realgigpay.com");
 });

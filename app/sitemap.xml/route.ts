@@ -6,7 +6,7 @@ import { absoluteUrl } from "@/config/site";
 export const dynamic = "force-static";
 
 const staticPages = [
-  { path: "/", updatedAt: "2026-11-17", priority: 1 },
+  { path: "/", updatedAt: "2026-11-17", priority: 1.0 },
   { path: "/guides", updatedAt: "2026-11-17", priority: 0.7 },
   { path: "/tax-guide", updatedAt: "2026-11-17", priority: 0.7 },
   { path: "/blog", updatedAt: "2026-11-17", priority: 0.6 },
@@ -38,4 +38,36 @@ export default function sitemap(): MetadataRoute.Sitemap {
     changeFrequency: page.path === "/" ? "weekly" : "monthly",
     priority: page.priority,
   }));
+}
+
+export function renderSitemapXml(): string {
+  const entries = sitemap();
+  const items = entries
+    .map((entry) => {
+      const priority = typeof entry.priority === "number" ? entry.priority.toFixed(1) : "0.5";
+      const lastMod =
+        entry.lastModified instanceof Date
+          ? entry.lastModified.toISOString().slice(0, 10)
+          : String(entry.lastModified ?? "");
+      return [
+        "<url>",
+        `<loc>${entry.url}</loc>`,
+        `<lastmod>${lastMod}</lastmod>`,
+        `<changefreq>${entry.changeFrequency ?? "monthly"}</changefreq>`,
+        `<priority>${priority}</priority>`,
+        "</url>",
+      ].join("\n");
+    })
+    .join("\n");
+
+  return `<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n${items}\n</urlset>\n`;
+}
+
+export function GET() {
+  return new Response(renderSitemapXml(), {
+    headers: {
+      "Content-Type": "application/xml; charset=utf-8",
+      "Cache-Control": "public, max-age=3600",
+    },
+  });
 }
