@@ -124,5 +124,5 @@ test("every canonical is absolute and uses the site's default locale", () => {
   assert.equal(new Set(urls).size, urls.length);
   assert.ok(renderSitemapXml().includes("<priority>1.0</priority>"));
   assert.equal(robots().sitemap, "https://realgigpay.com/sitemap.xml");
-  assert.equal(robots().host, "https://realgigpay.com");
+  assert.equal(robots().host, undefined);
 });
