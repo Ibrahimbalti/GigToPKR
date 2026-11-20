@@ -182,6 +182,7 @@ export const guides: Article[] = [
     ],
     sources: [sourceLinks.fiverrHow, sourceLinks.fiverrEarnings, sourceLinks.payoneerWithdraw],
     related: [
+      { href: "/blog/how-to-withdraw-from-fiverr-to-a-bank", label: "Step-by-step Fiverr bank withdrawal tutorial" },
       { href: "/guides/fiverr-payment-methods", label: "Fiverr payment methods" },
       { href: "/guides/payoneer-withdrawal-charges", label: "Payoneer withdrawal charges" },
       { href: "/fiverr-fee-calculator", label: "Estimate a Fiverr order" },
@@ -402,6 +403,7 @@ export const guides: Article[] = [
     sources: [sourceLinks.upworkFee, sourceLinks.upworkPricing, sourceLinks.upworkBank],
     related: [
       { href: "/upwork-fee-calculator", label: "Upwork calculator" },
+      { href: "/blog/upwork-fees-explained", label: "Practical Upwork fee walkthrough" },
       { href: "/guides/upwork-withdrawal", label: "Upwork withdrawals" },
       { href: "/blog/fiverr-vs-upwork-for-freelancers", label: "Fiverr and Upwork fee models" },
     ],
@@ -732,10 +734,10 @@ export const guides: Article[] = [
   }),
   guide({
     slug: "currency-conversion-guide",
-    title: "Currency Conversion for Freelancers",
+    title: "Reference vs. Payout Exchange Rates for Freelancers",
     description:
-      "How to compare a reference exchange rate with the rate offered by your payment provider.",
-    h1: "How should freelancers convert between currencies?",
+      "Compare central-bank and market reference exchange rates with commercial payout rates from Payoneer, Upwork, or your bank.",
+    h1: "Reference exchange rates vs. provider payout rates",
     excerpt:
       "A reference rate and a payment provider's payout rate can differ. Use the quote for your own currency pair.",
     directAnswer:
@@ -809,15 +811,15 @@ export const guides: Article[] = [
     sources: [sourceLinks.frankfurter, sourceLinks.ecb, sourceLinks.exchangeRateApi],
     related: [
       { href: "/guides/freelancer-currency-conversion", label: "Record the rate you received" },
-      { href: "/calculator", label: "Full earnings calculator" },
+      { href: "/fiverr-fee-calculator", label: "Fiverr calculator" },
     ],
   }),
   guide({
     slug: "freelancer-currency-conversion",
-    title: "Freelancer Currency Conversion",
+    title: "How to Record Freelance Currency Conversions & Implied Rates",
     description:
-      "How to record the amount sent, the exchange rate, and the destination currency received, including the gap against a reference rate.",
-    h1: "How should freelancers record currency conversion?",
+      "How to record the amount sent, the destination currency credited, and the implied exchange rate in your freelance bookkeeping.",
+    h1: "How to calculate and record your implied exchange rate",
     excerpt:
       "Store the commercial rate from the payout next to any reference rate you used for planning.",
     directAnswer:

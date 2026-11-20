@@ -1,11 +1,13 @@
 export const platforms = ["fiverr", "upwork"] as const;
 export const taxStatuses = ["filer", "nonFiler"] as const;
 export const currencies = ["USD", "EUR", "GBP", "AED"] as const;
+export const payoutCurrencies = ["PKR", "INR", "EUR", "GBP", "AED", "PHP", "BDT"] as const;
 export const withdrawalMethods = ["payoneer", "directBank", "wise", "bankTransfer"] as const;
 
 export type Platform = (typeof platforms)[number];
 export type TaxStatus = (typeof taxStatuses)[number];
 export type Currency = (typeof currencies)[number];
+export type PayoutCurrency = (typeof payoutCurrencies)[number];
 export type WithdrawalMethod = (typeof withdrawalMethods)[number];
 
 export type CalculatorInput = {
@@ -59,6 +61,9 @@ export type CrossRates = {
   EUR: number | null;
   GBP: number | null;
   AED: number | null;
+  INR?: number | null;
+  PHP?: number | null;
+  BDT?: number | null;
 };
 
 export type ExchangeRateQuote = {

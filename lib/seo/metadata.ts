@@ -46,6 +46,14 @@ export function buildMetadata({
       siteName: site.name,
       locale: pageLocale,
       type,
+      images: [
+        {
+          url: absoluteUrl("/opengraph-image"),
+          width: 1200,
+          height: 630,
+          alt: `${title} — ${site.name}`,
+        },
+      ],
       ...(type === "article"
         ? { publishedTime, modifiedTime }
         : {}),
@@ -54,6 +62,7 @@ export function buildMetadata({
       card: "summary_large_image",
       title,
       description,
+      images: [absoluteUrl("/opengraph-image")],
     },
     verification: Object.keys(verification).length ? verification : undefined,
   };

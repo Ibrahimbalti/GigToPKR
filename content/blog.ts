@@ -372,7 +372,7 @@ export const posts: Article[] = [
   post({
     slug: "upwork-fees-explained",
     publishedAt: "2026-11-19",
-    title: "Upwork Fees Explained",
+    title: "Upwork Service Fee & Payout Costs Explained",
     description:
       "Upwork shows a service fee for each contract. Separate that fee from withdrawal and currency-conversion costs.",
     h1: "How do Upwork fees work?",

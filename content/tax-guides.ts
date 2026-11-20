@@ -297,7 +297,7 @@ export const taxGuides: Article[] = [
     related: [
       { href: "/guides/freelancer-currency-conversion", label: "Record the implied rate" },
       { href: "/tax-guide/freelancer-tax", label: "Tax overview" },
-      { href: "/calculator", label: "Create a working-paper estimate" },
+      { href: "/freelancer-tax-calculator", label: "Freelancer tax calculator" },
     ],
   }),
 ];

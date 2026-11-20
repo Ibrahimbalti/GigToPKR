@@ -28,6 +28,9 @@ function readRateMap(payload: unknown): Record<string, number | null> | null {
     EUR: readPositiveRate((rates as Record<string, unknown>).EUR),
     GBP: readPositiveRate((rates as Record<string, unknown>).GBP),
     AED: readPositiveRate((rates as Record<string, unknown>).AED),
+    INR: readPositiveRate((rates as Record<string, unknown>).INR),
+    PHP: readPositiveRate((rates as Record<string, unknown>).PHP),
+    BDT: readPositiveRate((rates as Record<string, unknown>).BDT),
   };
 }
 
@@ -36,7 +39,11 @@ export function readOpenErApiCrosses(payload: unknown): CrossRates | null {
   if ((payload as { result?: unknown }).result !== "success") return null;
   const rates = readRateMap(payload);
   if (!rates) return null;
-  return { EUR: rates.EUR, GBP: rates.GBP, AED: rates.AED };
+  const base: CrossRates = { EUR: rates.EUR, GBP: rates.GBP, AED: rates.AED };
+  if (rates.INR !== null) base.INR = rates.INR;
+  if (rates.PHP !== null) base.PHP = rates.PHP;
+  if (rates.BDT !== null) base.BDT = rates.BDT;
+  return base;
 }
 
 export function readOpenErApiPkr(payload: unknown): {
@@ -84,7 +91,7 @@ async function request(url: string, fetchImpl: typeof fetch): Promise<Response |
   }
 }
 
-const SUCCESS_TTL_MS = 30 * 60 * 1000;
+const SUCCESS_TTL_MS = 6 * 60 * 60 * 1000;
 const FAILURE_TTL_MS = 60 * 1000;
 let memory: { at: number; quote: ExchangeRateQuote } | null = null;
 let lastGood: ExchangeRateQuote | null = null;
@@ -138,6 +145,9 @@ export async function getUsdToPkrQuote(
     EUR: frankfurterRates?.EUR ?? null,
     GBP: frankfurterRates?.GBP ?? null,
     AED: null,
+    INR: frankfurterRates?.INR ?? null,
+    PHP: frankfurterRates?.PHP ?? null,
+    BDT: null,
   };
 
   if (frankfurterRate) {
@@ -164,6 +174,9 @@ export async function getUsdToPkrQuote(
     EUR: frankfurterCrosses.EUR ?? secondaryCrosses?.EUR ?? null,
     GBP: frankfurterCrosses.GBP ?? secondaryCrosses?.GBP ?? null,
     AED: secondaryCrosses?.AED ?? null,
+    INR: frankfurterCrosses.INR ?? secondaryCrosses?.INR ?? null,
+    PHP: frankfurterCrosses.PHP ?? secondaryCrosses?.PHP ?? null,
+    BDT: secondaryCrosses?.BDT ?? null,
   };
 
   if (secondary) {

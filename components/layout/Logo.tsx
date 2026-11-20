@@ -8,6 +8,7 @@ export function Logo({ onDark = false }: { onDark?: boolean }) {
       aria-label="RealGigPay"
       className={`inline-flex h-10 items-center gap-2 ${onDark ? "text-white" : "text-ink"}`}
     >
+      {/* eslint-disable-next-line @next/next/no-img-element */}
       <img
         src={onDark ? "/realgigpay-mark-on-dark.png" : "/realgigpay-mark.png"}
         alt=""

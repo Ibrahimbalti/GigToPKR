@@ -25,10 +25,12 @@ const BreakdownChart = dynamic(() => import("@/components/calculator/BreakdownCh
 export function EarningsBreakdown({
   result,
   presentation = "pkr",
+  payoutCurrency = "PKR",
 }: {
   result: CalculatorResult | null;
   /** `order` keeps the result in the order currency. `local` uses the rate the visitor typed. */
   presentation?: "pkr" | "order" | "local";
+  payoutCurrency?: string;
 }) {
   if (!result) {
     return (
@@ -92,9 +94,9 @@ export function EarningsBreakdown({
     }
   } else if (presentation === "local") {
     const local = (amount: number) =>
-      amount.toLocaleString("en-US", { minimumFractionDigits: 2, maximumFractionDigits: 2 });
+      `${payoutCurrency} ${amount.toLocaleString("en-US", { minimumFractionDigits: 2, maximumFractionDigits: 2 })}`;
     rows.push(
-      ["Your rate", `Units of your currency for 1 ${result.currency}.`, String(result.usdToPkrRate), "neutral"],
+      [`${result.currency} to ${payoutCurrency} rate`, `Units of ${payoutCurrency} for 1 ${result.currency}.`, String(result.usdToPkrRate), "neutral"],
       ["Converted amount", "Net amount multiplied by your rate.", local(result.convertedPkr), "neutral"],
       [
         "Tax set-aside",
@@ -119,7 +121,7 @@ export function EarningsBreakdown({
     presentation === "order"
       ? money(result.finalPkr)
       : presentation === "local"
-        ? result.finalPkr.toLocaleString("en-US", { minimumFractionDigits: 2, maximumFractionDigits: 2 })
+        ? `${payoutCurrency} ${result.finalPkr.toLocaleString("en-US", { minimumFractionDigits: 2, maximumFractionDigits: 2 })}`
         : formatPkr(result.finalPkr);
 
   return (

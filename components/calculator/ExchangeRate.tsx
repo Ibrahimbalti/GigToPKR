@@ -38,55 +38,84 @@ export function ExchangeRateField({
   manual,
   error,
   currency = "USD",
+  payoutCurrency = "PKR",
   optional = false,
+  onUseLiveRate,
 }: {
   value: string;
   onChange: (value: string) => void;
   manual: boolean;
   error?: string;
   currency?: string;
-  /** User-typed local rate. No country reference rate is filled in. */
+  payoutCurrency?: string;
+  /** User-typed or live reference local rate. Leave blank to skip conversion. */
   optional?: boolean;
+  onUseLiveRate?: () => void;
 }) {
   const { quote, retry } = useExchangeRate();
-  const isLoading = !optional && !manual && quote.status === "loading";
-  const status = optional ? (value.trim() ? "Your rate" : "Optional") : manual ? "Manual rate" : quote.rate ? "Reference rate" : "Rate needed";
+  const isLoading = !manual && quote.status === "loading";
+  const hasLiveRate = Boolean(quote.rate || quote.crosses);
+  const status = manual
+    ? "Manual override"
+    : value.trim() && hasLiveRate
+      ? quote.stale
+        ? "Cached rate"
+        : "Live reference rate"
+      : optional
+        ? "Optional"
+        : "Rate needed";
 
   return (
     <div className="grid gap-2">
-      <div className="flex items-end justify-between gap-3">
+      <div className="flex flex-wrap items-end justify-between gap-2">
         <label htmlFor="usd-pkr-rate" className="text-sm font-medium text-ink">
-          {optional ? `Your currency per 1 ${currency}` : `${currency} to PKR rate`}
+          {`${currency} to ${payoutCurrency} rate`}
         </label>
-        {isLoading ? (
-          <Skeleton variant="rect" className="h-6 w-28 !rounded-full" />
-        ) : (
-          <span className="rounded-full bg-slate-100 px-2.5 py-1 text-xs font-semibold text-navy-2">
-            {status}
-          </span>
-        )}
+        <div className="flex items-center gap-2">
+          {quote.retrievedAt ? (
+            <span className="text-xs text-muted">
+              Updated {formatTimestamp(quote.retrievedAt)}
+            </span>
+          ) : null}
+          {isLoading ? (
+            <Skeleton variant="rect" className="h-6 w-28 !rounded-full" />
+          ) : (
+            <span className="rounded-full bg-slate-100 px-2.5 py-1 text-xs font-semibold text-navy-2">
+              {status}
+            </span>
+          )}
+        </div>
       </div>
       <div className="flex gap-2">
         <input
           id="usd-pkr-rate"
           inputMode="decimal"
           autoComplete="off"
-          placeholder={optional ? "Leave blank to skip" : "Enter a rate"}
+          placeholder={optional ? "Auto-filled or leave blank to skip" : "Enter a rate"}
           value={value}
           aria-invalid={error ? true : undefined}
           aria-describedby="rate-help"
           onChange={(event) => onChange(event.target.value.replace(/-/g, ""))}
           className="field tabular"
         />
-        {optional ? null : (
-        <button
-          type="button"
-          onClick={retry}
-          className="inline-flex h-[3.25rem] items-center gap-2 rounded-[0.9rem] border border-line bg-white px-3 text-sm font-semibold text-navy shadow-[var(--shadow)] hover:border-brand/30"
-        >
-          <RefreshCw aria-hidden className="size-4" />
-          Retry
-        </button>
+        {manual && onUseLiveRate ? (
+          <button
+            type="button"
+            onClick={onUseLiveRate}
+            className="inline-flex h-[3.25rem] items-center gap-2 whitespace-nowrap rounded-[0.9rem] border border-line bg-white px-3 text-sm font-semibold text-navy shadow-[var(--shadow)] hover:border-brand/30"
+          >
+            <RefreshCw aria-hidden className="size-4" />
+            Use live rate
+          </button>
+        ) : (
+          <button
+            type="button"
+            onClick={retry}
+            className="inline-flex h-[3.25rem] items-center gap-2 rounded-[0.9rem] border border-line bg-white px-3 text-sm font-semibold text-navy shadow-[var(--shadow)] hover:border-brand/30"
+          >
+            <RefreshCw aria-hidden className="size-4" />
+            Retry
+          </button>
         )}
       </div>
       <div id="rate-help" className="grid gap-1 text-sm text-muted">
@@ -95,18 +124,18 @@ export function ExchangeRateField({
             <span className="sr-only">Looking up a reference rate. Frankfurter is checked first.</span>
             <Skeleton variant="text" className="h-5 w-full max-w-md" />
           </p>
-        ) : optional ? (
-          <p>Optional. Leave this blank to keep the result in {currency}. A typed rate is your figure, not a bank quote.</p>
         ) : (
           <p>
-            <span className="font-semibold text-ink">Rates last updated: </span>
+            <span className="font-semibold text-ink">Updated: </span>
             {quote.retrievedAt ? formatTimestamp(quote.retrievedAt) : "unavailable"}
-            {quote.stale ? " (last successful quote — the live lookup failed)" : ""}
-            {quote.retrievedAt ? `. ${quote.sourceLabel}.` : ". Type the rate from your bank or Payoneer. No guessed rate is filled in."}
+            {quote.stale ? " (cached fallback — live refresh failed)" : ""}
+            {quote.retrievedAt
+              ? ` via ${quote.sourceLabel}. Override this rate anytime to match your bank or Payoneer spread.`
+              : ". Type the rate from your bank or Payoneer. No guessed rate is filled in."}
           </p>
         )}
-        {!optional && quote.warning ? <p>{quote.warning}</p> : null}
-        {!optional && quote.error ? (
+        {quote.warning ? <p>{quote.warning}</p> : null}
+        {quote.error ? (
           <p className="font-medium text-danger-ink" role="alert">
             {quote.error}
           </p>

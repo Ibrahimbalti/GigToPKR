@@ -24,7 +24,7 @@ const pathSteps = [
   { step: "01", title: "Order amount", text: "The USD price of the job, before any fee." },
   { step: "02", title: "Marketplace fee", text: "Fiverr or Upwork, shown on its own line." },
   { step: "03", title: "Withdrawal", text: "A 2% assumption on the balance after the platform fee." },
-  { step: "04", title: "Rupees and tax", text: "A reference rate, then an illustrative tax line." },
+  { step: "04", title: "Local currency and tax", text: "Your exchange rate, then an illustrative tax line." },
 ];
 
 const assumptions = [
@@ -176,8 +176,11 @@ export default function AboutPage() {
             The calculator uses the lines on this page. It is not a bank quote or a tax assessment.
           </p>
           <div className="relative mt-6 flex flex-wrap gap-3">
-            <Link href="/calculator" className="inline-flex rounded-xl bg-white px-5 py-3 text-sm font-semibold text-navy">
-              Open the calculator
+            <Link href="/fiverr-fee-calculator" className="inline-flex rounded-xl bg-white px-5 py-3 text-sm font-semibold text-navy">
+              Open Fiverr calculator
+            </Link>
+            <Link href="/upwork-fee-calculator" className="inline-flex rounded-xl border border-white/40 px-5 py-3 text-sm font-semibold text-white">
+              Open Upwork calculator
             </Link>
             <Link href="/guides" className="inline-flex rounded-xl border border-white/40 px-5 py-3 text-sm font-semibold text-white">
               Read the guides

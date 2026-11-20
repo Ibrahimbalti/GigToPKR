@@ -36,7 +36,7 @@ export default function HomePage() {
             Choose a calculator
           </h2>
           <p className="mt-2 text-sm leading-6 text-muted">
-            Fiverr, Upwork, and YouTube each have their own calculator. Open the one you want to estimate.
+            Choose a platform calculator or explore a full earnings, withdrawal, income, or tax estimate.
           </p>
         </div>
         <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-3">
@@ -55,6 +55,30 @@ export default function HomePage() {
               Fee shortcuts are 0%, 5%, 10%, and 15%. It opens at 10%. There is no Fiverr option on that page.
             </p>
             <span className="mt-4 inline-flex text-sm font-semibold text-brand">Calculate Upwork earnings</span>
+          </Link>
+          <Link href="/payoneer-fee-calculator" className="surface lift rounded-3xl p-6">
+            <p className="text-xs font-semibold uppercase tracking-[0.12em] text-muted">Withdrawal estimate</p>
+            <h3 className="mt-2 text-xl font-semibold tracking-[-0.02em]">Payoneer fee calculator</h3>
+            <p className="mt-2 text-sm leading-6 text-muted">
+              See how a withdrawal percentage changes earnings after the platform fee, then compare it with your account quote.
+            </p>
+            <span className="mt-4 inline-flex text-sm font-semibold text-brand">Estimate a withdrawal</span>
+          </Link>
+          <Link href="/freelancer-income-calculator" className="surface lift rounded-3xl p-6">
+            <p className="text-xs font-semibold uppercase tracking-[0.12em] text-muted">Monthly projection</p>
+            <h3 className="mt-2 text-xl font-semibold tracking-[-0.02em]">Freelancer income calculator</h3>
+            <p className="mt-2 text-sm leading-6 text-muted">
+              Project a month by multiplying one order estimate across a number of similar orders.
+            </p>
+            <span className="mt-4 inline-flex text-sm font-semibold text-brand">Project monthly income</span>
+          </Link>
+          <Link href="/freelancer-tax-calculator" className="surface lift rounded-3xl p-6">
+            <p className="text-xs font-semibold uppercase tracking-[0.12em] text-muted">Illustrative only</p>
+            <h3 className="mt-2 text-xl font-semibold tracking-[-0.02em]">Freelancer tax estimate</h3>
+            <p className="mt-2 text-sm leading-6 text-muted">
+              Compare example tax percentages after fees and conversion. The result is not a tax assessment.
+            </p>
+            <span className="mt-4 inline-flex text-sm font-semibold text-brand">Compare tax assumptions</span>
           </Link>
           <Link href="/creators/youtube-earnings-calculator" className="surface lift rounded-3xl p-6">
             <p className="text-xs font-semibold uppercase tracking-[0.12em] text-muted">YouTube only</p>

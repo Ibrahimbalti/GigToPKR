@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useRef, useState } from "react";
+import { useRef, useState } from "react";
 import { ExchangeRateField } from "@/components/calculator/ExchangeRate";
 import { useExchangeRate } from "@/components/calculator/ExchangeRateProvider";
 import { EarningsBreakdown } from "@/components/calculator/EarningsBreakdown";
@@ -12,6 +12,7 @@ import {
   DEFAULT_PLATFORM_FEE_PERCENT,
   DEFAULT_TAX_PERCENT,
   DIRECT_BANK_FEE_USD,
+  PAYOUT_CURRENCY_LABELS,
   UPWORK_FEE_PERCENTS,
   WITHDRAWAL_METHODS,
 } from "@/lib/constants";
@@ -19,10 +20,10 @@ import { trackEvent } from "@/lib/analytics";
 import { formatPkr, formatRateInput } from "@/lib/money";
 import { prepareCalculation } from "@/lib/prepare-calculation";
 import { projectMonthly } from "@/lib/calculator";
-import { pkrPerOrderUnitInput, unitsPerUsd } from "@/lib/quote-math";
+import { payoutPerOrderUnitInput, unitsPerUsd } from "@/lib/quote-math";
 import { queryToShare, sharePath, type CalculatorShare } from "@/lib/share-result";
 import { cn } from "@/lib/utils";
-import type { Currency, Platform, TaxStatus, WithdrawalMethod } from "@/types/calculator";
+import type { Currency, PayoutCurrency, Platform, TaxStatus, WithdrawalMethod } from "@/types/calculator";
 
 const platforms: { id: Platform; name: string; note: string }[] = [
   { id: "fiverr", name: "Fiverr", note: "Freelancers earn 80% on the published earnings page. 20% is the default." },
@@ -42,63 +43,43 @@ export function Calculator({
   lockedPlatform?: Platform;
 }) {
   const { quote } = useExchangeRate();
-  const [amount, setAmount] = useState("");
-  const [target, setTarget] = useState("");
-  const [reverse, setReverse] = useState(false);
-  const [currency, setCurrency] = useState<Currency>("USD");
-  const [platform, setPlatform] = useState<Platform>(lockedPlatform ?? defaultPlatform);
-  const [platformFee, setPlatformFee] = useState(DEFAULT_PLATFORM_FEE_PERCENT[lockedPlatform ?? defaultPlatform]);
-  const [withdrawalFee, setWithdrawalFee] = useState("2");
+  const [initialShare] = useState<Partial<CalculatorShare> | null>(() =>
+    typeof window !== "undefined" ? queryToShare(window.location.search) : null,
+  );
+  const initialPlatform: Platform =
+    lockedPlatform ?? initialShare?.platform ?? defaultPlatform;
+  const [amount, setAmount] = useState(() => initialShare?.amount ?? "");
+  const [target, setTarget] = useState(() => initialShare?.target ?? "");
+  const [reverse, setReverse] = useState(() => Boolean(initialShare?.reverse));
+  const [currency, setCurrency] = useState<Currency>(() => initialShare?.currency ?? "USD");
+  const [platform, setPlatform] = useState<Platform>(() => initialPlatform);
+  const [platformFee, setPlatformFee] = useState(
+    () => initialShare?.platformFee ?? DEFAULT_PLATFORM_FEE_PERCENT[initialPlatform],
+  );
+  const [withdrawalFee, setWithdrawalFee] = useState(() => initialShare?.withdrawalFee ?? "2");
   const [taxStatus, setTaxStatus] = useState<TaxStatus>(defaultTax);
-  const [taxFee, setTaxFee] = useState(lockedPlatform ? "0" : DEFAULT_TAX_PERCENT[defaultTax]);
-  const [method, setMethod] = useState<WithdrawalMethod>("payoneer");
-  const [early, setEarly] = useState(false);
-  const [earlyFee, setEarlyFee] = useState("0");
-  const [bankFee, setBankFee] = useState(false);
-  const [flatFee, setFlatFee] = useState(String(DIRECT_BANK_FEE_USD));
-  const [hourly, setHourly] = useState(false);
-  const [hourlyRate, setHourlyRate] = useState("");
-  const [hours, setHours] = useState("");
+  const [taxFee, setTaxFee] = useState(
+    () => initialShare?.taxFee ?? (lockedPlatform ? "0" : DEFAULT_TAX_PERCENT[defaultTax]),
+  );
+  const [method, setMethod] = useState<WithdrawalMethod>(() => initialShare?.method ?? "payoneer");
+  const [early, setEarly] = useState(() => Boolean(initialShare?.early));
+  const [earlyFee, setEarlyFee] = useState(() => (initialShare?.early ? (initialShare.earlyFee ?? "0") : "0"));
+  const [bankFee, setBankFee] = useState(() => Boolean(initialShare?.bankFee));
+  const [flatFee, setFlatFee] = useState(
+    () => (initialShare?.bankFee ? (initialShare.flatFee ?? String(DIRECT_BANK_FEE_USD)) : String(DIRECT_BANK_FEE_USD)),
+  );
+  const [hourly, setHourly] = useState(() => Boolean(initialShare?.hourly));
+  const [hourlyRate, setHourlyRate] = useState(() => (initialShare?.hourly ? (initialShare.hourlyRate ?? "") : ""));
+  const [hours, setHours] = useState(() => (initialShare?.hourly ? (initialShare.hours ?? "") : ""));
   const [orders, setOrders] = useState("1");
-  const [manualRate, setManualRate] = useState<string | null>(null);
+  const [payoutCurrency, setPayoutCurrency] = useState<PayoutCurrency>("PKR");
+  const [manualRate, setManualRate] = useState<string | null>(() => initialShare?.rate ?? null);
   const started = useRef(false);
   const resultRef = useRef<HTMLDivElement>(null);
-  const suggestedRate = lockedPlatform ? "" : pkrPerOrderUnitInput(currency, quote);
+  const suggestedRate = payoutPerOrderUnitInput(currency, payoutCurrency, quote);
   const rateInput = manualRate ?? suggestedRate;
   const manual = manualRate !== null;
   const converting = !lockedPlatform || rateInput.trim().length > 0;
-
-  useEffect(() => {
-    const shared = queryToShare(window.location.search);
-    if (!shared) return;
-    if (shared.amount !== undefined) setAmount(shared.amount);
-    if (shared.target !== undefined) setTarget(shared.target);
-    if (shared.reverse) setReverse(true);
-    if (shared.currency) setCurrency(shared.currency);
-    if (!lockedPlatform && shared.platform) {
-      setPlatform(shared.platform);
-      setPlatformFee(shared.platformFee ?? DEFAULT_PLATFORM_FEE_PERCENT[shared.platform]);
-    } else if (shared.platformFee) {
-      setPlatformFee(shared.platformFee);
-    }
-    if (shared.withdrawalFee) setWithdrawalFee(shared.withdrawalFee);
-    if (shared.taxFee) setTaxFee(shared.taxFee);
-    if (shared.method) setMethod(shared.method);
-    if (shared.early) {
-      setEarly(true);
-      setEarlyFee(shared.earlyFee ?? "0");
-    }
-    if (shared.bankFee) {
-      setBankFee(true);
-      setFlatFee(shared.flatFee ?? String(DIRECT_BANK_FEE_USD));
-    }
-    if (shared.hourly) {
-      setHourly(true);
-      setHourlyRate(shared.hourlyRate ?? "");
-      setHours(shared.hours ?? "");
-    }
-    if (shared.rate) setManualRate(shared.rate);
-  }, []);
 
   const prepared = prepareCalculation({
     amount,
@@ -179,6 +160,7 @@ export function Calculator({
     setHourlyRate("");
     setHours("");
     setOrders("1");
+    setPayoutCurrency("PKR");
     setManualRate(null);
   }
 
@@ -408,9 +390,11 @@ export function Calculator({
           name="withdrawalMethod"
           value={method}
           hint={
-            lockedPlatform === "upwork"
-              ? "Payoneer defaults to 2%. Direct to local bank is $0.99 per withdrawal and assumes this order is the whole withdrawal. Company accounts in local currency may not be accepted."
-              : "Payoneer defaults to 2%. Real Payoneer bank fees are often about 1.2% to 4%. Type the percentage on your confirmation screen."
+            method === "wise"
+              ? "Wise charges no fixed receiving fee, but typically applies ~0.4%–1% currency conversion fee depending on corridor — adjust if converting to local currency."
+              : lockedPlatform === "upwork"
+                ? "Payoneer defaults to 2%. Direct to local bank is $0.99 per withdrawal and assumes this order is the whole withdrawal. Company accounts in local currency may not be accepted."
+                : "Payoneer defaults to 2%. Real Payoneer bank fees are often about 1.2% to 4%. Type the percentage on your confirmation screen."
           }
           options={WITHDRAWAL_METHODS.filter((item) => lockedPlatform !== "fiverr" || item.id !== "directBank").map((item) => ({
             value: item.id,
@@ -428,7 +412,11 @@ export function Calculator({
           name="withdrawalFee"
           inputMode="decimal"
           value={withdrawalFee}
-          hint="Applied after the platform fee. Type the percentage on your confirmation screen."
+          hint={
+            method === "wise"
+              ? "Wise defaults to 0% for same-currency receiving, or enter ~0.4%–1% if converting to local currency."
+              : "Applied after the platform fee. Type the percentage on your confirmation screen."
+          }
           onChange={(event) => setWithdrawalFee(event.target.value.replace(/-/g, ""))}
         />
         )}
@@ -525,8 +513,24 @@ export function Calculator({
             onChange={(event) => setTaxFee(event.target.value.replace(/-/g, ""))}
           />
         </fieldset>
+        <Select
+          label="Payout currency"
+          name="payoutCurrency"
+          value={payoutCurrency}
+          options={(Object.keys(PAYOUT_CURRENCY_LABELS) as PayoutCurrency[]).map((code) => ({
+            value: code,
+            label: `${code} — ${PAYOUT_CURRENCY_LABELS[code]}`,
+          }))}
+          hint="Auto-fills the live reference rate for your selected payout currency. You can override the rate below."
+          onChange={(event) => {
+            markStarted();
+            setPayoutCurrency(event.target.value as PayoutCurrency);
+            setManualRate(null);
+          }}
+        />
         <ExchangeRateField
           currency={currency}
+          payoutCurrency={payoutCurrency}
           value={rateInput}
           manual={manual}
           optional={Boolean(lockedPlatform)}
@@ -535,6 +539,7 @@ export function Calculator({
             markStarted();
             setManualRate(value);
           }}
+          onUseLiveRate={() => setManualRate(null)}
         />
         {!lockedPlatform && !manual && !suggestedRate && quote.status !== "loading" ? (
           <p className="text-sm text-muted">
@@ -583,7 +588,17 @@ export function Calculator({
         ) : null}
       </div>
       <div ref={resultRef} tabIndex={-1} className="grid min-w-0 gap-4 outline-none">
-        <EarningsBreakdown result={result} presentation={lockedPlatform ? (converting ? "local" : "order") : "pkr"} />
+        <EarningsBreakdown
+          result={result}
+          presentation={
+            !converting
+              ? "order"
+              : payoutCurrency === "PKR"
+                ? "pkr"
+                : "local"
+          }
+          payoutCurrency={payoutCurrency}
+        />
         <ResultActions result={result} onReset={reset} shareHref={shareHref} />
       </div>
     </form>

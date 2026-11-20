@@ -1,3 +1,4 @@
+import { site } from "@/config/site";
 import { contactSchema } from "@/lib/validation";
 
 const hits = new Map<string, { count: number; reset: number }>();
@@ -39,25 +40,24 @@ export async function POST(request: Request) {
     return Response.json({ ok: true });
   }
 
-  const webhook = process.env.CONTACT_WEBHOOK_URL;
-  if (!webhook) {
-    return Response.json(
-      {
-        ok: false,
-        error:
-          "Email delivery is not connected yet. Set CONTACT_WEBHOOK_URL to an endpoint you control. This message was not stored.",
-      },
-      { status: 503 },
-    );
-  }
+  const recipient = process.env.NEXT_PUBLIC_CONTACT_EMAIL || site.contactEmail || "ibrahimraju347@gmail.com";
+  const webhook =
+    process.env.CONTACT_WEBHOOK_URL || `https://formsubmit.co/ajax/${encodeURIComponent(recipient)}`;
 
   try {
     const response = await fetch(webhook, {
       method: "POST",
-      headers: { "content-type": "application/json" },
+      headers: {
+        "content-type": "application/json",
+        accept: "application/json",
+        origin: site.url,
+        referer: `${site.url}/contact`,
+      },
       body: JSON.stringify({
         name: parsed.data.name,
         email: parsed.data.email,
+        _replyto: parsed.data.email,
+        _subject: `[RealGigPay Contact] ${parsed.data.topic} — from ${parsed.data.name}`,
         topic: parsed.data.topic,
         message: parsed.data.message,
         source: "realgigpay-contact",

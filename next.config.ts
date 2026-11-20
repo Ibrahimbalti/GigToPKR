@@ -2,14 +2,12 @@ import type { NextConfig } from "next";
 
 const nextConfig: NextConfig = {
   poweredByHeader: false,
-  typescript: {
-    ignoreBuildErrors: true,
-  },
   experimental: {
     optimizePackageImports: ["lucide-react"],
   },
   async redirects() {
     return [
+      { source: "/calculator", destination: "/fiverr-fee-calculator", permanent: true },
       { source: "/fiverr-fee-calculator-pakistan", destination: "/fiverr-fee-calculator", permanent: true },
       { source: "/upwork-fee-calculator-pakistan", destination: "/upwork-fee-calculator", permanent: true },
     ];

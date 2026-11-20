@@ -44,22 +44,22 @@ export default function PrivacyPage() {
         </InfoCard>
         <InfoCard title="Contact messages">
           <p>
-            If you submit the contact form, the server receives your name, email, topic, and message.
-            It forwards them only when CONTACT_WEBHOOK_URL is set. Otherwise it returns an error and
-            does not keep the message. A hidden field is used to ignore automated submissions. The
-            route also limits repeat posts from the same IP address. Do not include account passwords
-            or identity-document numbers.
+            If you submit the contact form, our server receives your name, email address, topic, and
+            message and forwards them to our editorial inbox so we can review and respond. A hidden
+            honeypot field is used to ignore automated spam submissions, and the route limits repeat
+            posts from the same IP address. Do not include account passwords or identity-document
+            numbers.
           </p>
         </InfoCard>
         <InfoCard title="Cookies, analytics, and advertising">
           <p>
-            A consent choice is stored in localStorage under realgigpay-consent when analytics or
-            AdSense environment variables are present. Until you allow it, the Google Analytics and
-            AdSense scripts are not added. If you allow analytics, Google Analytics 4 receives page
-            views and the calculator events described in the README, with IP anonymization requested.
-            If you allow ads and an AdSense client ID is configured, Google may set advertising
-            cookies under its own policy. If those environment variables are empty, the banner and
-            the scripts are absent.
+            A consent choice is stored in your browser&apos;s localStorage under{" "}
+            <code>realgigpay-consent</code>. Until you allow it, Google Analytics and Google AdSense
+            scripts stay off. If you allow analytics, Google Analytics 4 receives page views and
+            anonymous calculator interaction events (such as starting or completing a calculation,
+            selecting a platform, copying a result, or downloading a PDF), with IP anonymization
+            enabled. If you allow ads, Google AdSense may use cookies to serve relevant
+            advertisements under Google&apos;s privacy policy.
           </p>
         </InfoCard>
         <InfoCard title="Third parties">

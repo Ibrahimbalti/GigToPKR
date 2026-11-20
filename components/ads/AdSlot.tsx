@@ -1,3 +1,5 @@
+import { AdSenseUnit } from "@/components/ads/AdSenseUnit";
+
 export function AdSlot({
   placement,
 }: {
@@ -21,13 +23,7 @@ export function AdSlot({
       <div className={`flex ${minHeight} flex-col items-center justify-center rounded-2xl border border-dashed border-line bg-white text-center`}>
         <p className="text-xs font-semibold uppercase tracking-wide text-muted">Advertisement</p>
         {client && slot ? (
-          <ins
-            className="adsbygoogle mt-2 block w-full"
-            data-ad-client={client}
-            data-ad-slot={slot}
-            data-ad-format="auto"
-            data-full-width-responsive="true"
-          />
+          <AdSenseUnit client={client} slot={slot} />
         ) : (
           <p className="mt-2 max-w-md px-4 text-sm text-muted">
             Reserved advertising space. It is not a link, and no ad is loaded until a real AdSense

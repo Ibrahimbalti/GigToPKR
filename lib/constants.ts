@@ -1,4 +1,4 @@
-import type { Currency, Platform, TaxStatus, WithdrawalMethod } from "@/types/calculator";
+import type { Currency, PayoutCurrency, Platform, TaxStatus, WithdrawalMethod } from "@/types/calculator";
 
 /** Illustrative platform-fee assumptions. Confirm the live fee in your account. */
 export const PLATFORM_FEE_RATES: Record<Platform, number> = {
@@ -23,6 +23,16 @@ export const CURRENCY_LABELS: Record<Currency, string> = {
   EUR: "Euro",
   GBP: "British pound",
   AED: "UAE dirham",
+};
+
+export const PAYOUT_CURRENCY_LABELS: Record<PayoutCurrency, string> = {
+  PKR: "Pakistani rupee",
+  INR: "Indian rupee",
+  EUR: "Euro",
+  GBP: "British pound",
+  AED: "UAE dirham",
+  PHP: "Philippine peso",
+  BDT: "Bangladeshi taka",
 };
 
 export const WITHDRAWAL_METHODS: { id: WithdrawalMethod; label: string; defaultPercent: string }[] = [
@@ -63,7 +73,7 @@ export const DEFAULT_TAX_PERCENT: Record<TaxStatus, string> = {
   nonFiler: "2",
 };
 
-export const FRANKFURTER_URL = "https://api.frankfurter.app/latest?from=USD&to=PKR,EUR,GBP";
+export const FRANKFURTER_URL = "https://api.frankfurter.app/latest?from=USD&to=PKR,EUR,GBP,INR,PHP";
 export const FRANKFURTER_CURRENCIES_URL = "https://api.frankfurter.app/currencies";
 export const EXCHANGE_RATE_API_URL = "https://open.er-api.com/v6/latest/USD";
 

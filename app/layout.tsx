@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import { Geist } from "next/font/google";
+import { ConsentSlot } from "@/components/ads/ConsentSlot";
 import { Footer } from "@/components/layout/Footer";
 import { Navbar } from "@/components/layout/Navbar";
 import { JsonLd } from "@/components/seo/JsonLd";
@@ -13,6 +14,14 @@ const geistSans = Geist({
   display: "swap",
   adjustFontFallback: true,
 });
+
+const otherVerification: Record<string, string> = {};
+if (process.env.NEXT_PUBLIC_BING_VERIFICATION) {
+  otherVerification["msvalidate.01"] = process.env.NEXT_PUBLIC_BING_VERIFICATION;
+}
+if (process.env.NEXT_PUBLIC_ADSENSE_CLIENT) {
+  otherVerification["google-adsense-account"] = process.env.NEXT_PUBLIC_ADSENSE_CLIENT;
+}
 
 export const metadata: Metadata = {
   metadataBase: new URL(site.url),
@@ -36,9 +45,7 @@ export const metadata: Metadata = {
   },
   verification: {
     google: process.env.NEXT_PUBLIC_GSC_VERIFICATION,
-    other: process.env.NEXT_PUBLIC_BING_VERIFICATION
-      ? { "msvalidate.01": process.env.NEXT_PUBLIC_BING_VERIFICATION }
-      : undefined,
+    other: Object.keys(otherVerification).length > 0 ? otherVerification : undefined,
   },
 };
 
@@ -47,6 +54,7 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
     <html lang="en" className={`${geistSans.variable} h-full antialiased`}>
       <head>
         <link rel="icon" href="/favicon.ico" sizes="32x32" type="image/x-icon" />
+        <link rel="apple-touch-icon" href="/icon-192.png" sizes="192x192" />
       </head>
       <body className={`${geistSans.className} min-h-full bg-canvas text-ink`} suppressHydrationWarning>
         <a
@@ -59,6 +67,7 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
         <Navbar />
         <main id="content">{children}</main>
         <Footer />
+        <ConsentSlot />
       </body>
     </html>
   );

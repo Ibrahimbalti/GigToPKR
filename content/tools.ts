@@ -5,61 +5,6 @@ const updatedAt = "2026-11-17";
 
 export const toolPages: ToolPage[] = [
   {
-    path: "/calculator",
-    title: "Freelance Earnings Calculator",
-    description:
-      "Calculate an estimated PKR bank deposit from a USD freelance order, with every fee labeled as an assumption.",
-    h1: "Freelance earnings calculator",
-    eyebrow: "Full breakdown",
-    directAnswer:
-      "Enter the order amount, choose the Fiverr 20% or Upwork 10% assumption, choose an illustrative tax rate, and supply a USD to PKR rate. The result updates as you type. Copy it or download a one-page PDF. The PDF is a working paper, not a payout receipt.",
-    defaultPlatform: "fiverr",
-    defaultTax: "filer",
-    mode: "standard",
-    updatedAt,
-    sections: [
-      {
-        id: "sequence",
-        heading: "What the calculator does, in order",
-        level: 2,
-        blocks: [
-          {
-            type: "ol",
-            items: [
-              "Starts from the order amount, in USD, EUR, GBP, or AED.",
-              "Subtracts the platform fee in the form. Fiverr starts at 20% and Upwork starts at 10%, and both can be edited.",
-              "Subtracts the withdrawal percentage in the form. It starts at 2% for Payoneer and can be replaced. A flat $0.99 fee can be added for Upwork direct-to-bank.",
-              "Multiplies the net amount by the PKR rate in the form.",
-              "Subtracts the tax percentage you typed. The 1% and 2% buttons only fill that field. They are not statutory rates.",
-            ],
-          },
-          {
-            type: "note",
-            text: "Upwork's contract fee and a provider's withdrawal fee depend on the terms shown to you. The tax line is an illustration, not a tax assessment.",
-          },
-        ],
-      },
-    ],
-    faqs: [
-      {
-        question: "Why does the result change before I press Calculate?",
-        answer:
-          "The breakdown is tied to the inputs. Calculate moves focus to the result and records that you finished a calculation. You do not have to press it to see the numbers.",
-      },
-      {
-        question: "What does Reset clear?",
-        answer:
-          "It clears the amount and returns the platform and tax assumption to this page's defaults. A fetched reference rate stays available. A rate you typed is cleared.",
-      },
-    ],
-    sources: [sourceLinks.fiverrEarnings, sourceLinks.upworkFee, sourceLinks.payoneerPricing],
-    related: [
-      { href: "/fiverr-fee-calculator", label: "Fiverr calculator" },
-      { href: "/upwork-fee-calculator", label: "Upwork calculator" },
-      { href: "/guides/fiverr-earnings-calculation", label: "See the formula written out" },
-    ],
-  },
-  {
     path: "/fiverr-fee-calculator",
     title: "Fiverr Fee Calculator",
     description:
@@ -248,7 +193,7 @@ export const toolPages: ToolPage[] = [
     related: [
       { href: "/blog/freelancer-income-planning", label: "Plan a month with a cushion" },
       { href: "/blog/how-to-calculate-freelance-income", label: "Columns for a real month" },
-      { href: "/calculator", label: "Single-order calculator" },
+      { href: "/fiverr-fee-calculator", label: "Fiverr calculator" },
     ],
   },
   {

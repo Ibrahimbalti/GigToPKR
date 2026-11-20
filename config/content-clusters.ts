@@ -11,10 +11,9 @@ export const contentClusters: ContentCluster[] = [
     id: "calculators",
     name: "Earnings calculators",
     description: "Interactive estimates that share one calculation sequence.",
-    hub: "/calculator",
+    hub: "/fiverr-fee-calculator",
     paths: [
       "/",
-      "/calculator",
       "/fiverr-fee-calculator",
       "/upwork-fee-calculator",
       "/payoneer-fee-calculator",

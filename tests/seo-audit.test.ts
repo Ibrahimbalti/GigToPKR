@@ -89,7 +89,7 @@ test("canonical origin is the public HTTPS site", () => {
 
 test("every canonical is absolute and uses the site's default locale", () => {
   assert.equal(openGraphLocale("/"), "en_US");
-  assert.equal(openGraphLocale("/calculator"), "en_US");
+  assert.equal(openGraphLocale("/fiverr-fee-calculator"), "en_US");
   assert.equal(openGraphLocale("/tax-guide"), "en_US");
 
   const home = buildMetadata({

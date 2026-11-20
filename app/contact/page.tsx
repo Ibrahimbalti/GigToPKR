@@ -10,7 +10,7 @@ import { contactPageSchema } from "@/lib/seo/schema";
 export const metadata: Metadata = buildMetadata({
   title: "Contact the editorial desk",
   description:
-    "Ask about a calculation or send a correction. Messages are delivered only when a webhook is configured.",
+    "Ask about a calculation, report a fee update, or send a correction to the RealGigPay editorial desk.",
   path: "/contact",
 });
 
@@ -37,12 +37,13 @@ export default function ContactPage() {
             <InfoCard title="How a message is delivered">
               <p>
                 {site.contactEmail
-                  ? `You can also write to ${site.contactEmail}.`
-                  : "A public email address is not configured. Set NEXT_PUBLIC_CONTACT_EMAIL before you present an inbox as monitored."}
+                  ? `You can also email the editorial desk directly at ${site.contactEmail}.`
+                  : "Send your message through the form on this page to reach the RealGigPay editorial desk."}
               </p>
               <p>
-                The form posts to this site&apos;s server. If CONTACT_WEBHOOK_URL is empty, the server
-                refuses the message and stores nothing.
+                The form submits your inquiry securely to our editorial inbox. Please include the page
+                URL and the public source you are referencing if you are reporting a fee or formula
+                correction.
               </p>
               <p>
                 Corrections follow the{" "}

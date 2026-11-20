@@ -28,9 +28,11 @@ export const desktopNav: NavItem[] = [
 ];
 
 export const footerCalculators: NavItem[] = [
-  { href: "/", label: "Home" },
   { href: "/fiverr-fee-calculator", label: "Fiverr Calculator" },
   { href: "/upwork-fee-calculator", label: "Upwork Calculator" },
+  { href: "/payoneer-fee-calculator", label: "Payoneer Fee Calculator" },
+  { href: "/freelancer-income-calculator", label: "Freelancer Income Calculator" },
+  { href: "/freelancer-tax-calculator", label: "Freelancer Tax Calculator" },
   { href: "/creators/youtube-earnings-calculator", label: "YouTube Calculator" },
 ];
 

@@ -20,19 +20,20 @@ export function resolveSiteUrl(configured = process.env.NEXT_PUBLIC_SITE_URL ?? 
 }
 
 /** Global pages use en_US. */
-export function openGraphLocale(path = "/"): "en_US" {
+export function openGraphLocale(_path = "/"): "en_US" {
+  void _path;
   return "en_US";
 }
 
 export const site = {
   name: "RealGigPay",
-  productName: "Freelancer Fee Calculator",
+  productName: "RealGigPay",
   description:
     "Estimate what you keep from a Fiverr or Upwork order after platform and withdrawal fees. Add your own currency rate if you want a local figure. Not a bank quote or tax advice.",
   url: resolveSiteUrl(),
   locale: "en_US" as const,
   language: "en",
-  contactEmail: process.env.NEXT_PUBLIC_CONTACT_EMAIL || "",
+  contactEmail: process.env.NEXT_PUBLIC_CONTACT_EMAIL || "ibrahimraju347@gmail.com",
   published: "2026-11-17",
   updated: "2026-11-19",
   social: {

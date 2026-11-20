@@ -134,7 +134,9 @@ export function CalculatorPreview({
             <option value="wise">Wise</option>
             <option value="bankTransfer">Other bank transfer</option>
           </select>
-          <p className="text-sm leading-5 text-muted">Payoneer defaults to 2%. Real bank-withdrawal fees are often about 1.2% to 4%.</p>
+          <p className="text-sm leading-5 text-muted">
+            Payoneer defaults to 2% (typically 1.2%–4%). Wise charges no fixed receiving fee, but typically applies ~0.4%–1% currency conversion fee depending on corridor — adjust if converting to local currency.
+          </p>
         </div>
         <div className="grid gap-2">
           <label htmlFor="withdrawal-fee" className="text-sm font-medium text-ink">Withdrawal fee %</label>

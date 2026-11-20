@@ -1,9 +1,11 @@
 "use client";
 
-import { useEffect, useLayoutEffect, useRef, useState } from "react";
+import { useLayoutEffect, useRef, useSyncExternalStore } from "react";
 import { ExchangeRateProvider } from "@/components/calculator/ExchangeRateProvider";
 import { Calculator } from "@/components/calculator/Calculator";
 import type { Platform, TaxStatus } from "@/types/calculator";
+
+const emptySubscribe = () => () => {};
 
 export function CalculatorGate({
   children,
@@ -18,16 +20,23 @@ export function CalculatorGate({
   showMonthly?: boolean;
   lockedPlatform?: Platform;
 }) {
-  const [live, setLive] = useState(false);
   const scrollY = useRef(0);
   const keepFocus = useRef(false);
+  const captured = useRef(false);
 
-  useEffect(() => {
-    scrollY.current = window.scrollY;
-    const active = document.activeElement;
-    keepFocus.current = active instanceof HTMLInputElement && active.id === "order-amount";
-    setLive(true);
-  }, []);
+  const live = useSyncExternalStore(
+    emptySubscribe,
+    () => {
+      if (!captured.current && typeof window !== "undefined") {
+        captured.current = true;
+        scrollY.current = window.scrollY;
+        const active = document.activeElement;
+        keepFocus.current = active instanceof HTMLInputElement && active.id === "order-amount";
+      }
+      return true;
+    },
+    () => false,
+  );
 
   useLayoutEffect(() => {
     if (!live) return;
