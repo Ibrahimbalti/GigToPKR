@@ -53,8 +53,8 @@ export async function Hero() {
           <BadgeCheck aria-hidden className="size-4 text-brand" />
           Built for freelancers
         </p>
-        <h1 className="mt-5 max-w-[12em] text-[clamp(2.15rem,3.5vw,3.25rem)] font-semibold leading-[1.05] tracking-[-0.035em] text-ink">
-          Know what you keep after fees
+        <h1 className="mt-5 max-w-[14em] text-[clamp(2.15rem,3.5vw,3.25rem)] font-semibold leading-[1.08] tracking-[-0.035em] text-ink">
+          Fiverr &amp; Upwork Fee Calculator — Know What You Keep After Fees
         </h1>
         <p className="text-gradient mt-3 text-[clamp(1.15rem,2vw,1.5rem)] font-semibold tracking-[-0.02em]">
           Your Freelance Income, Simplified.

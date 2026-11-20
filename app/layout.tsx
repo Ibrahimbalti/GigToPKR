@@ -71,6 +71,7 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
       <head>
         <link rel="icon" href="/favicon.ico" sizes="32x32" type="image/x-icon" />
         <link rel="apple-touch-icon" href="/icon-192.png" sizes="192x192" />
+        <JsonLd data={[organizationSchema(), websiteSchema()]} />
       </head>
       <body className={`${geistSans.className} min-h-full bg-canvas text-ink`} suppressHydrationWarning>
         <a
@@ -79,7 +80,6 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
         >
           Skip to content
         </a>
-        <JsonLd data={[organizationSchema(), websiteSchema()]} />
         <Navbar />
         <main id="content">{children}</main>
         <Footer />
