@@ -8,6 +8,7 @@ const nextConfig: NextConfig = {
   async redirects() {
     return [
       { source: "/calculator", destination: "/fiverr-fee-calculator", permanent: true },
+      { source: "/youtube-earnings-calculator", destination: "/creators/youtube-earnings-calculator", permanent: true },
       { source: "/fiverr-fee-calculator-pakistan", destination: "/fiverr-fee-calculator", permanent: true },
       { source: "/upwork-fee-calculator-pakistan", destination: "/upwork-fee-calculator", permanent: true },
     ];
