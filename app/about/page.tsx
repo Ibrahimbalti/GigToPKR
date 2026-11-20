@@ -9,9 +9,9 @@ import { buildMetadata } from "@/lib/seo/metadata";
 import { aboutPageSchema, organizationSchema } from "@/lib/seo/schema";
 
 export const metadata: Metadata = buildMetadata({
-  title: "About the calculator",
+  title: "About RealGigPay — Transparent Freelance Fee Methodology",
   description:
-    "RealGigPay estimates freelance earnings from visible assumptions. It is not a bank, tax adviser, or marketplace.",
+    "How RealGigPay estimates Fiverr, Upwork, and Payoneer freelance earnings from transparent, editable fee assumptions.",
   path: "/about",
 });
 

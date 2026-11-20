@@ -8,7 +8,7 @@ import { buildMetadata } from "@/lib/seo/metadata";
 import { contactPageSchema } from "@/lib/seo/schema";
 
 export const metadata: Metadata = buildMetadata({
-  title: "Contact the editorial desk",
+  title: "Contact RealGigPay — Editorial Desk & Fee Corrections",
   description:
     "Ask about a calculation, report a fee update, or send a correction to the RealGigPay editorial desk.",
   path: "/contact",

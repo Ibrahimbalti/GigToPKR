@@ -7,9 +7,9 @@ import { articlesByKind } from "@/content/registry";
 import { buildMetadata } from "@/lib/seo/metadata";
 
 export const metadata: Metadata = buildMetadata({
-  title: "Freelance fee articles",
+  title: "Freelance Income, Fiverr & Upwork Fee Blog",
   description:
-    "Published articles on calculating freelance income, comparing Fiverr and Upwork, and planning PKR cash flow.",
+    "Published articles on calculating freelance income, comparing Fiverr and Upwork fees, and planning cross-border payouts.",
   path: "/blog",
 });
 

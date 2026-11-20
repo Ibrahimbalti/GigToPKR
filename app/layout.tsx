@@ -26,7 +26,7 @@ if (process.env.NEXT_PUBLIC_ADSENSE_CLIENT) {
 export const metadata: Metadata = {
   metadataBase: new URL(site.url),
   title: {
-    default: "Freelancer Fee Calculator | RealGigPay",
+    default: "Fiverr & Upwork Fee Calculator — Take-Home Pay | RealGigPay",
     template: "%s | RealGigPay",
   },
   description: site.description,
@@ -40,14 +40,14 @@ export const metadata: Metadata = {
     locale: "en_US",
     url: site.url,
     siteName: site.name,
-    title: "Freelancer Fee Calculator | RealGigPay",
+    title: "Fiverr & Upwork Fee Calculator — Take-Home Pay | RealGigPay",
     description: site.description,
     images: [
       {
         url: `${absoluteUrl("/og")}?path=%2F`,
         width: 1200,
         height: 630,
-        alt: "Freelancer Fee Calculator — RealGigPay",
+        alt: "Fiverr & Upwork Fee Calculator — RealGigPay",
       },
     ],
   },
@@ -55,7 +55,7 @@ export const metadata: Metadata = {
     card: "summary_large_image",
     site: site.social.xHandle,
     creator: site.social.xHandle,
-    title: "Freelancer Fee Calculator | RealGigPay",
+    title: "Fiverr & Upwork Fee Calculator — Take-Home Pay | RealGigPay",
     description: site.description,
     images: [`${absoluteUrl("/og")}?path=%2F`],
   },

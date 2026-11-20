@@ -18,7 +18,7 @@ import { faqSchema } from "@/lib/seo/schema";
 export const revalidate = 1800;
 
 export const metadata: Metadata = buildMetadata({
-  title: "Freelancer Fee Calculator",
+  title: "Fiverr & Upwork Fee Calculator — Take-Home Pay",
   description:
     "Estimate what you keep from a Fiverr or Upwork order after platform and withdrawal fees. Open the calculator for the marketplace you use.",
   path: "/",

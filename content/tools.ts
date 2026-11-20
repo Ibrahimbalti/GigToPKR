@@ -6,7 +6,7 @@ const updatedAt = "2026-11-17";
 export const toolPages: ToolPage[] = [
   {
     path: "/fiverr-fee-calculator",
-    title: "Fiverr Fee Calculator",
+    title: "Fiverr Fee & Seller Payout Calculator (20% Commission)",
     description:
       "Estimate a Fiverr order after the 20% platform assumption and a withdrawal percent you can edit. The result stays in the order currency until you add your own rate.",
     h1: "Fiverr fee calculator",
@@ -64,7 +64,7 @@ export const toolPages: ToolPage[] = [
   },
   {
     path: "/upwork-fee-calculator",
-    title: "Upwork Fee Calculator",
+    title: "Upwork Fee & Freelancer Payout Calculator (0%–15% Fee)",
     description:
       "Estimate an Upwork order with a fee inside the published 0% to 15% range. This page does not include Fiverr.",
     h1: "Upwork fee calculator",
@@ -105,7 +105,7 @@ export const toolPages: ToolPage[] = [
   },
   {
     path: "/payoneer-fee-calculator",
-    title: "Payoneer Fee Calculator",
+    title: "Payoneer Withdrawal Fee & Exchange Rate Calculator",
     description:
       "See the rupee effect of a 2% withdrawal assumption after Fiverr or Upwork fees. Compare it with the fee on your Payoneer screen.",
     h1: "Payoneer withdrawal calculator for freelancers",
@@ -151,7 +151,7 @@ export const toolPages: ToolPage[] = [
   },
   {
     path: "/freelancer-income-calculator",
-    title: "Freelancer Income Calculator",
+    title: "Monthly Freelancer Income & Take-Home Pay Calculator",
     description:
       "Project one freelance order or a month of similar orders in PKR from the same transparent assumptions.",
     h1: "Freelancer income calculator",
@@ -198,7 +198,7 @@ export const toolPages: ToolPage[] = [
   },
   {
     path: "/freelancer-tax-calculator",
-    title: "Freelancer Tax Estimate Calculator",
+    title: "Freelancer Tax Set-Aside & Net Payout Calculator",
     description:
       "Compare illustrative tax assumptions on converted freelance income. These percentages are not statutory rates or a tax assessment.",
     h1: "Freelancer tax estimate calculator",

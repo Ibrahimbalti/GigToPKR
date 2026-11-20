@@ -15,7 +15,7 @@ import { faqSchema, webApplicationSchema } from "@/lib/seo/schema";
 import type { DisplayCurrency } from "@/lib/youtubeCalc";
 
 const path = "/creators/youtube-earnings-calculator";
-const title = "YouTube earnings calculator";
+const title = "YouTube Earnings, RPM & CPM Calculator";
 const description =
   "Estimate YouTube revenue from your own RPM or CPM as a low, expected, and high range in USD. Includes a views check and YPP comparison. Not a payout or tax advice.";
 const crumbs = [
