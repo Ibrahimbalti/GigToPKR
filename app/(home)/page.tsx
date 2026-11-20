@@ -4,14 +4,16 @@ import { AdSlot } from "@/components/ads/AdSlot";
 import { ContentBlocks, SourceList } from "@/components/content/ContentBlocks";
 import { AuthorCard } from "@/components/seo/AuthorCard";
 import { BreadcrumbJsonLd } from "@/components/seo/BreadcrumbJsonLd";
+import { JsonLd } from "@/components/seo/JsonLd";
 import { Benefits } from "@/components/sections/Benefits";
 import { FAQ } from "@/components/sections/FAQ";
 import { FinalCta } from "@/components/sections/FinalCta";
 import { Hero } from "@/components/sections/Hero";
 import { HowItWorks } from "@/components/sections/HowItWorks";
 import { PlatformComparison } from "@/components/sections/PlatformComparison";
-import { homeArticle, homeSources } from "@/content/home";
+import { homeArticle, homeFaqs, homeSources } from "@/content/home";
 import { buildMetadata } from "@/lib/seo/metadata";
+import { faqSchema } from "@/lib/seo/schema";
 
 export const revalidate = 1800;
 
@@ -26,6 +28,7 @@ export default function HomePage() {
   return (
     <>
       <BreadcrumbJsonLd items={[{ name: "Home", path: "/" }]} />
+      <JsonLd data={faqSchema(homeFaqs)} />
       <Hero />
       <div className="pb-2">
         <AdSlot placement="hero" />

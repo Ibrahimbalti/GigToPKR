@@ -6,7 +6,7 @@ import { JsonLd } from "@/components/seo/JsonLd";
 import { LastUpdated } from "@/components/seo/LastUpdated";
 import { site } from "@/config/site";
 import { buildMetadata } from "@/lib/seo/metadata";
-import { aboutPageSchema } from "@/lib/seo/schema";
+import { aboutPageSchema, organizationSchema } from "@/lib/seo/schema";
 
 export const metadata: Metadata = buildMetadata({
   title: "About the calculator",
@@ -60,7 +60,7 @@ const limits = [
 export default function AboutPage() {
   return (
     <>
-      <JsonLd data={aboutPageSchema()} />
+      <JsonLd data={[aboutPageSchema(), organizationSchema()]} />
       <div className="shell grid gap-8 py-10 lg:gap-10 lg:py-14">
         <BreadcrumbJsonLd items={crumbs} />
         <Breadcrumbs items={crumbs} />

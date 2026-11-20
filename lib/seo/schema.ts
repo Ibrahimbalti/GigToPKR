@@ -3,13 +3,19 @@ import { absoluteUrl, site } from "@/config/site";
 export type Crumb = { name: string; path: string };
 
 function organization() {
+  const sameAs = [site.social.x, site.social.linkedin, site.social.facebook].filter(Boolean);
   return {
     "@type": "Organization",
+    "@id": `${site.url}/#organization`,
     name: site.name,
     url: site.url,
-    logo: absoluteUrl("/realgigpay-logo.png"),
+    logo: {
+      "@type": "ImageObject",
+      url: absoluteUrl("/realgigpay-logo.png"),
+    },
     description: site.description,
     email: site.contactEmail || undefined,
+    sameAs: sameAs.length > 0 ? sameAs : undefined,
   };
 }
 
@@ -103,16 +109,21 @@ export function articleSchema(input: {
   description: string;
   publishedAt: string;
   updatedAt: string;
-  kind: "Article" | "BlogPosting";
+  kind?: "Article" | "BlogPosting";
 }) {
   return {
     "@context": "https://schema.org",
-    "@type": input.kind,
+    "@type": "Article",
     headline: input.headline,
     description: input.description,
+    image: [`${absoluteUrl("/og")}?path=${encodeURIComponent(input.path)}`],
     datePublished: input.publishedAt,
     dateModified: input.updatedAt,
-    mainEntityOfPage: absoluteUrl(input.path),
+    inLanguage: "en-US",
+    mainEntityOfPage: {
+      "@type": "WebPage",
+      "@id": absoluteUrl(input.path),
+    },
     url: absoluteUrl(input.path),
     author: {
       "@type": "Organization",
@@ -130,6 +141,7 @@ export function aboutPageSchema() {
     name: "About RealGigPay",
     url: absoluteUrl("/about"),
     description: "What RealGigPay estimates, who it is for, and what it does not do.",
+    mainEntity: organization(),
     isPartOf: { "@type": "WebSite", name: site.name, url: site.url },
   };
 }
