@@ -23,6 +23,7 @@ export function buildMetadata({
   locale,
 }: PageMeta): Metadata {
   const url = absoluteUrl(path);
+  const ogImageUrl = `${absoluteUrl("/og")}?path=${encodeURIComponent(path)}`;
   const pageLocale = locale ?? openGraphLocale(path);
   const verification: Metadata["verification"] = {};
   if (process.env.NEXT_PUBLIC_GSC_VERIFICATION) {
@@ -48,7 +49,7 @@ export function buildMetadata({
       type,
       images: [
         {
-          url: absoluteUrl("/opengraph-image"),
+          url: ogImageUrl,
           width: 1200,
           height: 630,
           alt: `${title} — ${site.name}`,
@@ -62,7 +63,7 @@ export function buildMetadata({
       card: "summary_large_image",
       title,
       description,
-      images: [absoluteUrl("/opengraph-image")],
+      images: [ogImageUrl],
     },
     verification: Object.keys(verification).length ? verification : undefined,
   };
