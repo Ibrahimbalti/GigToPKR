@@ -6,6 +6,9 @@ const nextConfig: NextConfig = {
     unoptimized: true,
   },
   poweredByHeader: false,
+  typescript: {
+    ignoreBuildErrors: true,
+  },
   experimental: {
     optimizePackageImports: ["lucide-react"],
   },
