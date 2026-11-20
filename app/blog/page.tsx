@@ -24,7 +24,8 @@ export default function BlogPage() {
       <BreadcrumbJsonLd items={crumbs} />
       <Breadcrumbs items={crumbs} />
       <PageHeader
-        title="Blog"
+        eyebrow="Editorial"
+        title="Freelance Income, Fiverr & Upwork Fee Blog"
         lede="Practical articles on calculating freelance take-home pay, comparing marketplace fees, and planning cross-border payouts."
       />
       <div className="grid gap-4 md:grid-cols-2">

@@ -70,7 +70,7 @@ export default function AboutPage() {
             <div className="px-6 py-7 sm:px-8 sm:py-8">
               <p className="text-xs font-semibold uppercase tracking-[0.14em] text-brand">About</p>
               <h1 className="mt-2 max-w-xl text-[clamp(1.85rem,3.2vw,2.6rem)] font-semibold leading-[1.12] tracking-[-0.03em] text-ink">
-                About RealGigPay
+                About RealGigPay — Freelance Fee Calculator &amp; Methodology
               </h1>
               <p className="mt-3 max-w-xl text-base leading-7 text-muted">
                 A calculator and a set of guides for freelancers working across platforms and currencies.
