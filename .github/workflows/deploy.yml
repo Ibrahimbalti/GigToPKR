@@ -24,6 +24,7 @@ jobs:
             cd /var/www/GigToPKR
             git fetch origin main
             git reset --hard origin/main
+            git clean -fd -e .env.local -e .env
             npm ci
             npm run build
             pm2 restart realgigpay
