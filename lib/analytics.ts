@@ -17,7 +17,7 @@ declare global {
 }
 
 export function analyticsId(): string | undefined {
-  return process.env.NEXT_PUBLIC_GA_MEASUREMENT_ID || undefined;
+  return process.env.NEXT_PUBLIC_GA_MEASUREMENT_ID || "GTM-KJBMX52J";
 }
 
 export function trackEvent(
@@ -25,6 +25,6 @@ export function trackEvent(
   params?: Record<string, string | number | boolean>,
 ): void {
   if (typeof window === "undefined" || !analyticsId() || !window.gtag) return;
-  if (window.localStorage.getItem("realgigpay-consent") !== "accepted") return;
+  if (window.localStorage.getItem("realgigpay-consent") === "declined") return;
   window.gtag("event", name, params);
 }

@@ -69,6 +69,16 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
   return (
     <html lang="en" className={`${geistSans.variable} h-full antialiased`}>
       <head>
+        <script
+          async
+          src="https://www.googletagmanager.com/gtm.js?id=GTM-KJBMX52J"
+        />
+        <script
+          dangerouslySetInnerHTML={{
+            __html:
+              "window.dataLayer = window.dataLayer || []; function gtag(){dataLayer.push(arguments);} gtag('js', new Date());",
+          }}
+        />
         <link rel="icon" href="/favicon.ico" sizes="32x32" type="image/x-icon" />
         <link rel="apple-touch-icon" href="/icon-192.png" sizes="192x192" />
         <JsonLd data={[organizationSchema(), websiteSchema()]} />
