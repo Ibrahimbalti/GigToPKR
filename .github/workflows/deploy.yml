@@ -26,13 +26,36 @@ jobs:
             git reset --hard origin/main
             git clean -fd -e .env.local -e .env
             touch .env.local
-            grep -q "^NEXT_PUBLIC_SITE_URL=" .env.local || echo "NEXT_PUBLIC_SITE_URL=https://realgigpay.com" >> .env.local
-            if grep -q "^NEXT_PUBLIC_GA_MEASUREMENT_ID=" .env.local; then
-              sed -i "s/^NEXT_PUBLIC_GA_MEASUREMENT_ID=.*/NEXT_PUBLIC_GA_MEASUREMENT_ID=G-LT24F7PE93/" .env.local
-            else
-              echo "NEXT_PUBLIC_GA_MEASUREMENT_ID=G-LT24F7PE93" >> .env.local
-            fi
+            set_env() {
+              local key="$1"
+              local val="$2"
+              if grep -q "^${key}=" .env.local; then
+                sed -i "s|^${key}=.*|${key}=${val}|" .env.local
+              else
+                echo "${key}=${val}" >> .env.local
+              fi
+            }
+            ensure_key() {
+              local key="$1"
+              grep -q "^${key}=" .env.local || echo "${key}=" >> .env.local
+            }
+            set_env "NEXT_PUBLIC_SITE_URL" "https://realgigpay.com"
+            set_env "NEXT_PUBLIC_CONTACT_EMAIL" "ibrahimraju347@gmail.com"
+            set_env "NEXT_PUBLIC_SOCIAL_X" "https://x.com/LearnTeach12"
+            set_env "NEXT_PUBLIC_GA_MEASUREMENT_ID" "G-LT24F7PE93"
+            set_env "CONTACT_WEBHOOK_URL" "https://formsubmit.co/ajax/ibrahimraju347@gmail.com"
+            set_env "INDEXNOW_KEY" "7c4f9a2e8b1d6053e4a9c2f71b8d3065"
+            ensure_key "NEXT_PUBLIC_SOCIAL_LINKEDIN"
+            ensure_key "NEXT_PUBLIC_SOCIAL_FACEBOOK"
+            ensure_key "NEXT_PUBLIC_GSC_VERIFICATION"
+            ensure_key "NEXT_PUBLIC_BING_VERIFICATION"
+            ensure_key "NEXT_PUBLIC_ADSENSE_CLIENT"
+            ensure_key "NEXT_PUBLIC_ADSENSE_SLOT_HERO"
+            ensure_key "NEXT_PUBLIC_ADSENSE_SLOT_SIDEBAR"
+            ensure_key "NEXT_PUBLIC_ADSENSE_SLOT_IN_CONTENT"
+            ensure_key "NEXT_PUBLIC_ADSENSE_SLOT_FOOTER"
+            ensure_key "NEXT_PUBLIC_ADS_PREVIEW"
             npm ci
             npm run build
-            pm2 restart realgigpay
+            pm2 restart realgigpay --update-env
           '
