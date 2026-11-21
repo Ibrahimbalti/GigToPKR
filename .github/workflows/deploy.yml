@@ -25,6 +25,13 @@ jobs:
             git fetch origin main
             git reset --hard origin/main
             git clean -fd -e .env.local -e .env
+            touch .env.local
+            grep -q "^NEXT_PUBLIC_SITE_URL=" .env.local || echo "NEXT_PUBLIC_SITE_URL=https://realgigpay.com" >> .env.local
+            if grep -q "^NEXT_PUBLIC_GA_MEASUREMENT_ID=" .env.local; then
+              sed -i "s/^NEXT_PUBLIC_GA_MEASUREMENT_ID=.*/NEXT_PUBLIC_GA_MEASUREMENT_ID=G-LT24F7PE93/" .env.local
+            else
+              echo "NEXT_PUBLIC_GA_MEASUREMENT_ID=G-LT24F7PE93" >> .env.local
+            fi
             npm ci
             npm run build
             pm2 restart realgigpay
