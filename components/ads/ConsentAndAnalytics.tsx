@@ -30,7 +30,7 @@ export function ConsentAndAnalytics() {
 
   return (
     <>
-      {choice === "accepted" && measurementId && !measurementId.startsWith("GTM-") ? (
+      {choice === "accepted" && measurementId && measurementId !== "G-LT24F7PE93" && !measurementId.startsWith("GTM-") ? (
         <>
           <Script src={`https://www.googletagmanager.com/gtag/js?id=${measurementId}`} strategy="afterInteractive" />
           <Script id="ga4" strategy="afterInteractive">

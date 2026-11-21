@@ -71,12 +71,12 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
       <head>
         <script
           async
-          src="https://www.googletagmanager.com/gtm.js?id=GTM-KJBMX52J"
+          src="https://www.googletagmanager.com/gtag/js?id=G-LT24F7PE93"
         />
         <script
           dangerouslySetInnerHTML={{
             __html:
-              "window.dataLayer = window.dataLayer || []; function gtag(){dataLayer.push(arguments);} gtag('js', new Date());",
+              "window.dataLayer = window.dataLayer || []; function gtag(){dataLayer.push(arguments);} window.gtag = gtag; gtag('js', new Date()); gtag('config', 'G-LT24F7PE93', { anonymize_ip: true });",
           }}
         />
         <link rel="icon" href="/favicon.ico" sizes="32x32" type="image/x-icon" />

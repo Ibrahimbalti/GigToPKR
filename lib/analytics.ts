@@ -17,7 +17,7 @@ declare global {
 }
 
 export function analyticsId(): string | undefined {
-  return process.env.NEXT_PUBLIC_GA_MEASUREMENT_ID || "GTM-KJBMX52J";
+  return process.env.NEXT_PUBLIC_GA_MEASUREMENT_ID || "G-LT24F7PE93";
 }
 
 export function trackEvent(
