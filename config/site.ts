@@ -40,7 +40,7 @@ export const site = {
     x: process.env.NEXT_PUBLIC_SOCIAL_X || "https://x.com/LearnTeach12",
     xHandle: "@LearnTeach12",
     linkedin: process.env.NEXT_PUBLIC_SOCIAL_LINKEDIN || "",
-    facebook: process.env.NEXT_PUBLIC_SOCIAL_FACEBOOK || "",
+    facebook: process.env.NEXT_PUBLIC_SOCIAL_FACEBOOK || "https://www.facebook.com/profile.php?id=61596701284916",
   },
 } as const;
 
