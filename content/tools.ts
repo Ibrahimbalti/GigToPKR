@@ -57,6 +57,7 @@ export const toolPages: ToolPage[] = [
     sources: [sourceLinks.fiverrEarnings, sourceLinks.fiverrHow, sourceLinks.payoneerPricing],
     related: [
       { href: "/upwork-fee-calculator", label: "Upwork calculator" },
+      { href: "/wise-fee-calculator", label: "Wise Fee Calculator" },
       { href: "/guides/fiverr-fees", label: "Fiverr fees explained" },
       { href: "/guides/fiverr-earnings-calculation", label: "Step-by-step Fiverr math" },
       { href: "/guides/fiverr-withdrawal", label: "Withdrawals after the fee" },
@@ -98,6 +99,7 @@ export const toolPages: ToolPage[] = [
     sources: [sourceLinks.upworkFee, sourceLinks.upworkPricing, sourceLinks.upworkBank],
     related: [
       { href: "/fiverr-fee-calculator", label: "Fiverr calculator" },
+      { href: "/wise-fee-calculator", label: "Wise Fee Calculator" },
       { href: "/guides/upwork-fees", label: "How the Upwork fee is set" },
       { href: "/guides/upwork-withdrawal", label: "Withdrawal options and fees" },
       { href: "/guides/upwork-earnings-calculation", label: "Calculate an Upwork payment" },
@@ -145,6 +147,7 @@ export const toolPages: ToolPage[] = [
     ],
     sources: [sourceLinks.payoneerPricing, sourceLinks.payoneerWithdraw],
     related: [
+      { href: "/wise-fee-calculator", label: "Wise Fee Calculator" },
       { href: "/guides/payoneer-fees", label: "Payoneer's published range" },
       { href: "/guides/payoneer-withdrawal-charges", label: "Withdrawal checklist" },
     ],
@@ -194,6 +197,7 @@ export const toolPages: ToolPage[] = [
       { href: "/blog/freelancer-income-planning", label: "Plan a month with a cushion" },
       { href: "/blog/how-to-calculate-freelance-income", label: "Columns for a real month" },
       { href: "/fiverr-fee-calculator", label: "Fiverr calculator" },
+      { href: "/wise-fee-calculator", label: "Wise Fee Calculator" },
     ],
   },
   {
@@ -238,6 +242,7 @@ export const toolPages: ToolPage[] = [
     ],
     sources: [],
     related: [
+      { href: "/wise-fee-calculator", label: "Wise Fee Calculator" },
       { href: "/tax-guide/freelancer-tax", label: "Freelancer tax guide" },
       { href: "/tax-guide/tax-filing-status", label: "Tax filing status" },
       { href: "/tax-guide/it-export-tax", label: "IT export context" },

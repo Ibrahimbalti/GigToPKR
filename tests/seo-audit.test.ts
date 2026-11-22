@@ -13,6 +13,7 @@ import { toolPages } from "../content/tools";
 const reserved = new Set([
   "/",
   "/creators/youtube-earnings-calculator",
+  "/wise-fee-calculator",
   "/guides",
   "/tax-guide",
   "/blog",

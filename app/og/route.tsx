@@ -16,6 +16,11 @@ const staticPageMeta: Record<string, { eyebrow: string; title: string; subtitle:
     title: "YouTube Earnings Calculator",
     subtitle: "Estimate YouTube revenue from your RPM or CPM across low, expected, and high ranges.",
   },
+  "/wise-fee-calculator": {
+    eyebrow: "Transfer Estimate",
+    title: "Wise Fee Calculator",
+    subtitle: "Estimate Wise transfer fees and recipient amount in PKR, INR, and other currencies.",
+  },
   "/guides": {
     eyebrow: "Platform & Payout Guides",
     title: "Freelance Fee & Withdrawal Guides",

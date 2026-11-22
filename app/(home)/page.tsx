@@ -91,6 +91,14 @@ export default function HomePage() {
             </p>
             <span className="mt-4 inline-flex text-sm font-semibold text-brand">Estimate YouTube earnings</span>
           </Link>
+          <Link href="/wise-fee-calculator" className="surface lift rounded-3xl p-6">
+            <p className="text-xs font-semibold uppercase tracking-[0.12em] text-muted">Transfer estimate</p>
+            <h3 className="mt-2 text-xl font-semibold tracking-[-0.02em]">Wise fee calculator</h3>
+            <p className="mt-2 text-sm leading-6 text-muted">
+              Estimate Wise transfer fees, converted amount, and recipient payout in PKR, INR, BDT, NPR, LKR, or PHP.
+            </p>
+            <span className="mt-4 inline-flex text-sm font-semibold text-brand">Calculate Wise fees</span>
+          </Link>
         </div>
       </section>
       <HowItWorks />
