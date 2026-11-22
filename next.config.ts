@@ -7,6 +7,7 @@ const nextConfig: NextConfig = {
   },
   async redirects() {
     return [
+      { source: "/og", destination: "/og-image.jpg", permanent: false },
       { source: "/calculator", destination: "/fiverr-fee-calculator", permanent: true },
       { source: "/creators", destination: "/creators/youtube-earnings-calculator", permanent: true },
       { source: "/youtube-earnings-calculator", destination: "/creators/youtube-earnings-calculator", permanent: true },
