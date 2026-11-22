@@ -27,6 +27,20 @@ export const metadata: Metadata = {
     url: "https://realgigpay.com/wise-fee-calculator",
     siteName: "RealGigPay",
     type: "website",
+    images: [
+      {
+        url: "/og-image.jpg",
+        width: 1200,
+        height: 630,
+        alt: "RealGigPay — Know What You Keep After Fees",
+      },
+    ],
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Wise Fee Calculator | RealGigPay",
+    description: "Estimate Wise fees and recipient amount in your currency.",
+    images: ["/og-image.jpg"],
   },
   alternates: {
     canonical: "https://realgigpay.com/wise-fee-calculator",

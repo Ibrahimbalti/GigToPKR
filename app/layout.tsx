@@ -4,7 +4,7 @@ import { ConsentSlot } from "@/components/ads/ConsentSlot";
 import { Footer } from "@/components/layout/Footer";
 import { Navbar } from "@/components/layout/Navbar";
 import { JsonLd } from "@/components/seo/JsonLd";
-import { absoluteUrl, site } from "@/config/site";
+import { site } from "@/config/site";
 import { organizationSchema, websiteSchema } from "@/lib/seo/schema";
 import "./globals.css";
 
@@ -44,10 +44,10 @@ export const metadata: Metadata = {
     description: site.description,
     images: [
       {
-        url: `${absoluteUrl("/og")}?path=%2F`,
+        url: "/og-image.jpg",
         width: 1200,
         height: 630,
-        alt: "Fiverr & Upwork Fee Calculator — RealGigPay",
+        alt: "RealGigPay — Know What You Keep After Fees",
       },
     ],
   },
@@ -57,7 +57,7 @@ export const metadata: Metadata = {
     creator: site.social.xHandle,
     title: "Fiverr & Upwork Fee Calculator — Take-Home Pay | RealGigPay",
     description: site.description,
-    images: [`${absoluteUrl("/og")}?path=%2F`],
+    images: ["/og-image.jpg"],
   },
   verification: {
     google: process.env.NEXT_PUBLIC_GSC_VERIFICATION,

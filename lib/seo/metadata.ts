@@ -23,7 +23,6 @@ export function buildMetadata({
   locale,
 }: PageMeta): Metadata {
   const url = absoluteUrl(path);
-  const ogImageUrl = `${absoluteUrl("/og")}?path=${encodeURIComponent(path)}`;
   const pageLocale = locale ?? openGraphLocale(path);
   const verification: Metadata["verification"] = {};
   if (process.env.NEXT_PUBLIC_GSC_VERIFICATION) {
@@ -49,10 +48,10 @@ export function buildMetadata({
       type,
       images: [
         {
-          url: ogImageUrl,
+          url: "/og-image.jpg",
           width: 1200,
           height: 630,
-          alt: `${title} — ${site.name}`,
+          alt: "RealGigPay — Know What You Keep After Fees",
         },
       ],
       ...(type === "article"
@@ -65,7 +64,7 @@ export function buildMetadata({
       creator: site.social.xHandle,
       title,
       description,
-      images: [ogImageUrl],
+      images: ["/og-image.jpg"],
     },
     verification: Object.keys(verification).length ? verification : undefined,
   };

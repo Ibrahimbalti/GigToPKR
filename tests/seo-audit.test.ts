@@ -114,9 +114,8 @@ test("every canonical is absolute and uses the site's default locale", () => {
   const taxImages = taxGuide.openGraph?.images;
   const homeImgUrl = Array.isArray(homeImages) && typeof homeImages[0] === "object" && "url" in homeImages[0] ? String(homeImages[0].url) : "";
   const taxImgUrl = Array.isArray(taxImages) && typeof taxImages[0] === "object" && "url" in taxImages[0] ? String(taxImages[0].url) : "";
-  assert.notEqual(homeImgUrl, taxImgUrl);
-  assert.ok(homeImgUrl.includes("/og?path=%2F"));
-  assert.ok(taxImgUrl.includes("/og?path=%2Ftax-guide"));
+  assert.equal(homeImgUrl, "/og-image.jpg");
+  assert.equal(taxImgUrl, "/og-image.jpg");
 
   const entries = sitemap();
   const urls = entries.map((entry) => entry.url);

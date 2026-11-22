@@ -116,7 +116,7 @@ export function articleSchema(input: {
     "@type": "Article",
     headline: input.headline,
     description: input.description,
-    image: [`${absoluteUrl("/og")}?path=${encodeURIComponent(input.path)}`],
+    image: [absoluteUrl("/og-image.jpg")],
     datePublished: input.publishedAt,
     dateModified: input.updatedAt,
     inLanguage: "en-US",

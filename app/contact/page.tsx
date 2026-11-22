@@ -52,6 +52,20 @@ export default function ContactPage() {
                 </Link>
                 .
               </p>
+              {site.social.facebook ? (
+                <p>
+                  You can also connect with us on our official{" "}
+                  <a
+                    href={site.social.facebook}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="font-semibold text-brand hover:underline"
+                  >
+                    RealGigPay Facebook Page
+                  </a>
+                  .
+                </p>
+              ) : null}
             </InfoCard>
             <InfoCard title="Leave these out">
               <ul className="grid gap-3">
