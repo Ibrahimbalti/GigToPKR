@@ -7,65 +7,23 @@ import { PageHeader } from "@/components/layout/PageHeader";
 import { AuthorCard } from "@/components/seo/AuthorCard";
 import { BreadcrumbJsonLd } from "@/components/seo/BreadcrumbJsonLd";
 import { Breadcrumbs } from "@/components/seo/Breadcrumbs";
+import { JsonLd } from "@/components/seo/JsonLd";
 import { LastUpdated } from "@/components/seo/LastUpdated";
+import { RelatedArticles } from "@/components/seo/RelatedArticles";
 import { Accordion } from "@/components/ui/Accordion";
+import { buildMetadata } from "@/lib/seo/metadata";
+import { faqSchema, webApplicationSchema } from "@/lib/seo/schema";
 
-export const metadata: Metadata = {
-  title: "Wise Fee Calculator — Estimate Transfer Fees | RealGigPay",
-  description:
-    "Calculate Wise transfer fees and see how much your recipient gets in PKR, INR, or other currencies. Free tool for freelancers.",
-  keywords: [
-    "wise fee calculator",
-    "wise transfer fee pakistan",
-    "wise pkr calculator",
-    "send money wise fees",
-    "wise calculator for freelancers",
-  ],
-  openGraph: {
-    title: "Wise Fee Calculator | RealGigPay",
-    description: "Estimate Wise fees and recipient amount in your currency.",
-    url: "https://realgigpay.com/wise-fee-calculator",
-    siteName: "RealGigPay",
-    type: "website",
-    images: [
-      {
-        url: "/og-image.jpg",
-        width: 1200,
-        height: 630,
-        alt: "RealGigPay — Know What You Keep After Fees",
-      },
-    ],
-  },
-  twitter: {
-    card: "summary_large_image",
-    title: "Wise Fee Calculator | RealGigPay",
-    description: "Estimate Wise fees and recipient amount in your currency.",
-    images: ["/og-image.jpg"],
-  },
-  alternates: {
-    canonical: "https://realgigpay.com/wise-fee-calculator",
-  },
-  robots: {
-    index: true,
-    follow: true,
-  },
-};
+const path = "/wise-fee-calculator";
+const title = "Wise Fee Calculator — Estimate Transfer Fees & Exchange Rate";
+const description =
+  "Calculate Wise transfer fees and see how much your recipient gets in PKR, INR, or other currencies. Free tool for freelancers.";
 
-const jsonLd = {
-  "@context": "https://schema.org",
-  "@type": "WebApplication",
-  name: "Wise Fee Calculator",
-  url: "https://realgigpay.com/wise-fee-calculator",
-  description:
-    "Estimate Wise transfer fees and recipient amount in PKR, INR, and other currencies.",
-  applicationCategory: "FinanceApplication",
-  operatingSystem: "All",
-  offers: {
-    "@type": "Offer",
-    price: "0",
-    priceCurrency: "USD",
-  },
-};
+export const metadata: Metadata = buildMetadata({
+  title,
+  description,
+  path,
+});
 
 const crumbs = [
   { name: "Home", path: "/" },
@@ -157,12 +115,22 @@ const RELATED_CALCULATORS = [
   },
 ];
 
+const RELATED_GUIDES = [
+  { href: "/guides/currency-conversion-guide", label: "Reference vs. payout exchange rates" },
+  { href: "/guides/freelancer-currency-conversion", label: "How to record implied exchange rates" },
+  { href: "/guides/payoneer-fees", label: "Payoneer fees explained" },
+  { href: "/blog/how-to-receive-international-payments", label: "How to receive international payments" },
+  { href: "/blog/payoneer-vs-direct-bank-transfer", label: "Payoneer vs. direct bank transfer" },
+];
+
 export default function WiseFeeCalculatorPage() {
   return (
     <div className="shell grid gap-8 py-10">
-      <script
-        type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+      <JsonLd
+        data={[
+          webApplicationSchema(path, "Wise Fee Calculator", description),
+          faqSchema(FAQS),
+        ]}
       />
       <BreadcrumbJsonLd items={crumbs} />
       <Breadcrumbs items={crumbs} />
@@ -175,7 +143,7 @@ export default function WiseFeeCalculatorPage() {
           lede="Estimate how much your recipient gets after Wise fees and exchange rate. Compare bank transfer and card payment deductions across USD, GBP, EUR, AED, CAD, and AUD to PKR, INR, BDT, NPR, LKR, and PHP."
         />
         <div className="mt-3">
-          <LastUpdated publishedAt="2026-11-22" updatedAt="2026-11-22" />
+          <LastUpdated publishedAt="2026-11-22" updatedAt="2026-11-27" />
         </div>
       </div>
 
@@ -267,6 +235,8 @@ export default function WiseFeeCalculatorPage() {
           ))}
         </div>
       </section>
+
+      <RelatedArticles links={RELATED_GUIDES} />
 
       <AuthorCard />
 

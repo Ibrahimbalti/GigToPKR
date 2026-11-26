@@ -58,4 +58,6 @@ jobs:
             npm ci
             npm run build
             pm2 restart realgigpay --update-env
+            sleep 3
+            npm run indexnow -- --all || true
           '

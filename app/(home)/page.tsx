@@ -12,6 +12,7 @@ import { Hero } from "@/components/sections/Hero";
 import { HowItWorks } from "@/components/sections/HowItWorks";
 import { PlatformComparison } from "@/components/sections/PlatformComparison";
 import { homeArticle, homeFaqs, homeSources } from "@/content/home";
+import { articlesByKind } from "@/content/registry";
 import { buildMetadata } from "@/lib/seo/metadata";
 import { faqSchema } from "@/lib/seo/schema";
 
@@ -108,6 +109,69 @@ export default function HomePage() {
         <AdSlot placement="in-content" />
       </div>
       <FAQ />
+      <section className="shell py-10 lg:py-14" aria-labelledby="home-guides-hub">
+        <div className="mb-6 max-w-2xl">
+          <h2 id="home-guides-hub" className="text-[clamp(1.6rem,2.4vw,2rem)] font-semibold tracking-[-0.03em]">
+            Freelance fee guides, tax resources, and articles
+          </h2>
+          <p className="mt-2 text-sm leading-6 text-muted">
+            Step-by-step guides on Fiverr and Upwork commissions, Payoneer and bank withdrawals, exchange-rate margins, and tax record keeping.
+          </p>
+        </div>
+        <div className="grid gap-6 lg:grid-cols-3">
+          <div className="surface rounded-3xl p-6">
+            <div className="flex items-center justify-between gap-2">
+              <h3 className="text-lg font-semibold tracking-[-0.02em]">Platform &amp; payment guides</h3>
+              <Link href="/guides" className="text-xs font-semibold text-brand hover:underline">
+                All guides →
+              </Link>
+            </div>
+            <ul className="mt-4 grid gap-2.5 text-sm">
+              {articlesByKind("guide").map((article) => (
+                <li key={article.path}>
+                  <Link href={article.path} className="font-medium text-navy-2 hover:text-brand hover:underline">
+                    {article.title}
+                  </Link>
+                </li>
+              ))}
+            </ul>
+          </div>
+          <div className="surface rounded-3xl p-6">
+            <div className="flex items-center justify-between gap-2">
+              <h3 className="text-lg font-semibold tracking-[-0.02em]">Freelancer tax guides</h3>
+              <Link href="/tax-guide" className="text-xs font-semibold text-brand hover:underline">
+                All tax guides →
+              </Link>
+            </div>
+            <ul className="mt-4 grid gap-2.5 text-sm">
+              {articlesByKind("tax").map((article) => (
+                <li key={article.path}>
+                  <Link href={article.path} className="font-medium text-navy-2 hover:text-brand hover:underline">
+                    {article.title}
+                  </Link>
+                </li>
+              ))}
+            </ul>
+          </div>
+          <div className="surface rounded-3xl p-6">
+            <div className="flex items-center justify-between gap-2">
+              <h3 className="text-lg font-semibold tracking-[-0.02em]">Latest blog articles</h3>
+              <Link href="/blog" className="text-xs font-semibold text-brand hover:underline">
+                All articles →
+              </Link>
+            </div>
+            <ul className="mt-4 grid gap-2.5 text-sm">
+              {articlesByKind("blog").map((article) => (
+                <li key={article.path}>
+                  <Link href={article.path} className="font-medium text-navy-2 hover:text-brand hover:underline">
+                    {article.title}
+                  </Link>
+                </li>
+              ))}
+            </ul>
+          </div>
+        </div>
+      </section>
       <FinalCta />
       <article className="cv-auto shell grid gap-8 py-16 lg:py-20">
         <ContentBlocks sections={homeArticle} />

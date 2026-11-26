@@ -2,6 +2,7 @@ import { sourceLinks } from "@/content/sources";
 import type { Article } from "@/types/content";
 
 const published = "2026-11-17";
+const updated = "2026-11-27";
 
 function tax(
   entry: Omit<Article, "kind" | "publishedAt" | "updatedAt" | "path"> & { slug: string },
@@ -11,7 +12,7 @@ function tax(
     kind: "tax",
     path: `/tax-guide/${entry.slug}`,
     publishedAt: published,
-    updatedAt: published,
+    updatedAt: updated,
   };
 }
 

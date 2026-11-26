@@ -12,8 +12,11 @@ export default function NotFound() {
         <Link href="/" className="cta-gradient rounded-xl px-4 py-2.5 text-sm font-semibold text-white">
           Home
         </Link>
-        <Link href="/calculator" className="rounded-xl border border-line bg-white px-4 py-2.5 text-sm font-semibold">
-          Calculator
+        <Link href="/fiverr-fee-calculator" className="rounded-xl border border-line bg-white px-4 py-2.5 text-sm font-semibold">
+          Fiverr Calculator
+        </Link>
+        <Link href="/upwork-fee-calculator" className="rounded-xl border border-line bg-white px-4 py-2.5 text-sm font-semibold">
+          Upwork Calculator
         </Link>
         <Link href="/guides" className="rounded-xl border border-line bg-white px-4 py-2.5 text-sm font-semibold">
           Guides

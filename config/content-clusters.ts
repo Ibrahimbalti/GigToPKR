@@ -17,8 +17,10 @@ export const contentClusters: ContentCluster[] = [
       "/fiverr-fee-calculator",
       "/upwork-fee-calculator",
       "/payoneer-fee-calculator",
+      "/wise-fee-calculator",
       "/freelancer-income-calculator",
       "/freelancer-tax-calculator",
+      "/creators/youtube-earnings-calculator",
     ],
   },
   {

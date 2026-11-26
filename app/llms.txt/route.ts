@@ -11,6 +11,11 @@ export function GET() {
 
 - [Fiverr calculator](${absoluteUrl("/fiverr-fee-calculator")}): opens on the 20 percent platform assumption
 - [Upwork calculator](${absoluteUrl("/upwork-fee-calculator")}): opens on the 10 percent platform assumption
+- [Payoneer fee calculator](${absoluteUrl("/payoneer-fee-calculator")}): estimates a 2 percent withdrawal assumption after platform fees
+- [Wise fee calculator](${absoluteUrl("/wise-fee-calculator")}): estimates Wise transfer fees and recipient payout across currencies
+- [Freelancer income calculator](${absoluteUrl("/freelancer-income-calculator")}): projects monthly income across similar orders
+- [Freelancer tax calculator](${absoluteUrl("/freelancer-tax-calculator")}): compares illustrative tax set-aside percentages
+- [YouTube earnings calculator](${absoluteUrl("/creators/youtube-earnings-calculator")}): estimates creator earnings from RPM or CPM
 
 ## Guides
 

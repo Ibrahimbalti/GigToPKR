@@ -2,6 +2,7 @@ import { sourceLinks } from "@/content/sources";
 import type { Article } from "@/types/content";
 
 const published = "2026-11-17";
+const updated = "2026-11-27";
 
 function post(
   entry: Omit<Article, "kind" | "publishedAt" | "updatedAt" | "path"> & {
@@ -15,7 +16,7 @@ function post(
     kind: "blog",
     path: `/blog/${entry.slug}`,
     publishedAt: date,
-    updatedAt: date,
+    updatedAt: updated,
   };
 }
 
