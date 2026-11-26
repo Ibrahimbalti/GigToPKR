@@ -16,7 +16,7 @@ const nextConfig: NextConfig = {
       { source: "/index.html", destination: "/", permanent: true },
       { source: "/home-static.html", destination: "/", permanent: true },
       { source: "/static-home", destination: "/", permanent: true },
-      { source: "/og", destination: "/og-image.jpg", permanent: false },
+      { source: "/og", destination: "/og-image.jpg", permanent: true },
       { source: "/calculator", destination: "/fiverr-fee-calculator", permanent: true },
       { source: "/creators", destination: "/creators/youtube-earnings-calculator", permanent: true },
       { source: "/youtube-earnings-calculator", destination: "/creators/youtube-earnings-calculator", permanent: true },
@@ -44,6 +44,14 @@ const nextConfig: NextConfig = {
   },
   async headers() {
     return [
+      {
+        source: "/manifest.webmanifest",
+        headers: [{ key: "X-Robots-Tag", value: "noindex" }],
+      },
+      {
+        source: "/og",
+        headers: [{ key: "X-Robots-Tag", value: "noindex" }],
+      },
       {
         source: "/:path*",
         headers: [
