@@ -113,7 +113,7 @@ export function articleSchema(input: {
 }) {
   return {
     "@context": "https://schema.org",
-    "@type": "Article",
+    "@type": input.kind ?? "Article",
     headline: input.headline,
     description: input.description,
     image: [absoluteUrl("/og-image.jpg")],

@@ -1,7 +1,7 @@
 import { sourceLinks } from "@/content/sources";
 import type { ToolPage } from "@/types/content";
 
-const updatedAt = "2026-11-27";
+const updatedAt = "2026-11-17";
 
 export const toolPages: ToolPage[] = [
   {

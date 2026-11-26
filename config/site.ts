@@ -35,7 +35,7 @@ export const site = {
   language: "en",
   contactEmail: process.env.NEXT_PUBLIC_CONTACT_EMAIL || "ibrahimraju347@gmail.com",
   published: "2026-11-17",
-  updated: "2026-11-27",
+  updated: "2026-11-19",
   social: {
     x: process.env.NEXT_PUBLIC_SOCIAL_X || "https://x.com/LearnTeach12",
     xHandle: "@LearnTeach12",

@@ -6,17 +6,18 @@ import { absoluteUrl } from "@/config/site";
 export const dynamic = "force-static";
 
 const staticPages = [
+  // "/" gained a guides hub section on 2026-11-27; other dates reflect real content changes only.
   { path: "/", updatedAt: "2026-11-27", priority: 1.0 },
-  { path: "/guides", updatedAt: "2026-11-27", priority: 0.7 },
-  { path: "/tax-guide", updatedAt: "2026-11-27", priority: 0.7 },
-  { path: "/blog", updatedAt: "2026-11-27", priority: 0.6 },
-  { path: "/about", updatedAt: "2026-11-27", priority: 0.4 },
-  { path: "/contact", updatedAt: "2026-11-27", priority: 0.4 },
-  { path: "/privacy-policy", updatedAt: "2026-11-27", priority: 0.3 },
-  { path: "/terms-and-conditions", updatedAt: "2026-11-27", priority: 0.3 },
-  { path: "/disclaimer", updatedAt: "2026-11-27", priority: 0.3 },
-  { path: "/editorial-policy", updatedAt: "2026-11-27", priority: 0.3 },
-  { path: "/creators/youtube-earnings-calculator", updatedAt: "2026-11-27", priority: 0.8 },
+  { path: "/guides", updatedAt: "2026-11-17", priority: 0.7 },
+  { path: "/tax-guide", updatedAt: "2026-11-17", priority: 0.7 },
+  { path: "/blog", updatedAt: "2026-11-17", priority: 0.6 },
+  { path: "/about", updatedAt: "2026-11-17", priority: 0.4 },
+  { path: "/contact", updatedAt: "2026-11-17", priority: 0.4 },
+  { path: "/privacy-policy", updatedAt: "2026-11-17", priority: 0.3 },
+  { path: "/terms-and-conditions", updatedAt: "2026-11-17", priority: 0.3 },
+  { path: "/disclaimer", updatedAt: "2026-11-17", priority: 0.3 },
+  { path: "/editorial-policy", updatedAt: "2026-11-17", priority: 0.3 },
+  { path: "/creators/youtube-earnings-calculator", updatedAt: "2026-11-19", priority: 0.8 },
   { path: "/wise-fee-calculator", updatedAt: "2026-11-27", priority: 0.8 },
 ];
 
